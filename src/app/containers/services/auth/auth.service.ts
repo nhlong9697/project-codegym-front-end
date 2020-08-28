@@ -1,9 +1,17 @@
 import { Injectable, Output, EventEmitter } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+<<<<<<< HEAD
 import { Observable, throwError } from 'rxjs';
 import { LocalStorageService } from 'ngx-webstorage';
 import { LoginRequestPayload } from '../login/login-request.payload';
 import { LoginResponse } from '../login/login-response';
+=======
+import { SignupRequestPayload } from '../../model/auth/signup.payload';
+import { Observable, throwError } from 'rxjs';
+import { LocalStorageService } from 'ngx-webstorage';
+import { LoginRequestPayload } from '../../model/auth/login-request.payload';
+import { LoginResponse } from '../../model/auth/login-response.payload';
+>>>>>>> origin/dev
 import { map, tap } from 'rxjs/operators';
 
 @Injectable({
@@ -22,6 +30,7 @@ export class AuthService {
     private httpClient: HttpClient,
     private localStorage: LocalStorageService
   ) {}
+<<<<<<< HEAD
 
   // signup(signupRequestPayload: SignupRequestPayload): Observable<any> {
   //   return this.httpClient.post(
@@ -30,6 +39,17 @@ export class AuthService {
   //     { responseType: 'text' }
   //   );
   // }
+=======
+  signup(signupRequestPayload: SignupRequestPayload): Observable<any> {
+    return this.httpClient.post(
+      environment.URL + 'api/auth/signup',
+      signupRequestPayload,
+      {
+        responseType: 'text',
+      }
+    );
+  }
+>>>>>>> origin/dev
 
   login(loginRequestPayload: LoginRequestPayload): Observable<boolean> {
     return this.httpClient
@@ -46,7 +66,10 @@ export class AuthService {
           this.localStorage.store('username', data.username);
           this.localStorage.store('refreshToken', data.refreshToken);
           this.localStorage.store('expiresAt', data.expiresAt);
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/dev
           this.loggedIn.emit(true);
           this.username.emit(data.username);
           return true;
@@ -59,8 +82,11 @@ export class AuthService {
   }
 
   refreshToken() {
+<<<<<<< HEAD
     console.log('refresh token is called');
     console.log(this.refreshTokenPayload);
+=======
+>>>>>>> origin/dev
     return this.httpClient
       .post<LoginResponse>(
         'http://localhost:8080/api/auth/refresh/token',
@@ -68,8 +94,11 @@ export class AuthService {
       )
       .pipe(
         tap((response) => {
+<<<<<<< HEAD
           console.log('this is the response');
           console.log(response);
+=======
+>>>>>>> origin/dev
           this.localStorage.clear('authenticationToken');
           this.localStorage.clear('expiresAt');
 
