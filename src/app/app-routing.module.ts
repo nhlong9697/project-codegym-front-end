@@ -1,47 +1,16 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { LoginComponent } from './views/login/login.component';
-import { LayoutComponent } from './views/layout/layout.component';
-
-
+import { LoginComponent } from './views/auth/login/login.component';
+import { DetailUserComponent } from './views/user/detail-user/detail-user.component';
+import { SignupComponent } from './views/auth/signup/signup.component';
 const routes: Routes = [
-  {
-    path: '',
-    redirectTo: 'login',
-    pathMatch: 'full'
-  },
-  // {
-  //   path: 'home',
-  //   component:
-  // },
-  {
-    path: 'login',
-    component: LoginComponent,
-    data: {
-      title: 'Login Page'
-    }
-  },
-
-  {
-    path: '',
-    component: LayoutComponent,
-    data: {
-      title: 'Home'
-    },
-    children: [
-      {
-        path: '',
-        loadChildren: () => import('./views/user/user.module').then(m => m.UserModule)
-      }
-      // {
-      //   path: '/custer'
-      // }
-    ]
-  }
+  { path: 'login', component: LoginComponent },
+  { path: 'user-profile/:name', component: DetailUserComponent },
+  { path: 'signup', component: SignupComponent },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
