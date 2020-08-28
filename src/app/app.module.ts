@@ -10,6 +10,8 @@ import { FooterComponent } from './views/footer/footer.component';
 import { LoginComponent } from './views/login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { AddHouseComponent } from './views/houses/add-house/add-house.component';
+
 
 
 
@@ -19,7 +21,9 @@ import { HttpClientModule } from '@angular/common/http';
     LayoutComponent,
     HeaderComponent,
     FooterComponent,
-    LoginComponent
+    LoginComponent,
+    AddHouseComponent
+
   ],
   imports: [
     BrowserModule,

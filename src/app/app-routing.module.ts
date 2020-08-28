@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './views/login/login.component';
 import { LayoutComponent } from './views/layout/layout.component';
 
+
 const routes: Routes = [
   {
     path: '',
@@ -20,6 +21,7 @@ const routes: Routes = [
       title: 'Login Page'
     }
   },
+
   {
     path: '',
     component: LayoutComponent,
