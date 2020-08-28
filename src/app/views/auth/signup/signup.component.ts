@@ -25,6 +25,7 @@ export class SignupComponent implements OnInit {
       {
         firstName: [''],
         lastName: [''],
+        phoneNumber: [''],
         username: [
           '',
           [

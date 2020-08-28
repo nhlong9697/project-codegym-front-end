@@ -3,5 +3,6 @@ export class SignupRequestPayload {
   firstName: string;
   lastName: string;
   password: string;
+  phoneNumber: string;
   username: string;
 }
