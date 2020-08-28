@@ -10,6 +10,8 @@ import { FooterComponent } from './views/footer/footer.component';
 import { LoginComponent } from './views/login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { NgxWebstorageModule } from 'ngx-webstorage';
+
 
 
 
@@ -17,9 +19,9 @@ import { HttpClientModule } from '@angular/common/http';
   declarations: [
     AppComponent,
     LayoutComponent,
-    HeaderComponent,
     FooterComponent,
-    LoginComponent
+    LoginComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
@@ -27,7 +29,9 @@ import { HttpClientModule } from '@angular/common/http';
     BrowserAnimationsModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgxWebstorageModule.forRoot()
+
   ],
   providers: [],
   bootstrap: [AppComponent]
