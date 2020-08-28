@@ -1,20 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { User } from 'src/app/containers/model/user/user';
-import { UserService } from 'src/app/containers/services/user/user.service';
-
+import { AuthService } from '../../../containers/services/auth/auth.service';
+import { SignupRequestPayload } from '../../../containers/model/auth/signup.payload';
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
   styleUrls: ['./signup.component.css'],
 })
 export class SignupComponent implements OnInit {
-  public formUser: FormGroup;
-  user: User;
+  formUser: FormGroup;
+  signupRequestPayload: SignupRequestPayload;
 
   constructor(
     private _formBuilder: FormBuilder,
-    private userService: UserService
+    private authService: AuthService
   ) {}
 
   ngOnInit(): void {
@@ -67,7 +66,7 @@ export class SignupComponent implements OnInit {
   createUser() {
     let data = this.formUser.value;
     console.log(data);
-    this.userService.createUser(data).subscribe((res) => {
+    this.authService.signup(data).subscribe((res) => {
       window.alert('create user success');
     });
   }

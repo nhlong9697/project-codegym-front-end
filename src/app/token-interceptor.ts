@@ -7,9 +7,9 @@ import {
   HttpErrorResponse,
 } from '@angular/common/http';
 import { Observable, BehaviorSubject, throwError } from 'rxjs';
-import { AuthService } from './auth/shared/auth.service';
+import { AuthService } from './containers/services/auth/auth.service';
 import { catchError, switchMap, take, filter } from 'rxjs/operators';
-import { LoginResponse } from './auth/login/login-response.payload';
+import { LoginResponse } from './containers/model/auth/login-response.payload';
 
 @Injectable({
   providedIn: 'root',
