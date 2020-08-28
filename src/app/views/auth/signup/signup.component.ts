@@ -52,19 +52,19 @@ export class SignupComponent implements OnInit {
     // })
   }
 
-  checkPassWord(group: FormGroup) {
-    let pass = group.controls.password.value;
-    let confirmPass = group.controls.confirmPassword.value;
+  checkPassWord(group: FormGroup): any {
+    const pass = group.controls.password.value;
+    const confirmPass = group.controls.confirmPassword.value;
 
     return pass === confirmPass ? null : { notSame: true };
   }
 
-  onSubmitForm() {
+  onSubmitForm(): void {
     this.createUser();
   }
 
-  createUser() {
-    let data = this.formUser.value;
+  createUser(): void {
+    const data = this.formUser.value;
     console.log(data);
     this.authService.signup(data).subscribe((res) => {
       window.alert('create user success');

@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
 import { LocalStorageService } from 'ngx-webstorage';
-import { AuthService } from '../auth/shared/auth.service';
+import { AuthService } from '../../containers/services/auth/auth.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -14,18 +15,22 @@ export class HeaderComponent implements OnInit {
   isLoggedIn: boolean;
   username: string;
 
-  constructor(private httpClient: HttpClient,
-    private localStorage: LocalStorageService) { }
+  constructor(
+    private httpClient: HttpClient,
+    private localStorage: LocalStorageService,
+    private authService: AuthService,
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
     this.isLoggedIn = this.authService.isLoggedIn();
     this.username = this.authService.getUserName();
   }
-  goToUserProfile(){
-    this.router.navigateByUrl('/user-profile/' + this.username)
+  goToUserProfile(): void{
+    this.router.navigateByUrl('/user-profile/' + this.username);
   }
 
-  logout(){
+  logout(): void{
     this.authService.logout();
     this.isLoggedIn = false;
     this.router.navigateByUrl('');
