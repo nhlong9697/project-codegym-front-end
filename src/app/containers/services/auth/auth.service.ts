@@ -6,13 +6,10 @@ import { LocalStorageService } from 'ngx-webstorage';
 import { LoginRequestPayload } from '../../model/auth/login-request.payload';
 import { LoginResponse } from '../../model/auth/login-response.payload';
 import { map, tap } from 'rxjs/operators';
-<<<<<<< HEAD
-import { environment } from 'src/environments/environment';
-=======
+
 
 import {environment} from '../../../../environments/environment';
 
->>>>>>> origin/dev
 @Injectable({
   providedIn: 'root',
 })
@@ -61,11 +58,11 @@ export class AuthService {
       );
   }
 
-  getJwtToken() {
+  getJwtToken(): string {
     return this.localStorage.retrieve('authenticationToken');
   }
 
-  refreshToken() {
+  refreshToken(): Observable<any> {
     return this.httpClient
       .post<LoginResponse>(
         'http://localhost:8080/api/auth/refresh/token',
@@ -85,7 +82,7 @@ export class AuthService {
       );
   }
 
-  logout() {
+  logout(): void {
     this.httpClient
       .post('http://localhost:8080/api/auth/logout', this.refreshTokenPayload, {
         responseType: 'text',
@@ -104,10 +101,10 @@ export class AuthService {
     this.localStorage.clear('expiresAt');
   }
 
-  getUserName() {
+  getUserName(): string {
     return this.localStorage.retrieve('username');
   }
-  getRefreshToken() {
+  getRefreshToken(): string {
     return this.localStorage.retrieve('refreshToken');
   }
 

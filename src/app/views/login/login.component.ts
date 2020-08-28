@@ -6,15 +6,15 @@ import { LocalStorageService } from 'ngx-webstorage';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
 
-  public formUser : FormGroup;
+  public formUser: FormGroup;
 
   constructor(
     private cookie: CookieService,
-    private formBuilder : FormBuilder,
+    private formBuilder: FormBuilder,
     private ls: LocalStorageService
   ) { }
 
