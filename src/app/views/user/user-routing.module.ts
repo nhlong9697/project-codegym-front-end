@@ -13,7 +13,7 @@ const routes: Routes = [
     component: ListUserComponent
   },
   {
-    path: 'add',
+    path: 'register',
     component: AddUserComponent
   },
   {
