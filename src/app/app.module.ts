@@ -13,8 +13,9 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { EditorModule } from '@tinymce/tinymce-angular';
 import { TokenInterceptor } from './token-interceptor';
+import { UserProfileComponent } from './auth/user-profile/user-profile.component';
 @NgModule({
-  declarations: [AppComponent, LoginComponent],
+  declarations: [AppComponent, LoginComponent, UserProfileComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
