@@ -22,7 +22,6 @@
       </div>
     </div>
 
-
     <div class="form-group">
       <label for="username" class="col-sm-3 control-label">Username </label>
       <div class="col-sm-9">
@@ -69,36 +68,42 @@
       </div>
     </div>
     <!-- <fieldset formGroupName="pwGroup"> -->
-      <div class="form-group">
-        <label for="password" class="col-sm-3 control-label">Password*</label>
-        <div class="col-sm-9">
-          <input
-            type="password"
-            class="form-control"
-            formControlName="password"
-          />
-          <div *ngIf="password.invalid && (password.dirty || password.touched)"class="alert alert-danger">
-            vui lòng nhập nhiều hơn 5 kí tự
-            <div *ngIf="password.errors.required">
-              password is required.
-            </div>
+    <div class="form-group">
+      <label for="password" class="col-sm-3 control-label">Password*</label>
+      <div class="col-sm-9">
+        <input
+          type="password"
+          class="form-control"
+          formControlName="password"
+        />
+        <div
+          *ngIf="password.invalid && (password.dirty || password.touched)"
+          class="alert alert-danger"
+        >
+          vui lòng nhập nhiều hơn 5 kí tự
+          <div *ngIf="password.errors.required">
+            password is required.
           </div>
-          <!-- <span
+        </div>
+        <!-- <span
             class="alert alert-danger"
             *ngIf="
               formUser.controls.password.dirty &&
               formUser.controls.password.errors?.required
             "
             >vui lòng nhập password</span > -->
-        </div>
       </div>
-      <div class="form-group">
-        <label for="password" class="col-sm-3 control-label">Confirm Password</label>
-        <input
+    </div>
+    <div class="form-group">
+      <label for="password" class="col-sm-3 control-label"
+        >Confirm Password</label
+      >
+      <input
         type="password"
         class="form-control"
-        formControlName="confirmPassword"/>
-      </div>
+        formControlName="confirmPassword"
+      />
+    </div>
     <!-- </fieldset> -->
 
     <button [disabled]="formUser.invalid" type="submit" class="btn btn-primary">
@@ -109,4 +114,3 @@
   <!-- /form -->
 </div>
 <!-- ./container -->
-
