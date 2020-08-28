@@ -10,6 +10,7 @@ export class UpdateUserComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+
   }
 
 }
