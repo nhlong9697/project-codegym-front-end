@@ -16,6 +16,7 @@ import { TokenInterceptor } from './token-interceptor';
 import { LoginComponent } from './views/auth/login/login.component';
 import { SignupComponent } from './views/auth/signup/signup.component';
 import { DetailUserComponent } from './views/user/detail-user/detail-user.component';
+import {MatIconModule} from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { DetailUserComponent } from './views/user/detail-user/detail-user.compon
     FontAwesomeModule,
     EditorModule,
     NgbModule,
+    MatIconModule
   ],
   providers: [
     {
