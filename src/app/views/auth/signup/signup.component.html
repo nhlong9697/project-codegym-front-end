@@ -22,17 +22,37 @@
       </div>
     </div>
     <div class="form-group">
-      <label for="phoneNumber" class="col-sm-3 control-label">PhoneNumber</label>
+      <label for="phoneNumber" class="col-sm-3 control-label"
+        >PhoneNumber</label
+      >
       <div class="col-sm-9">
         <input type="text" class="form-control" formControlName="phoneNumber" />
+        <br />
+        <span
+          class="alert alert-danger"
+          *ngIf="
+            formUser.controls.phoneNumber.dirty &&
+            formUser.controls.phoneNumber.errors?.required
+          "
+          >vui lòng nhập password
+        </span>
+        <span
+          class="alert alert-danger"
+          *ngIf="
+            formUser.controls.phoneNumber.dirty &&
+            formUser.controls.phoneNumber.errors?.pattern
+          "
+          >vui lòng nhập đúng định dạng số điện thoại
+        </span>
       </div>
     </div>
     <div class="form-group">
       <label for="username" class="col-sm-3 control-label">Username </label>
       <div class="col-sm-9">
         <input type="text" class="form-control" formControlName="username" />
+        <br />
         <span
-          class="label label-danger"
+          class="alert alert-danger"
           *ngIf="
             formUser.controls.username.dirty &&
             formUser.controls.username.errors?.required
@@ -40,7 +60,7 @@
           >vui lòng nhập username</span
         >
         <span
-          class="label label-danger"
+          class="alert alert-danger"
           *ngIf="
             formUser.controls.username.dirty &&
             formUser.controls.username.errors?.maxlength
@@ -48,7 +68,7 @@
           >vui lòng nhập không quá 20 kí tự</span
         >
         <span
-          class="label label-danger"
+          class="alert alert-danger"
           *ngIf="
             formUser.controls.username.dirty &&
             formUser.controls.username.errors?.minlength
@@ -72,7 +92,6 @@
         >
       </div>
     </div>
-    <!-- <fieldset formGroupName="pwGroup"> -->
     <div class="form-group">
       <label for="password" class="col-sm-3 control-label">Password*</label>
       <div class="col-sm-9">
@@ -81,34 +100,39 @@
           class="form-control"
           formControlName="password"
         />
-        <div
-          *ngIf="password.invalid && (password.dirty || password.touched)"
+
+        <br />
+        <span
           class="alert alert-danger"
+          *ngIf="
+            formUser.controls.password.dirty &&
+            formUser.controls.password.errors?.required
+          "
+          >vui lòng nhập password</span
         >
-          vui lòng nhập nhiều hơn 5 kí tự
-          <div *ngIf="password.errors.required">
-            password is required.
-          </div>
+        <span
+          class="alert alert-danger"
+          *ngIf="
+            formUser.controls.password.dirty &&
+            formUser.controls.password.errors?.minlength
+          "
+          >vui lòng nhập đủ 5 kí tự</span
+        >
+      </div>
+      <div class="form-group">
+        <label for="password" class="col-sm-3 control-label"
+          >Confirm Password</label
+        >
+        <div class="col-sm-9">
+          <input
+            type="password"
+            class="form-control"
+            formControlName="confirmPassword"
+          />
         </div>
-        <!-- <span
-            class="alert alert-danger"
-            *ngIf="
-              formUser.controls.password.dirty &&
-              formUser.controls.password.errors?.required
-            "
-            >vui lòng nhập password</span > -->
       </div>
     </div>
-    <div class="form-group">
-      <label for="password" class="col-sm-3 control-label"
-        >Confirm Password</label
-      >
-      <input
-        type="password"
-        class="form-control"
-        formControlName="confirmPassword"
-      />
-    </div>
+
     <!-- </fieldset> -->
 
     <button [disabled]="formUser.invalid" type="submit" class="btn btn-primary">

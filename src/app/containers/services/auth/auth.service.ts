@@ -39,7 +39,7 @@ export class AuthService {
   login(loginRequestPayload: LoginRequestPayload): Observable<boolean> {
     return this.httpClient
       .post<LoginResponse>(
-        'http://localhost:8080/api/auth/login',
+        environment.URL + 'api/auth/login',
         loginRequestPayload
       )
       .pipe(
@@ -65,7 +65,7 @@ export class AuthService {
   refreshToken(): Observable<any> {
     return this.httpClient
       .post<LoginResponse>(
-        'http://localhost:8080/api/auth/refresh/token',
+        environment.URL + 'api/auth/refresh/token',
         this.refreshTokenPayload
       )
       .pipe(
@@ -84,7 +84,7 @@ export class AuthService {
 
   logout(): void {
     this.httpClient
-      .post('http://localhost:8080/api/auth/logout', this.refreshTokenPayload, {
+      .post(environment.URL + 'api/auth/logout', this.refreshTokenPayload, {
         responseType: 'text',
       })
       .subscribe(

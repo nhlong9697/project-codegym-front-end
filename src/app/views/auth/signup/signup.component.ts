@@ -25,7 +25,14 @@ export class SignupComponent implements OnInit {
       {
         firstName: [''],
         lastName: [''],
-        phoneNumber: [''],
+        phoneNumber: ['',
+        [
+          Validators.required,
+          Validators.pattern(
+            '^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$'
+          ),
+        ]
+      ],
         username: [
           '',
           [
@@ -72,7 +79,5 @@ export class SignupComponent implements OnInit {
     });
   }
 
-  get password() {
-    return this.formUser.get('password');
-  }
+
 }
