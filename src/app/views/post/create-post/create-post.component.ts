@@ -23,7 +23,17 @@ export class CreatePostComponent implements OnInit {
 
   fileInfos: Observable<any>;
   constructor(  private router: Router,
-    private houseService: HousesServiceService) { }
+    private houseService: AuthService) {
+      this.postPayLoad = {
+        name:'',
+        houseCategory:'',
+        city:'',
+        address:'',
+        price:0,
+        description:''
+      }
+    }
+
 
   ngOnInit(): void {
     this.createHouseForm = new FormGroup({
@@ -31,8 +41,8 @@ export class CreatePostComponent implements OnInit {
       HouseCategory: new FormControl('', Validators.required),
       City: new FormControl('', Validators.required),
       Address: new FormControl('', Validators.required),
-      Prive: new FormControl('', Validators.required),
-      Description: new FormControl('', Validators.required),
+      // Prive: new FormControl('', Validators.required),
+      // Description: new FormControl('', Validators.required),
     });
     this.houseService.getAllhouseCategory().subscribe(
       (data) => {

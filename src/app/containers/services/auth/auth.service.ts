@@ -7,6 +7,8 @@ import { LoginRequestPayload } from '../../model/auth/login-request.payload';
 import { LoginResponse } from '../../model/auth/login-response.payload';
 import { map, tap } from 'rxjs/operators';
 import { House } from 'src/app/containers/model/house/house'
+import { CommentPayload } from 'src/app/containers/model/home/description.payload';
+import { PostModel } from 'src/app/containers/model/home/post-model';
 
 
 import {environment} from '../../../../environments/environment';
@@ -42,7 +44,7 @@ export class AuthService {
   login(loginRequestPayload: LoginRequestPayload): Observable<boolean> {
     return this.httpClient
       .post<LoginResponse>(
-        'http://localhost:8080/api/auth/login',
+        environment.URL +'api/auth/login',
         loginRequestPayload
       )
       .pipe(
@@ -68,7 +70,7 @@ export class AuthService {
   refreshToken(): Observable<any> {
     return this.httpClient
       .post<LoginResponse>(
-        'http://localhost:8080/api/auth/refresh/token',
+        environment.URL + 'api/auth/refresh/token',
         this.refreshTokenPayload
       )
       .pipe(
@@ -87,7 +89,7 @@ export class AuthService {
 
   logout(): void {
     this.httpClient
-      .post('http://localhost:8080/api/auth/logout', this.refreshTokenPayload, {
+      .post( environment.URL + 'api/auth/logout', this.refreshTokenPayload, {
         responseType: 'text',
       })
       .subscribe(
@@ -104,7 +106,39 @@ export class AuthService {
     this.localStorage.clear('expiresAt');
   }
 
-  //nhờ anh long sửa
+   //TODO: sửa API
+  getAllhouseCategory(): Observable<Array<houseCategoryModel>> {
+    return this.httpClient.get<Array<houseCategoryModel>>(
+      environment.URL + 'api/subreddit'
+    );
+  }
+
+   //TODO: sửa API
+  getAllCity(): Observable<Array<City>>{
+    return this.httpClient.get<Array<City>>(
+      environment.URL + 'api/subreddit'
+    );
+  }
+   //TODO: sửa API
+  createHouse(postPayLoad: House): Observable<any> {
+    return this.httpClient.post( environment.URL + 'api/posts/', postPayLoad);
+  }
+   //TODO: sửa API
+  getAllCommentsByUser(name: string) {
+    return this.httpClient.get<CommentPayload[]>(
+      environment.URL + 'api/comments/by-user/' + name
+    );
+  }
+   //TODO: sửa API
+  getAllPostsByUser(name: string): Observable<PostModel[]> {
+    return this.httpClient.get<PostModel[]>(
+      environment.URL + 'api/posts/by-user/' + name
+    );
+  }
+  //TODO: sửa API
+  getAllPosts(): Observable<Array<PostModel>> {
+    return this.httpClient.get<Array<PostModel>>(environment.URL + 'api/posts/');
+  }
 
 
   getUserName(): string {
