@@ -25,6 +25,7 @@
       <div *ngIf="isLoggedIn" ngbDropdown class="float-right">
         <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
           <button (click)="goToUserProfile()" ngbDropdownItem>Profile</button>
+          <button ngbDropdownItem><a routerLink='/createHouse'>Create House</a></button>
           <button (click)="logout()" ngbDropdownItem>Logout</button>
         </div>
         <button class="userdetails" id="dropdownBasic1" ngbDropdownToggle>

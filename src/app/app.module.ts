@@ -17,6 +17,9 @@ import { LoginComponent } from './views/auth/login/login.component';
 import { SignupComponent } from './views/auth/signup/signup.component';
 import { DetailUserComponent } from './views/user/detail-user/detail-user.component';
 import {MatIconModule} from '@angular/material/icon';
+import { CreatePostComponent } from './views/post/create-post/create-post.component';
+import { MatFormFieldModule} from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input'
 
 @NgModule({
   declarations: [
@@ -26,6 +29,7 @@ import {MatIconModule} from '@angular/material/icon';
     LoginComponent,
     SignupComponent,
     DetailUserComponent,
+    CreatePostComponent,
   ],
   imports: [
     BrowserModule,
@@ -39,7 +43,9 @@ import {MatIconModule} from '@angular/material/icon';
     FontAwesomeModule,
     EditorModule,
     NgbModule,
-    MatIconModule
+    MatIconModule,
+    MatFormFieldModule,
+    MatInputModule
   ],
   providers: [
     {
