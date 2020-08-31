@@ -19,7 +19,8 @@ import { DetailUserComponent } from './views/user/detail-user/detail-user.compon
 import {MatIconModule} from '@angular/material/icon';
 import { CreatePostComponent } from './views/post/create-post/create-post.component';
 import { MatFormFieldModule} from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input'
+import { MatInputModule } from '@angular/material/input';
+import { PostTileComponent } from './views/post/post-tile/post-tile.component'
 
 @NgModule({
   declarations: [
@@ -30,6 +31,8 @@ import { MatInputModule } from '@angular/material/input'
     SignupComponent,
     DetailUserComponent,
     CreatePostComponent,
+    PostTileComponent,
+
   ],
   imports: [
     BrowserModule,
