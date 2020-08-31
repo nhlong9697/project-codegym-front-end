@@ -117,7 +117,7 @@ export class AuthService {
       'http://localhost:8080/api/subreddit'
     );
   }
-
+  //nhờ anh long sửa
   createHouse(postPayLoad: House): Observable<any> {
     return this.httpClient.post('http://localhost:8080/api/posts/', postPayLoad);
   }

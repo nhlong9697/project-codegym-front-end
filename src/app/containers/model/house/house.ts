@@ -1,10 +1,8 @@
-import { City } from './../city/city'
-
 export class House{
   address: string
-  image: File
+  // image: File
   name: string
-  city: City
+  city?: String
   houseCategory: String
   price: number
   description: String

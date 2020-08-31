@@ -19,7 +19,16 @@ export class CreatePostComponent implements OnInit {
   postPayLoad: House;
 
   constructor(  private router: Router,
-    private houseService: AuthService) { }
+    private houseService: AuthService) {
+      this.postPayLoad = {
+        name:'',
+        houseCategory:'',
+        city:'',
+        address:'',
+        price:0,
+        description:''
+      }
+    }
 
   ngOnInit(): void {
     this.createHouseForm = new FormGroup({
@@ -27,8 +36,8 @@ export class CreatePostComponent implements OnInit {
       HouseCategory: new FormControl('', Validators.required),
       City: new FormControl('', Validators.required),
       Address: new FormControl('', Validators.required),
-      Prive: new FormControl('', Validators.required),
-      Description: new FormControl('', Validators.required),
+      // Prive: new FormControl('', Validators.required),
+      // Description: new FormControl('', Validators.required),
     });
     this.houseService.getAllhouseCategory().subscribe(
       (data) => {

@@ -4,11 +4,12 @@ import { LoginComponent } from './views/auth/login/login.component';
 import { DetailUserComponent } from './views/user/detail-user/detail-user.component';
 import { SignupComponent } from './views/auth/signup/signup.component';
 import { CreatePostComponent } from './views/post/create-post/create-post.component'
+import { UserGuard } from 'src/app/containers/guards/user/user.guard';
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
-  { path: 'user-profile/:name', component: DetailUserComponent },
+  { path: 'user-profile/:name', component: DetailUserComponent, canActivate: [UserGuard] },
   { path: 'signup', component: SignupComponent },
-  { path: 'createHouse', component: CreatePostComponent}
+  { path: 'createHouse', component: CreatePostComponent, canActivate: [UserGuard]}
 ];
 
 @NgModule({
