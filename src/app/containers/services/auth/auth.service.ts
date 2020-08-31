@@ -6,9 +6,12 @@ import { LocalStorageService } from 'ngx-webstorage';
 import { LoginRequestPayload } from '../../model/auth/login-request.payload';
 import { LoginResponse } from '../../model/auth/login-response.payload';
 import { map, tap } from 'rxjs/operators';
+import { House } from 'src/app/containers/model/house/house'
 
 
 import {environment} from '../../../../environments/environment';
+import { houseCategoryModel } from '../../model/house-category/house-category';
+import { City } from '../../model/city/city';
 
 @Injectable({
   providedIn: 'root',
@@ -99,6 +102,24 @@ export class AuthService {
     this.localStorage.clear('username');
     this.localStorage.clear('refreshToken');
     this.localStorage.clear('expiresAt');
+  }
+
+  //nhờ anh long sửa
+  getAllhouseCategory(): Observable<Array<houseCategoryModel>> {
+    return this.httpClient.get<Array<houseCategoryModel>>(
+      'http://localhost:8080/api/subreddit'
+    );
+  }
+
+  //nhờ anh long sửa
+  getAllCity(): Observable<Array<City>>{
+    return this.httpClient.get<Array<City>>(
+      'http://localhost:8080/api/subreddit'
+    );
+  }
+
+  createHouse(postPayLoad: House): Observable<any> {
+    return this.httpClient.post('http://localhost:8080/api/posts/', postPayLoad);
   }
 
   getUserName(): string {
