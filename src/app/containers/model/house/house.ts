@@ -5,4 +5,7 @@ export class House{
   image: File
   name: string
   city: City
+  houseCategory: String
+  price: number
+  description: String
 }
