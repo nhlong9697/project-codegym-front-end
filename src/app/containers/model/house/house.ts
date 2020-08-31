@@ -1,11 +1,10 @@
-import { City } from './../city/city'
+import { City } from './../city/city';
 
 export class House{
-  address: string
-  image: File
-  name: string
-  city: City
-  houseCategory: String
-  price: number
-  description: String
+  address: string;
+  name: string;
+  city: City;
+  houseCategory: string;
+  price: number;
+  description: string;
 }

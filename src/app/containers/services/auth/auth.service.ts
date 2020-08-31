@@ -105,22 +105,7 @@ export class AuthService {
   }
 
   //nhờ anh long sửa
-  getAllhouseCategory(): Observable<Array<houseCategoryModel>> {
-    return this.httpClient.get<Array<houseCategoryModel>>(
-      'http://localhost:8080/api/subreddit'
-    );
-  }
 
-  //nhờ anh long sửa
-  getAllCity(): Observable<Array<City>>{
-    return this.httpClient.get<Array<City>>(
-      'http://localhost:8080/api/subreddit'
-    );
-  }
-
-  createHouse(postPayLoad: House): Observable<any> {
-    return this.httpClient.post('http://localhost:8080/api/posts/', postPayLoad);
-  }
 
   getUserName(): string {
     return this.localStorage.retrieve('username');
