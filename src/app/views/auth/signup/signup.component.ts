@@ -10,6 +10,7 @@ import { SignupRequestPayload } from '../../../containers/model/auth/signup.payl
 export class SignupComponent implements OnInit {
   formUser: FormGroup;
   signupRequestPayload: SignupRequestPayload;
+  signupRequestPayloads: SignupRequestPayload[];
 
   constructor(
     private _formBuilder: FormBuilder,
@@ -18,6 +19,7 @@ export class SignupComponent implements OnInit {
 
   ngOnInit(): void {
     this.createForm();
+    // this.listUser();
   }
 
   createForm() {
@@ -76,8 +78,23 @@ export class SignupComponent implements OnInit {
     console.log(data);
     this.authService.signup(data).subscribe((res) => {
       window.alert('create user success');
+    }, error => {
+      window.alert(error.error.message);
+    }
+    );
+  }
+
+  listUser(): void{
+     this.authService.getAllAuth().subscribe(res => {
+      this.signupRequestPayloads = res;
+
     });
   }
 
+  // test(){
+  //   const data = this.formUser.value;
+  //   console.log(data);
+
+  // }
 
 }

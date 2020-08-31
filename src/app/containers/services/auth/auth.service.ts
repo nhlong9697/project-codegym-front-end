@@ -1,11 +1,15 @@
 import { Injectable, Output, EventEmitter } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { SignupRequestPayload } from '../../model/auth/signup.payload';
 import { Observable, throwError } from 'rxjs';
 import { LocalStorageService } from 'ngx-webstorage';
 import { LoginRequestPayload } from '../../model/auth/login-request.payload';
 import { LoginResponse } from '../../model/auth/login-response.payload';
 import { map, tap } from 'rxjs/operators';
+// import 'rxjs/add/operator/catch';
+// import 'rxjs/add/observable/of';
+// import 'rxjs/add/observable/empty';
+// import 'rxjs/add/operator/retry';
 
 
 import {environment} from '../../../../environments/environment';
@@ -21,6 +25,8 @@ export class AuthService {
     refreshToken: this.getRefreshToken(),
     username: this.getUserName(),
   };
+
+
 
   constructor(
     private httpClient: HttpClient,
@@ -100,6 +106,11 @@ export class AuthService {
     this.localStorage.clear('refreshToken');
     this.localStorage.clear('expiresAt');
   }
+
+  getAllAuth(): Observable< Array< SignupRequestPayload >> {
+    return this.httpClient.get<Array<SignupRequestPayload>>('http://localhost:8080/api/auth/users');
+  }
+
 
   getUserName(): string {
     return this.localStorage.retrieve('username');

@@ -57,7 +57,9 @@
             formUser.controls.username.dirty &&
             formUser.controls.username.errors?.required
           "
-          >vui lòng nhập username</span
+          >
+
+          vui lòng nhập username</span
         >
         <span
           class="alert alert-danger"
@@ -138,6 +140,7 @@
     <button [disabled]="formUser.invalid" type="submit" class="btn btn-primary">
       Register
     </button>
+    <!-- <button (click) = 'test()'>aaaaaa</button> -->
     <!-- <button (click)="onResetForm()" type="button" class="btn btn-primary" > Reset </button> -->
   </form>
   <!-- /form -->
