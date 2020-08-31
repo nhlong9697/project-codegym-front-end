@@ -101,6 +101,7 @@
                           bullist numlist outdent indent | removeformat | help'
             }"
           ></editor>
+          <input type="file" accept="image/*" multiple (change)="selectFiles($event)">
           <span>
             <div style="margin-top: 5px" class="float-right">
               <button (click)="discardPost()" class="btnDiscard">

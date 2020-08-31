@@ -140,6 +140,7 @@ export class AuthService {
     return this.httpClient.get<Array<PostModel>>(environment.URL + 'api/posts/');
   }
 
+
   getUserName(): string {
     return this.localStorage.retrieve('username');
   }
