@@ -1,5 +1,5 @@
 import { Injectable, Output, EventEmitter } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { SignupRequestPayload } from '../../model/auth/signup.payload';
 import { Observable, throwError } from 'rxjs';
 import { LocalStorageService } from 'ngx-webstorage';
@@ -86,7 +86,7 @@ export class AuthService {
 
   logout(): void {
     this.httpClient
-      .post( environment.URL + 'api/auth/logout', this.refreshTokenPayload, {
+      .post(environment.URL + 'api/auth/logout', this.refreshTokenPayload, {
         responseType: 'text',
       })
       .subscribe(
@@ -102,11 +102,6 @@ export class AuthService {
     this.localStorage.clear('refreshToken');
     this.localStorage.clear('expiresAt');
   }
-
-   //TODO: sửa API
-
-   //TODO: sửa API
-
 
   getUserName(): string {
     return this.localStorage.retrieve('username');
