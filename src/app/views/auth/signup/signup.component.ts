@@ -84,17 +84,21 @@ export class SignupComponent implements OnInit {
     );
   }
 
-  listUser(): void{
-     this.authService.getAllAuth().subscribe(res => {
-      this.signupRequestPayloads = res;
+  // listUser(): void{
+  //    this.authService.getAllAuth().subscribe(res => {
+  //     this.signupRequestPayloads = res;
 
-    });
-  }
+  //   });
+  // }
 
   // test(){
   //   const data = this.formUser.value;
   //   console.log(data);
 
   // }
+
+  get password(){
+    return this.formUser.get('password');
+  }
 
 }

@@ -7,9 +7,12 @@ import { LoginRequestPayload } from '../../model/auth/login-request.payload';
 import { LoginResponse } from '../../model/auth/login-response.payload';
 import { map, tap } from 'rxjs/operators';
 import { CommentPayload } from 'src/app/containers/model/home/description.payload';
+import { HouseRequest } from 'src/app/containers/model/house/house-request';
+
 
 
 import {environment} from '../../../../environments/environment';
+import { HouseCategory } from '../../model/house-category/house-category';
 import { City } from '../../model/city/city';
 
 @Injectable({
