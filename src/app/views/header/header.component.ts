@@ -37,4 +37,5 @@ export class HeaderComponent implements OnInit {
     this.isLoggedIn = false;
     this.router.navigateByUrl('');
   }
+
 }
