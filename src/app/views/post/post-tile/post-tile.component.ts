@@ -1,8 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { faComments } from '@fortawesome/free-solid-svg-icons';
-import { PostModel } from 'src/app/containers/model/home/post-model';
 import { Router } from '@angular/router';
-import {HouseResponse} from '../../../containers/model/house/house-response';
+import {PostResponse} from '../../../containers/model/house/post-response';
 
 @Component({
   selector: 'app-post-tile',
@@ -11,7 +10,7 @@ import {HouseResponse} from '../../../containers/model/house/house-response';
 })
 export class PostTileComponent implements OnInit {
   faComments = faComments;
-  @Input() houses: HouseResponse[];
+  @Input() posts: PostResponse[];
 
   constructor(private router: Router) { }
 

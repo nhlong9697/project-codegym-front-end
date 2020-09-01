@@ -7,13 +7,11 @@ import { LoginRequestPayload } from '../../model/auth/login-request.payload';
 import { LoginResponse } from '../../model/auth/login-response.payload';
 import { map, tap } from 'rxjs/operators';
 import { CommentPayload } from 'src/app/containers/model/home/description.payload';
-import { PostModel } from 'src/app/containers/model/home/post-model';
 
 
 import {environment} from '../../../../environments/environment';
 import { houseCategoryModel } from '../../model/house-category/house-category';
 import { City } from '../../model/city/city';
-import {House} from '../../model/house/house';
 
 @Injectable({
   providedIn: 'root',
@@ -44,7 +42,7 @@ export class AuthService {
   login(loginRequestPayload: LoginRequestPayload): Observable<boolean> {
     return this.httpClient
       .post<LoginResponse>(
-        environment.URL +'api/auth/login',
+        environment.URL + 'api/auth/login',
         loginRequestPayload
       )
       .pipe(
@@ -124,16 +122,6 @@ export class AuthService {
     return this.httpClient.get<CommentPayload[]>(
       environment.URL + 'api/comments/by-user/' + name
     );
-  }
-   //TODO: sửa API
-  getAllHouseByUser(name: string): Observable<PostModel[]> {
-    return this.httpClient.get<PostModel[]>(
-      environment.URL + 'api/houses/by-user/' + name
-    );
-  }
-  //TODO: sửa API
-  getAllHouses(): Observable<Array<PostModel>> {
-    return this.httpClient.get<Array<PostModel>>(environment.URL + 'api/houses/');
   }
 
 

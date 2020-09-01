@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { PostModel } from 'src/app/containers/model/home/post-model';
 import { AuthService } from 'src/app/containers/services/auth/auth.service';
-import {HousesServiceService} from '../../containers/services/houses/houses-service.service';
-import {HouseResponse} from '../../containers/model/house/house-response';
+import {PostService} from '../../containers/services/post/post.service';
+import {PostResponse} from '../../containers/model/house/post-response';
 
 @Component({
   selector: 'app-home',
@@ -10,9 +9,9 @@ import {HouseResponse} from '../../containers/model/house/house-response';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  houses: Array<HouseResponse> = [];
-  constructor(private housesService: HousesServiceService) {
-    this.housesService.getAllHouses().subscribe((houses) => {
+  houses: Array<PostResponse> = [];
+  constructor(private housesService: PostService) {
+    this.housesService.getAllPosts().subscribe((houses) => {
       this.houses = houses;
     });
    }

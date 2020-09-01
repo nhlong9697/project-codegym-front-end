@@ -2,19 +2,18 @@ import { Injectable } from '@angular/core';
 import {Observable} from 'rxjs';
 import {houseCategoryModel} from '../../model/house-category/house-category';
 import {City} from '../../model/city/city';
-import {House} from '../../model/house/house';
+import {PostRequest} from '../../model/house/post-request';
 import {HttpClient} from '@angular/common/http';
 import {Form} from '@angular/forms';
 import {environment} from '../../../../environments/environment';
-import {PostModel} from '../../model/home/post-model';
-import {HouseResponse} from '../../model/house/house-response';
+import {PostResponse} from '../../model/house/post-response';
 
 @Injectable({
   providedIn: 'root'
 })
-export class HousesServiceService {
+export class PostService {
 
-  constructor(private httpClient:HttpClient) { }
+  constructor(private httpClient: HttpClient) { }
   getAllhouseCategory(): Observable<Array<houseCategoryModel>> {
     return this.httpClient.get<Array<houseCategoryModel>>(
       'http://localhost:8080/api/subreddit'
@@ -28,20 +27,20 @@ export class HousesServiceService {
     );
   }
 
-  createHouse(data: House): Observable<any> {
-    return this.httpClient.post(environment.URL + 'api/houses/', data);
+  createPost(data: PostRequest): Observable<any> {
+    return this.httpClient.post(environment.URL + 'api/post/', data);
   }
 
-  addHouseImage(data: FormData): Observable<any> {
+  addPostImage(data: FormData): Observable<any> {
     return this.httpClient.post(environment.URL + 'api/images', data);
   }
-  getAllHouseByUser(name: string): Observable<HouseResponse[]> {
-    return this.httpClient.get<HouseResponse[]>(
-      environment.URL + 'api/houses/by-user/' + name
+  getAllPostsByUser(name: string): Observable<PostResponse[]> {
+    return this.httpClient.get<PostResponse[]>(
+      environment.URL + 'api/post/by-user/' + name
     );
   }
   //TODO: sửa API
-  getAllHouses(): Observable<Array<HouseResponse>> {
-    return this.httpClient.get<Array<HouseResponse>>(environment.URL + 'api/houses/');
+  getAllPosts(): Observable<Array<PostResponse>> {
+    return this.httpClient.get<Array<PostResponse>>(environment.URL + 'api/post/');
   }
 }

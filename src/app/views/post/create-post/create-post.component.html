@@ -101,7 +101,25 @@
                           bullist numlist outdent indent | removeformat | help'
             }"
           ></editor>
-          <input type="file" accept="image/*" multiple (change)="selectFiles($event)">
+          <div *ngFor="let progressInfo of progressInfos" class="mb-2">
+            <span>{{ progressInfo.fileName }}</span>
+            <div class="progress">
+              <div
+                class="progress-bar progress-bar-info progress-bar-striped"
+                role="progressbar"
+                attr.aria-valuenow="{{ progressInfo.percentage }}"
+                aria-valuemin="0"
+                aria-valuemax="100"
+                [ngStyle]="{ width: progressInfo.percentage + '%' }"
+              >
+                {{ progressInfo.percentage }}%
+              </div>
+            </div>
+          </div>
+          <label class="btn btn-default">
+            <input type="file" accept="image/*" multiple (change)="selectFiles($event)" />
+          </label>
+
           <span>
             <div style="margin-top: 5px" class="float-right">
               <button (click)="discardPost()" class="btnDiscard">

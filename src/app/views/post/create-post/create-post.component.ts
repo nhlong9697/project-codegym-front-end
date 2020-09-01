@@ -4,9 +4,9 @@ import { houseCategoryModel } from 'src/app/containers/model/house-category/hous
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import {Observable, throwError} from 'rxjs';
 import { City } from 'src/app/containers/model/city/city';
-import { House } from 'src/app/containers/model/house/house';
-import {HousesServiceService} from '../../../containers/services/houses/houses-service.service';
-import {HouseResponse} from '../../../containers/model/house/house-response';
+import { PostRequest } from 'src/app/containers/model/house/post-request';
+import {PostService} from '../../../containers/services/post/post.service';
+import {PostResponse} from '../../../containers/model/house/post-response';
 import {HttpEventType, HttpResponse} from '@angular/common/http';
 
 @Component({
@@ -18,14 +18,14 @@ export class CreatePostComponent implements OnInit {
   houseCategory: Array<houseCategoryModel>;
   allCity: Array<City>;
   createHouseForm: FormGroup;
-  postPayLoad: House;
+  postPayLoad: PostRequest;
   selectedFiles: FileList;
   progressInfos = [];
   message = '';
 
   fileInfos: Observable<any>;
   constructor(  private router: Router,
-    private houseService: HousesServiceService) {
+                private postService: PostService) {
       this.postPayLoad = {
         name: '',
         houseCategory: '',
@@ -46,7 +46,7 @@ export class CreatePostComponent implements OnInit {
       // Prive: new FormControl('', Validators.required),
       // Description: new FormControl('', Validators.required),
     });
-    this.houseService.getAllhouseCategory().subscribe(
+    this.postService.getAllhouseCategory().subscribe(
       (data) => {
         this.houseCategory = data;
       },
@@ -54,7 +54,7 @@ export class CreatePostComponent implements OnInit {
         throwError(error);
       }
     );
-    this.houseService.getAllCity().subscribe(
+    this.postService.getAllCity().subscribe(
       (data) => {
         this.allCity = data;
       },
@@ -74,15 +74,9 @@ export class CreatePostComponent implements OnInit {
       this.postPayLoad.city = this.createHouseForm.get('city').value;
       this.postPayLoad.price = this.createHouseForm.get('price').value;
       this.postPayLoad.description = this.createHouseForm.get('description').value;
-      // const formData = new FormData();
-      // formData.append('postPayLoad', JSON.stringify(this.postPayLoad));
-      // for (let i = 0; i < this.selectedFiles.length; i++) {
-      //   this.progressInfos[i] = { value: 0, fileName: this.selectedFiles[i].name };
-      //   formData.append(i.toString(), this.selectedFiles[i]);
-      // }
-      this.houseService.createHouse(this.postPayLoad).subscribe(
+      this.postService.createPost(this.postPayLoad).subscribe(
         (data) => {
-          const house: HouseResponse = data;
+          const house: PostResponse = data;
           for (let i = 0; i < this.selectedFiles.length; i++) {
             this.upload(i, this.selectedFiles[i], house.houseId);
           }
@@ -121,7 +115,7 @@ export class CreatePostComponent implements OnInit {
     formData.append('file', this.selectedFiles[i]);
     formData.append('houseId', houseId.toString());
     this.progressInfos[i] = { value: 0, fileName: selectedFile.name };
-    this.houseService.addHouseImage(formData).subscribe(
+    this.postService.addPostImage(formData).subscribe(
       event => {
         if (event.type === HttpEventType.UploadProgress) {
           this.progressInfos[i].percentage = Math.round(100 * event.loaded / event.total);

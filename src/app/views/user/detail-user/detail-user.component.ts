@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { PostModel } from 'src/app/containers/model/home/post-model';
 import { CommentPayload } from 'src/app/containers/model/home/description.payload';
 import { ActivatedRoute } from '@angular/router';
-import { AuthService } from 'src/app/containers/services/auth/auth.service';
+import {PostService} from '../../../containers/services/post/post.service';
+import {PostResponse} from '../../../containers/model/house/post-response';
 
 
 
@@ -13,25 +13,21 @@ import { AuthService } from 'src/app/containers/services/auth/auth.service';
 })
 export class DetailUserComponent implements OnInit {
   name: string;
-  posts: PostModel[];
+  posts: PostResponse[];
   comments: CommentPayload[];
   postLength: number;
   commentLength: number;
 
   constructor(private activateRoute: ActivatedRoute,
-    private authService: AuthService) {
+    private houseService: PostService) {
       this.name = this.activateRoute.snapshot.params.name;
 
-    this.authService.getAllHouseByUser(this.name).subscribe((data) => {
+    this.houseService.getAllPostsByUser(this.name).subscribe((data) => {
       this.posts = data;
       this.postLength = data.length;
     });
 
-    this.authService.getAllCommentsByUser(this.name).subscribe((data) => {
-      this.comments = data;
-      this.commentLength = data.length;
-    });
-     }
+  }
 
   ngOnInit(): void {
   }
