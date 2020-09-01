@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/containers/services/auth/auth.service';
-import {HouseService} from '../../containers/services/post/house.service';
+import {HouseService} from '../../containers/services/house/house.service';
 import {HouseResponse} from '../../containers/model/house/house-response';
 
 @Component({

@@ -10,7 +10,6 @@ import { CommentPayload } from 'src/app/containers/model/home/description.payloa
 
 
 import {environment} from '../../../../environments/environment';
-import { houseCategoryModel } from '../../model/house-category/house-category';
 import { City } from '../../model/city/city';
 
 @Injectable({
@@ -105,24 +104,8 @@ export class AuthService {
   }
 
    //TODO: sửa API
-  getAllhouseCategory(): Observable<Array<houseCategoryModel>> {
-    return this.httpClient.get<Array<houseCategoryModel>>(
-      environment.URL + 'api/subreddit'
-    );
-  }
 
    //TODO: sửa API
-  getAllCity(): Observable<Array<City>>{
-    return this.httpClient.get<Array<City>>(
-      environment.URL + 'api/subreddit'
-    );
-  }
-   //TODO: sửa API
-  getAllCommentsByUser(name: string): Observable<CommentPayload[]> {
-    return this.httpClient.get<CommentPayload[]>(
-      environment.URL + 'api/comments/by-user/' + name
-    );
-  }
 
 
   getUserName(): string {

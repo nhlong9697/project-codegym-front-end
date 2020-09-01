@@ -1,9 +1,10 @@
 export class HouseRequest{
   address: string;
   // image: File
-  name: string;
-  city?: string;
-  houseCategory: string;
-  price: number;
+  cityName: string;
   description: string;
+  houseCategory: string;
+  houseId?: number;
+  houseName: string;
+  price: number;
 }

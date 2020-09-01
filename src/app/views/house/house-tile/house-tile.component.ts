@@ -4,19 +4,19 @@ import { Router } from '@angular/router';
 import {HouseResponse} from '../../../containers/model/house/house-response';
 
 @Component({
-  selector: 'app-post-tile',
+  selector: 'app-house-tile',
   templateUrl: './house-tile.component.html',
   styleUrls: ['./house-tile.component.css']
 })
 export class HouseTileComponent implements OnInit {
   faComments = faComments;
-  @Input() posts: HouseResponse[];
+  @Input() houses: HouseResponse[];
 
   constructor(private router: Router) { }
 
   ngOnInit(): void {
   }
   goToHouse(houseId: number): void {
-    this.router.navigateByUrl('/view-post/' + houseId);
+    this.router.navigateByUrl('/view-house/' + houseId);
   }
 }

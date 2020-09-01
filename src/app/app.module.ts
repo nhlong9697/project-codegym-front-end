@@ -17,11 +17,13 @@ import { LoginComponent } from './views/auth/login/login.component';
 import { SignupComponent } from './views/auth/signup/signup.component';
 import { DetailUserComponent } from './views/user/detail-user/detail-user.component';
 import {MatIconModule} from '@angular/material/icon';
-import { CreateHouseComponent } from './views/post/create-house/create-house.component';
+import { CreateHouseComponent } from './views/house/create-house/create-house.component';
 import { MatFormFieldModule} from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { HouseTileComponent } from './views/post/house-tile/house-tile.component'
+import { HouseTileComponent } from './views/house/house-tile/house-tile.component'
 import {HomeComponent} from './views/home/home.component';
+import {MatCardModule} from '@angular/material/card';
+import {MatButtonModule} from '@angular/material/button';
 
 @NgModule({
   declarations: [
@@ -49,7 +51,9 @@ import {HomeComponent} from './views/home/home.component';
     NgbModule,
     MatIconModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    MatCardModule,
+    MatButtonModule
   ],
   providers: [
     {

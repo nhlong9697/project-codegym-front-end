@@ -1,21 +1,21 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { houseCategoryModel } from 'src/app/containers/model/house-category/house-category';
+import {HouseCategory} from 'src/app/containers/model/house-category/house-category';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import {Observable, throwError} from 'rxjs';
 import { City } from 'src/app/containers/model/city/city';
 import { HouseRequest } from 'src/app/containers/model/house/house-request';
-import {HouseService} from '../../../containers/services/post/house.service';
+import {HouseService} from '../../../containers/services/house/house.service';
 import {HouseResponse} from '../../../containers/model/house/house-response';
 import {HttpEventType, HttpResponse} from '@angular/common/http';
 
 @Component({
-  selector: 'app-create-post',
+  selector: 'app-create-house',
   templateUrl: './create-house.component.html',
   styleUrls: ['./create-house.component.css']
 })
 export class CreateHouseComponent implements OnInit {
-  houseCategory: Array<houseCategoryModel>;
+  houseCategory: Array<HouseCategory>;
   allCity: Array<City>;
   createHouseForm: FormGroup;
   housePayLoad: HouseRequest;
@@ -27,9 +27,9 @@ export class CreateHouseComponent implements OnInit {
   constructor(  private router: Router,
                 private houseService: HouseService) {
       this.housePayLoad = {
-        name: '',
+        houseName: '',
         houseCategory: '',
-        city: '',
+        cityName: '',
         address: '',
         price: 0,
         description: ''
@@ -43,10 +43,10 @@ export class CreateHouseComponent implements OnInit {
       HouseCategory: new FormControl('', Validators.required),
       City: new FormControl('', Validators.required),
       Address: new FormControl('', Validators.required),
-      // Prive: new FormControl('', Validators.required),
-      // Description: new FormControl('', Validators.required),
+      Price: new FormControl('', Validators.required),
+      Description: new FormControl('', Validators.required),
     });
-    this.houseService.getAllhouseCategory().subscribe(
+    this.houseService.getAllHouseCategory().subscribe(
       (data) => {
         this.houseCategory = data;
       },
@@ -68,15 +68,16 @@ export class CreateHouseComponent implements OnInit {
     this.router.navigateByUrl('/');
   }
    createHouse() {
-      this.housePayLoad.name = this.createHouseForm.get('name').value;
-      this.housePayLoad.address = this.createHouseForm.get('address').value;
-      this.housePayLoad.houseCategory = this.createHouseForm.get('houseCategory').value;
-      this.housePayLoad.city = this.createHouseForm.get('city').value;
-      this.housePayLoad.price = this.createHouseForm.get('price').value;
-      this.housePayLoad.description = this.createHouseForm.get('description').value;
+      this.housePayLoad.houseName = this.createHouseForm.get('Name').value;
+      this.housePayLoad.address = this.createHouseForm.get('Address').value;
+      this.housePayLoad.houseCategory = this.createHouseForm.get('HouseCategory').value;
+      this.housePayLoad.cityName = this.createHouseForm.get('City').value;
+      this.housePayLoad.price = this.createHouseForm.get('Price').value;
+      this.housePayLoad.description = this.createHouseForm.get('Description').value;
       this.houseService.createHouse(this.housePayLoad).subscribe(
         (data) => {
           const house: HouseResponse = data;
+          console.log(data);
           for (let i = 0; i < this.selectedFiles.length; i++) {
             this.upload(i, this.selectedFiles[i], house.houseId);
           }
