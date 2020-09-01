@@ -46,6 +46,7 @@ export class CreateHouseComponent implements OnInit {
       Price: new FormControl('', Validators.required),
       Description: new FormControl('', Validators.required),
     });
+
     this.houseService.getAllHouseCategory().subscribe(
       (data) => {
         this.houseCategory = data;
@@ -54,9 +55,12 @@ export class CreateHouseComponent implements OnInit {
         throwError(error);
       }
     );
+
     this.houseService.getAllCity().subscribe(
       (data) => {
         this.allCity = data;
+        console.log(data);
+        debugger
       },
       (error) => {
         throwError(error);
