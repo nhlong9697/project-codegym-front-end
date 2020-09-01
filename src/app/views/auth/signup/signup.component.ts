@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../../containers/services/auth/auth.service';
 import { SignupRequestPayload } from '../../../containers/model/auth/signup.payload';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
@@ -10,14 +11,17 @@ import { SignupRequestPayload } from '../../../containers/model/auth/signup.payl
 export class SignupComponent implements OnInit {
   formUser: FormGroup;
   signupRequestPayload: SignupRequestPayload;
+  signupRequestPayloads: SignupRequestPayload[];
 
   constructor(
     private _formBuilder: FormBuilder,
-    private authService: AuthService
+    private authService: AuthService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
     this.createForm();
+    // this.listUser();
   }
 
   createForm() {
@@ -25,7 +29,14 @@ export class SignupComponent implements OnInit {
       {
         firstName: [''],
         lastName: [''],
-        phoneNumber: [''],
+        phoneNumber: ['',
+        [
+          Validators.required,
+          Validators.pattern(
+            '^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$'
+          ),
+        ]
+      ],
         username: [
           '',
           [
@@ -69,10 +80,24 @@ export class SignupComponent implements OnInit {
     console.log(data);
     this.authService.signup(data).subscribe((res) => {
       window.alert('create user success');
+      this.router.navigate(['login'])
+    }, error => {
+      window.alert(error.error.message);
+    }
+    );
+  }
+
+  listUser(): void{
+     this.authService.getAllAuth().subscribe(res => {
+      this.signupRequestPayloads = res;
+
     });
   }
 
-  get password() {
-    return this.formUser.get('password');
-  }
+  // test(){
+  //   const data = this.formUser.value;
+  //   console.log(data);
+
+  // }
+
 }

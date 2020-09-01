@@ -4,11 +4,17 @@ import { LoginComponent } from './views/auth/login/login.component';
 import { DetailUserComponent } from './views/user/detail-user/detail-user.component';
 import { SignupComponent } from './views/auth/signup/signup.component';
 import { CreatePostComponent } from './views/post/create-post/create-post.component'
+import { CreateReservationComponent } from './views/reservation/create-reservation/create-reservation.component';
+import { ListPostComponent } from './views/post/list-post/list-post.component';
+
+
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'user-profile/:name', component: DetailUserComponent },
   { path: 'signup', component: SignupComponent },
-  { path: 'createHouse', component: CreatePostComponent}
+  { path: 'createHouse', component: CreatePostComponent},
+  { path: 'createReservation', component: CreateReservationComponent },
+  { path: '', component: ListPostComponent }
 ];
 
 @NgModule({

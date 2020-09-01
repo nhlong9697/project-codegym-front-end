@@ -27,7 +27,7 @@ export class CreatePostComponent implements OnInit {
       HouseCategory: new FormControl('', Validators.required),
       City: new FormControl('', Validators.required),
       Address: new FormControl('', Validators.required),
-      Prive: new FormControl('', Validators.required),
+      Price: new FormControl('', Validators.required),
       Description: new FormControl('', Validators.required),
     });
     this.houseService.getAllhouseCategory().subscribe(

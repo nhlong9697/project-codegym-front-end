@@ -1,12 +1,14 @@
 import { Injectable, Output, EventEmitter } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { SignupRequestPayload } from '../../model/auth/signup.payload';
 import { Observable, throwError } from 'rxjs';
 import { LocalStorageService } from 'ngx-webstorage';
 import { LoginRequestPayload } from '../../model/auth/login-request.payload';
 import { LoginResponse } from '../../model/auth/login-response.payload';
 import { map, tap } from 'rxjs/operators';
+
 import { House } from 'src/app/containers/model/house/house'
+
 
 
 import {environment} from '../../../../environments/environment';
@@ -25,6 +27,8 @@ export class AuthService {
     username: this.getUserName(),
   };
 
+
+
   constructor(
     private httpClient: HttpClient,
     private localStorage: LocalStorageService
@@ -42,7 +46,7 @@ export class AuthService {
   login(loginRequestPayload: LoginRequestPayload): Observable<boolean> {
     return this.httpClient
       .post<LoginResponse>(
-        'http://localhost:8080/api/auth/login',
+        environment.URL + 'api/auth/login',
         loginRequestPayload
       )
       .pipe(
@@ -68,7 +72,7 @@ export class AuthService {
   refreshToken(): Observable<any> {
     return this.httpClient
       .post<LoginResponse>(
-        'http://localhost:8080/api/auth/refresh/token',
+        environment.URL + 'api/auth/refresh/token',
         this.refreshTokenPayload
       )
       .pipe(
@@ -87,7 +91,7 @@ export class AuthService {
 
   logout(): void {
     this.httpClient
-      .post('http://localhost:8080/api/auth/logout', this.refreshTokenPayload, {
+      .post(environment.URL + 'api/auth/logout', this.refreshTokenPayload, {
         responseType: 'text',
       })
       .subscribe(
@@ -120,6 +124,10 @@ export class AuthService {
 
   createHouse(postPayLoad: House): Observable<any> {
     return this.httpClient.post('http://localhost:8080/api/posts/', postPayLoad);
+  }
+
+  getAllAuth(): Observable< Array< SignupRequestPayload >> {
+    return this.httpClient.get<Array<SignupRequestPayload>>('http://localhost:8080/api/auth/users');
   }
 
   getUserName(): string {

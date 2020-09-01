@@ -19,7 +19,10 @@ import { DetailUserComponent } from './views/user/detail-user/detail-user.compon
 import {MatIconModule} from '@angular/material/icon';
 import { CreatePostComponent } from './views/post/create-post/create-post.component';
 import { MatFormFieldModule} from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input'
+import { MatInputModule } from '@angular/material/input';
+import { CreateReservationComponent } from './views/reservation/create-reservation/create-reservation.component';
+import { ListPostComponent } from './views/post/list-post/list-post.component';
+// import { UserModule } from './views/user/user.module';
 
 @NgModule({
   declarations: [
@@ -30,6 +33,8 @@ import { MatInputModule } from '@angular/material/input'
     SignupComponent,
     DetailUserComponent,
     CreatePostComponent,
+    CreateReservationComponent,
+    ListPostComponent,
   ],
   imports: [
     BrowserModule,
@@ -45,7 +50,8 @@ import { MatInputModule } from '@angular/material/input'
     NgbModule,
     MatIconModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    // UserModule
   ],
   providers: [
     {

@@ -1,0 +1,30 @@
+<div class="ProductSet ProductSet--grid">
+  <!-- Product Card: vertical -->
+  <div *ngFor="let item of houseList">
+      <a [routerLink] = "['/houses',item.id]" class="ProductCard ProductCard--grid">
+          <div class="ProductCard__img-wrapper">
+              <img th:src="@{'/'+${hotel.image}}" alt="ERROR" class="ProductCard__img">
+          </div>
+
+          <div class="ProductCard__details">
+
+              <div class="ProductCard__details__header">
+                  <div class="ProductCard__titles">
+                      <h4 class="ProductCard__title" >{{item.houseName}}</h4>
+                      <h5 class="ProductCard__price" >{{item.username}}</h5>
+                      <h5 class="ProductCard__price" >{{item.houseCategory}}</h5>
+                      <h5 class="ProductCard__price" >{{item.cityName}}</h5>
+                      <h5 class="ProductCard__price" >{{item.address}}</h5>
+                      <h5 class="ProductCard__price" >{{item.price}}</h5>
+                  </div>
+              </div>
+              <p sec:authorize="hasRole('ADMIN')">
+                  <a th:href="@{/hotels/edit-hotel/__${hotel.id}__}">Edit</a>
+              </p>
+              <p sec:authorize="hasRole('ADMIN')">
+                  <a th:href="@{/hotels/delete-hotel/__${hotel.id}__}">Delete</a></p>
+          </div>
+      </a>
+  </div>
+</div>
+<!-- END: Product Set -->

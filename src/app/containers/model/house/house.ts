@@ -1,11 +1,12 @@
 import { City } from './../city/city'
 
 export class House{
+  id?: number
   address: string
-  image: File
+  // image: File
   name: string
-  city: City
-  houseCategory: String
+  city?: string
+  houseCategory?: String
   price: number
   description: String
 }
