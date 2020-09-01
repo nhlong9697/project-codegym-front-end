@@ -6,13 +6,19 @@ import { LocalStorageService } from 'ngx-webstorage';
 import { LoginRequestPayload } from '../../model/auth/login-request.payload';
 import { LoginResponse } from '../../model/auth/login-response.payload';
 import { map, tap } from 'rxjs/operators';
+<<<<<<< HEAD
 // import 'rxjs/add/operator/catch';
 // import 'rxjs/add/observable/of';
 // import 'rxjs/add/observable/empty';
 // import 'rxjs/add/operator/retry';
+=======
+import { House } from 'src/app/containers/model/house/house'
+>>>>>>> dev
 
 
 import {environment} from '../../../../environments/environment';
+import { houseCategoryModel } from '../../model/house-category/house-category';
+import { City } from '../../model/city/city';
 
 @Injectable({
   providedIn: 'root',
@@ -107,10 +113,30 @@ export class AuthService {
     this.localStorage.clear('expiresAt');
   }
 
+<<<<<<< HEAD
   getAllAuth(): Observable< Array< SignupRequestPayload >> {
     return this.httpClient.get<Array<SignupRequestPayload>>('http://localhost:8080/api/auth/users');
   }
 
+=======
+  //nhờ anh long sửa
+  getAllhouseCategory(): Observable<Array<houseCategoryModel>> {
+    return this.httpClient.get<Array<houseCategoryModel>>(
+      'http://localhost:8080/api/subreddit'
+    );
+  }
+
+  //nhờ anh long sửa
+  getAllCity(): Observable<Array<City>>{
+    return this.httpClient.get<Array<City>>(
+      'http://localhost:8080/api/subreddit'
+    );
+  }
+
+  createHouse(postPayLoad: House): Observable<any> {
+    return this.httpClient.post('http://localhost:8080/api/posts/', postPayLoad);
+  }
+>>>>>>> dev
 
   getUserName(): string {
     return this.localStorage.retrieve('username');
