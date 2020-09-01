@@ -7,10 +7,7 @@
         <mat-card-subtitle>{{house.houseCategory}}</mat-card-subtitle>
       </mat-card-header>
       <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
-      <mat-card-content>
-
-          {{house.description}}
-
+      <mat-card-content [innerHTML]="house.description">
         <h3><span class="badge badge-pill badge-info">Giá : {{house.price}} $</span>
         </h3>
       </mat-card-content>

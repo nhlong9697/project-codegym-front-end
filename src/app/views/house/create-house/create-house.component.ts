@@ -85,6 +85,9 @@ export class CreateHouseComponent implements OnInit {
           for (let i = 0; i < this.selectedFiles.length; i++) {
             this.upload(i, this.selectedFiles[i], house.houseId);
           }
+          this.router.navigate(['/'], {
+            queryParams: { created: 'true' },
+          });
         },
         (error) => {
           throwError(error);

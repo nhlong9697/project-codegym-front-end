@@ -6,6 +6,7 @@ import { LocalStorageService } from 'ngx-webstorage';
 import { LoginRequestPayload } from '../../model/auth/login-request.payload';
 import { LoginResponse } from '../../model/auth/login-response.payload';
 import { map, tap } from 'rxjs/operators';
+import { CommentPayload } from 'src/app/containers/model/home/description.payload';
 import { HouseRequest } from 'src/app/containers/model/house/house-request';
 
 
@@ -25,8 +26,6 @@ export class AuthService {
     refreshToken: this.getRefreshToken(),
     username: this.getUserName(),
   };
-
-
 
   constructor(
     private httpClient: HttpClient,
@@ -106,26 +105,6 @@ export class AuthService {
     this.localStorage.clear('refreshToken');
     this.localStorage.clear('expiresAt');
   }
-
-
-  //nhờ anh long sửa
-  getAllhouseCategory(): Observable<Array<HouseCategory>> {
-    return this.httpClient.get<Array<HouseCategory>>(
-      'http://localhost:8080/api/subreddit'
-    );
-  }
-
-  //nhờ anh long sửa
-  getAllCity(): Observable<Array<City>>{
-    return this.httpClient.get<Array<City>>(
-      'http://localhost:8080/api/subreddit'
-    );
-  }
-
-  createHouse(postPayLoad: HouseRequest): Observable<any> {
-    return this.httpClient.post('http://localhost:8080/api/posts/', postPayLoad);
-  }
-
 
   getUserName(): string {
     return this.localStorage.retrieve('username');
