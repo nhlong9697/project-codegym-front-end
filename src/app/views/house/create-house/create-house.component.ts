@@ -122,11 +122,15 @@ export class CreateHouseComponent implements OnInit {
     this.progressInfos[i] = { value: 0, fileName: selectedFile.name };
     this.houseService.addHouseImage(formData).subscribe(
       event => {
+        console.log('this is event');
+        console.log(event);
         if (event.type === HttpEventType.UploadProgress) {
           this.progressInfos[i].percentage = Math.round(100 * event.loaded / event.total);
         }
       },
       err => {
+        console.log('error with add house');
+        console.log(err);
         this.progressInfos[i].percentage = 0;
         this.message = 'Could not upload the file:' + selectedFile.name;
       }
