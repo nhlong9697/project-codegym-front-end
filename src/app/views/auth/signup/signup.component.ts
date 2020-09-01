@@ -97,4 +97,8 @@ export class SignupComponent implements OnInit {
 
   // }
 
+  get password(){
+    return this.formUser.get('password');
+  }
+
 }
