@@ -6,6 +6,8 @@ import {House} from '../../model/house/house';
 import {HttpClient} from '@angular/common/http';
 import {Form} from '@angular/forms';
 import {environment} from '../../../../environments/environment';
+import {PostModel} from '../../model/home/post-model';
+import {HouseResponse} from '../../model/house/house-response';
 
 @Injectable({
   providedIn: 'root'
@@ -32,5 +34,14 @@ export class HousesServiceService {
 
   addHouseImage(data: FormData): Observable<any> {
     return this.httpClient.post(environment.URL + 'api/images', data);
+  }
+  getAllHouseByUser(name: string): Observable<HouseResponse[]> {
+    return this.httpClient.get<HouseResponse[]>(
+      environment.URL + 'api/houses/by-user/' + name
+    );
+  }
+  //TODO: sửa API
+  getAllHouses(): Observable<Array<HouseResponse>> {
+    return this.httpClient.get<Array<HouseResponse>>(environment.URL + 'api/houses/');
   }
 }

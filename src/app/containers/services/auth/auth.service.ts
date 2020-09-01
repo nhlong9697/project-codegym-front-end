@@ -128,12 +128,12 @@ export class AuthService {
    //TODO: sửa API
   getAllHouseByUser(name: string): Observable<PostModel[]> {
     return this.httpClient.get<PostModel[]>(
-      environment.URL + 'api/posts/by-user/' + name
+      environment.URL + 'api/houses/by-user/' + name
     );
   }
   //TODO: sửa API
-  getAllPosts(): Observable<Array<PostModel>> {
-    return this.httpClient.get<Array<PostModel>>(environment.URL + 'api/posts/');
+  getAllHouses(): Observable<Array<PostModel>> {
+    return this.httpClient.get<Array<PostModel>>(environment.URL + 'api/houses/');
   }
 
 
