@@ -22,7 +22,7 @@ export class DetailUserComponent implements OnInit {
     private authService: AuthService) {
       this.name = this.activateRoute.snapshot.params.name;
 
-    this.authService.getAllPostsByUser(this.name).subscribe((data) => {
+    this.authService.getAllHouseByUser(this.name).subscribe((data) => {
       this.posts = data;
       this.postLength = data.length;
     });

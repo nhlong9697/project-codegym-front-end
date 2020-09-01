@@ -21,6 +21,7 @@ import { CreatePostComponent } from './views/post/create-post/create-post.compon
 import { MatFormFieldModule} from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { PostTileComponent } from './views/post/post-tile/post-tile.component'
+import {HomeComponent} from './views/home/home.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,7 @@ import { PostTileComponent } from './views/post/post-tile/post-tile.component'
     DetailUserComponent,
     CreatePostComponent,
     PostTileComponent,
-
+    HomeComponent
   ],
   imports: [
     BrowserModule,

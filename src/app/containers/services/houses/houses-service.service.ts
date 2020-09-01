@@ -4,6 +4,8 @@ import {houseCategoryModel} from '../../model/house-category/house-category';
 import {City} from '../../model/city/city';
 import {House} from '../../model/house/house';
 import {HttpClient} from '@angular/common/http';
+import {Form} from '@angular/forms';
+import {environment} from '../../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -24,7 +26,11 @@ export class HousesServiceService {
     );
   }
 
-  createHouse(data: FormData): Observable<any> {
-    return this.httpClient.post('http://localhost:8080/api/posts/', data);
+  createHouse(data: House): Observable<any> {
+    return this.httpClient.post(environment.URL + 'api/houses/', data);
+  }
+
+  addHouseImage(data: FormData): Observable<any> {
+    return this.httpClient.post(environment.URL + 'api/images', data);
   }
 }

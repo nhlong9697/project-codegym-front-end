@@ -6,6 +6,8 @@ import {Observable, throwError} from 'rxjs';
 import { City } from 'src/app/containers/model/city/city';
 import { House } from 'src/app/containers/model/house/house';
 import {HousesServiceService} from '../../../containers/services/houses/houses-service.service';
+import {HouseResponse} from '../../../containers/model/house/house-response';
+import {HttpEventType, HttpResponse} from '@angular/common/http';
 
 @Component({
   selector: 'app-create-post',
@@ -23,15 +25,15 @@ export class CreatePostComponent implements OnInit {
 
   fileInfos: Observable<any>;
   constructor(  private router: Router,
-    private houseService: AuthService) {
+    private houseService: HousesServiceService) {
       this.postPayLoad = {
-        name:'',
-        houseCategory:'',
-        city:'',
-        address:'',
-        price:0,
-        description:''
-      }
+        name: '',
+        houseCategory: '',
+        city: '',
+        address: '',
+        price: 0,
+        description: ''
+      };
     }
 
 
@@ -72,15 +74,18 @@ export class CreatePostComponent implements OnInit {
       this.postPayLoad.city = this.createHouseForm.get('city').value;
       this.postPayLoad.price = this.createHouseForm.get('price').value;
       this.postPayLoad.description = this.createHouseForm.get('description').value;
-      const formData = new FormData();
-      formData.append('postPayLoad', JSON.stringify(this.postPayLoad));
-      for (let i = 0; i < this.selectedFiles.length; i++) {
-        this.progressInfos[i] = { value: 0, fileName: this.selectedFiles[i].name };
-        formData.append(i.toString(), this.selectedFiles[i]);
-      }
-      this.houseService.createHouse(formData).subscribe(
+      // const formData = new FormData();
+      // formData.append('postPayLoad', JSON.stringify(this.postPayLoad));
+      // for (let i = 0; i < this.selectedFiles.length; i++) {
+      //   this.progressInfos[i] = { value: 0, fileName: this.selectedFiles[i].name };
+      //   formData.append(i.toString(), this.selectedFiles[i]);
+      // }
+      this.houseService.createHouse(this.postPayLoad).subscribe(
         (data) => {
-          this.router.navigateByUrl('/');
+          const house: HouseResponse = data;
+          for (let i = 0; i < this.selectedFiles.length; i++) {
+            this.upload(i, this.selectedFiles[i], house.houseId);
+          }
         },
         (error) => {
           throwError(error);
@@ -109,5 +114,23 @@ export class CreatePostComponent implements OnInit {
     } else {
       this.selectedFiles = undefined;
     }
+  }
+
+  private upload(i: number, selectedFile: File, houseId: number) {
+    const formData = new FormData();
+    formData.append('file', this.selectedFiles[i]);
+    formData.append('houseId', houseId.toString());
+    this.progressInfos[i] = { value: 0, fileName: selectedFile.name };
+    this.houseService.addHouseImage(formData).subscribe(
+      event => {
+        if (event.type === HttpEventType.UploadProgress) {
+          this.progressInfos[i].percentage = Math.round(100 * event.loaded / event.total);
+        }
+      },
+      err => {
+        this.progressInfos[i].percentage = 0;
+        this.message = 'Could not upload the file:' + selectedFile.name;
+      }
+    );
   }
 }
