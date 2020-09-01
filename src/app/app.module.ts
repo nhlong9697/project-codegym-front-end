@@ -17,10 +17,11 @@ import { LoginComponent } from './views/auth/login/login.component';
 import { SignupComponent } from './views/auth/signup/signup.component';
 import { DetailUserComponent } from './views/user/detail-user/detail-user.component';
 import {MatIconModule} from '@angular/material/icon';
-import { CreatePostComponent } from './views/post/create-post/create-post.component';
+import { CreateHouseComponent } from './views/post/create-house/create-house.component';
 import { MatFormFieldModule} from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { PostTileComponent } from './views/post/post-tile/post-tile.component'
+import { HouseTileComponent } from './views/post/house-tile/house-tile.component'
+import {HomeComponent} from './views/home/home.component';
 
 @NgModule({
   declarations: [
@@ -30,9 +31,9 @@ import { PostTileComponent } from './views/post/post-tile/post-tile.component'
     LoginComponent,
     SignupComponent,
     DetailUserComponent,
-    CreatePostComponent,
-    PostTileComponent,
-
+    CreateHouseComponent,
+    HouseTileComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,

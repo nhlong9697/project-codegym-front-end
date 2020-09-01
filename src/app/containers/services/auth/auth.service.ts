@@ -6,9 +6,7 @@ import { LocalStorageService } from 'ngx-webstorage';
 import { LoginRequestPayload } from '../../model/auth/login-request.payload';
 import { LoginResponse } from '../../model/auth/login-response.payload';
 import { map, tap } from 'rxjs/operators';
-import { House } from 'src/app/containers/model/house/house'
 import { CommentPayload } from 'src/app/containers/model/home/description.payload';
-import { PostModel } from 'src/app/containers/model/home/post-model';
 
 
 import {environment} from '../../../../environments/environment';
@@ -44,7 +42,7 @@ export class AuthService {
   login(loginRequestPayload: LoginRequestPayload): Observable<boolean> {
     return this.httpClient
       .post<LoginResponse>(
-        environment.URL +'api/auth/login',
+        environment.URL + 'api/auth/login',
         loginRequestPayload
       )
       .pipe(
@@ -120,25 +118,12 @@ export class AuthService {
     );
   }
    //TODO: sửa API
-  createHouse(postPayLoad: House): Observable<any> {
-    return this.httpClient.post( environment.URL + 'api/posts/', postPayLoad);
-  }
-   //TODO: sửa API
-  getAllCommentsByUser(name: string) {
+  getAllCommentsByUser(name: string): Observable<CommentPayload[]> {
     return this.httpClient.get<CommentPayload[]>(
       environment.URL + 'api/comments/by-user/' + name
     );
   }
-   //TODO: sửa API
-  getAllPostsByUser(name: string): Observable<PostModel[]> {
-    return this.httpClient.get<PostModel[]>(
-      environment.URL + 'api/posts/by-user/' + name
-    );
-  }
-  //TODO: sửa API
-  getAllPosts(): Observable<Array<PostModel>> {
-    return this.httpClient.get<Array<PostModel>>(environment.URL + 'api/posts/');
-  }
+
 
   getUserName(): string {
     return this.localStorage.retrieve('username');

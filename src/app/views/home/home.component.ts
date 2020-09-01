@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { PostModel } from 'src/app/containers/model/home/post-model';
 import { AuthService } from 'src/app/containers/services/auth/auth.service';
+import {HouseService} from '../../containers/services/post/house.service';
+import {HouseResponse} from '../../containers/model/house/house-response';
 
 @Component({
   selector: 'app-home',
@@ -8,10 +9,10 @@ import { AuthService } from 'src/app/containers/services/auth/auth.service';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  posts: Array<PostModel> = [];
-  constructor(private authService: AuthService) {
-    this.authService.getAllPosts().subscribe((post) => {
-      this.posts = post;
+  houses: Array<HouseResponse> = [];
+  constructor(private housesService: HouseService) {
+    this.housesService.getAllHouse().subscribe((houses) => {
+      this.houses = houses;
     });
    }
 

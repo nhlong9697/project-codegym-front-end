@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PostTileComponent } from './post-tile.component';
+import { CreateHouseComponent } from './create-house.component';
 
-describe('PostTileComponent', () => {
-  let component: PostTileComponent;
-  let fixture: ComponentFixture<PostTileComponent>;
+describe('CreatePostComponent', () => {
+  let component: CreateHouseComponent;
+  let fixture: ComponentFixture<CreateHouseComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ PostTileComponent ]
+      declarations: [ CreateHouseComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(PostTileComponent);
+    fixture = TestBed.createComponent(CreateHouseComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
