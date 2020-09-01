@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
-import {Observable} from 'rxjs';
+import {Observable, throwError} from 'rxjs';
 import {City} from '../../model/city/city';
 import {HouseRequest} from '../../model/house/house-request';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpErrorResponse} from '@angular/common/http';
 import {environment} from '../../../../environments/environment';
 import {HouseResponse} from '../../model/house/house-response';
 import {HouseCategory} from '../../model/house-category/house-category';
+import {catchError} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -30,7 +31,10 @@ export class HouseService {
   }
 
   addHouseImage(data: FormData): Observable<any> {
-    return this.httpClient.post(environment.URL + 'api/images', data);
+    return this.httpClient.post(environment.URL + 'api/images', data, {
+      reportProgress: true,
+      observe: 'events'
+    }).pipe(catchError(this.errorMgmt));
   }
   getAllHouseByUser(name: string): Observable<HouseResponse[]> {
     return this.httpClient.get<HouseResponse[]>(
@@ -40,5 +44,18 @@ export class HouseService {
   //TODO: sửa API
   getAllHouse(): Observable<Array<HouseResponse>> {
     return this.httpClient.get<Array<HouseResponse>>(environment.URL + 'api/houses/');
+  }
+
+  errorMgmt(error: HttpErrorResponse) {
+    let errorMessage = '';
+    if (error.error instanceof ErrorEvent) {
+      // Get client-side error
+      errorMessage = error.error.message;
+    } else {
+      // Get server-side error
+      errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
+    }
+    console.log(errorMessage);
+    return throwError(errorMessage);
   }
 }
