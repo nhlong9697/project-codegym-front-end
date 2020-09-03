@@ -1,7 +1,10 @@
 <div class="container">
-  <!-- (ngSubmit)="onSubmitForm()" -->
+  <h2>Reservation House</h2>
+
+<!-- hiển thị thông tin house (đã có getHouseById() ở ts)  -->
+<!-- Thiết kế thêm html và css hiển thị nhà mà khách hàng muốn book -->
+
   <form class="form-horizontal" [formGroup]="createReservationForm" (ngSubmit)= "reservationHouseByCurrentUser()">
-    <h2>Reservation House</h2>
     <div class="form-group">
       <label for="startDate" class="col-sm-3 control-label">Start date </label>
       <div class="col-sm-9">

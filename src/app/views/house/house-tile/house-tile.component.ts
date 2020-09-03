@@ -16,6 +16,7 @@ export class HouseTileComponent implements OnInit {
 
   ngOnInit(): void {
   }
+
   goToHouse(houseId: number): void {
     this.router.navigateByUrl('/view-house/' + houseId);
   }

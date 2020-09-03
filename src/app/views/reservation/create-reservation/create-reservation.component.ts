@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ReservationService } from 'src/app/containers/services/reservation/reservation.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
+import { Reservation } from 'src/app/containers/model/reservation/reservation';
+import { HouseService } from 'src/app/containers/services/house/house.service';
+import { HouseResponse } from 'src/app/containers/model/house/house-response';
 
 @Component({
   selector: 'app-create-reservation',
@@ -10,30 +13,56 @@ import { Router } from '@angular/router';
 })
 export class CreateReservationComponent implements OnInit {
   createReservationForm: FormGroup;
+  reservation: Reservation;
+  houseId = +this.activateRouter.snapshot.paramMap.get('houseId');
+  house: HouseResponse;
+
 
   constructor(private fb: FormBuilder,
     private reservationService: ReservationService,
-    private route: Router) { }
+    private route: Router,
+    private activateRouter: ActivatedRoute,
+    private houseService: HouseService) {
+      this.reservation ={
+        startDate:'',
+        endDate:'',
+        houseId:0
+      }
+    }
 
   ngOnInit(): void {
+    this.getHouseById();
+
     this.createReservationForm = this.fb.group({
       startDate: ['',[Validators.required]],
       endDate: ['',[Validators.required]],
-      houseId: ['2',[Validators.required]]
+      houseId: [this.houseId,[Validators.required]]
     })
   }
 
   reservationHouseByCurrentUser(){
-    let data = this.createReservationForm.value;
-    console.log(data);
+    this.reservation = this.createReservationForm.value;
+    console.log(this.reservation);
 
-    this.reservationService.createProduct(data).subscribe((res) =>{
+    this.reservationService.createProduct(this.reservation).subscribe((res) =>{
       window.alert("Reservation successed!");
-      // this.route.navigate([''])
+      this.route.navigate([''])
+      // window.alert(res.message);
     },
     (rej)=>{
       window.alert('Reservation failed!')
+      // window.alert(rej.message);
     });
+  }
+
+  getHouseById(){
+    this.houseService.getHouseById(this.houseId).subscribe((res)=>{
+      // console.log(res);
+      this.house = res;
+    },
+    (rej) => {
+
+    })
   }
 
   get startDate(){

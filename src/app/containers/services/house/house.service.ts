@@ -47,6 +47,10 @@ export class HouseService {
     return this.httpClient.get<Array<HouseResponse>>(environment.URL + 'api/houses/');
   }
 
+  getHouseById(id: number): Observable<HouseResponse> {
+    return this.httpClient.get<HouseResponse>(environment.URL + 'api/houses/'+id);
+  }
+
   errorMgmt(error: HttpErrorResponse) {
     let errorMessage = '';
     if (error.error instanceof ErrorEvent) {
