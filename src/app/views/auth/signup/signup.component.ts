@@ -107,4 +107,8 @@ export class SignupComponent implements OnInit {
     return this.formUser.get('password');
   }
 
+  // get phoneNumber(){
+  //   return this.formUser.get('phoneNumber');
+  // }
+
 }

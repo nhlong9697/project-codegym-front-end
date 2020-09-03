@@ -3,6 +3,7 @@ import { faComments } from '@fortawesome/free-solid-svg-icons';
 import { Router } from '@angular/router';
 import {HouseResponse} from '../../../containers/model/house/house-response';
 import {HouseService} from '../../../containers/services/house/house.service';
+import {environment} from './../../../../environments/environment'
 
 @Component({
   selector: 'app-house-tile',
@@ -24,6 +25,7 @@ export class HouseTileComponent implements OnInit {
   }
   goToHouse(houseId: number): void {
     this.router.navigateByUrl('/view-house/' + houseId);
+
   }
 
   private getImageForHouse() {
