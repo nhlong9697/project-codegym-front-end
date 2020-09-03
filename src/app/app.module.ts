@@ -30,6 +30,7 @@ import {AngularFireModule} from '@angular/fire';
 import {AngularFireStorageModule} from '@angular/fire/storage';
 import { ViewHouseComponent } from './views/house/view-house/view-house.component';
 import { ProgressBarComponent } from './shared/progress-bar/progress-bar.component';
+import {MDBBootstrapModule} from 'angular-bootstrap-md';
 
 @NgModule({
   declarations: [
@@ -54,6 +55,7 @@ import { ProgressBarComponent } from './shared/progress-bar/progress-bar.compone
     NgxWebstorageModule.forRoot(),
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
+    MDBBootstrapModule.forRoot(),
     FontAwesomeModule,
     EditorModule,
     NgbModule,

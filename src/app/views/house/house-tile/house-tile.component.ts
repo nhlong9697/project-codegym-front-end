@@ -6,6 +6,8 @@ import {HouseService} from '../../../containers/services/house/house.service';
 import {HttpClient} from '@angular/common/http';
 import {environment} from '../../../../environments/environment';
 import {ImageService} from '../../../containers/services/images/image.service';
+import {Observable, throwError} from 'rxjs';
+import {AngularFireStorage} from '@angular/fire/storage';
 
 @Component({
   selector: 'app-house-tile',
@@ -15,23 +17,30 @@ import {ImageService} from '../../../containers/services/images/image.service';
 export class HouseTileComponent implements OnInit {
   faComments = faComments;
   @Input() house: HouseResponse;
-  imageResponses: any[];
-  retrieveImage: any;
-  base64Data: any;
+  imagesRef: Observable<string | null>[];
   constructor(
     private router: Router,
     private houseService: HouseService,
-    private imageService: ImageService
+    private imageService: ImageService,
+    private storage: AngularFireStorage
   ) { }
 
   ngOnInit(): void {
-    this.getImageForHouse();
+    this.getImagesByHouseId();
 
   }
   goToHouse(houseId: number): void {
     this.router.navigateByUrl('/view-house/' + houseId);
   }
 
-  private getImageForHouse() {
+  private getImagesByHouseId(): void {
+    this.imageService.getAllImagesForHouse(this.house.houseId).subscribe(
+      (data) => {
+        this.imagesRef = data.map(image => this.storage.ref(image.ref).getDownloadURL());
+      },
+      (error) => {
+        throwError(error);
+      }
+    );
   }
 }

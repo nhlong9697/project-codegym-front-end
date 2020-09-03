@@ -2,9 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { HouseResponse } from 'src/app/containers/model/house/house-response';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HouseService } from 'src/app/containers/services/house/house.service';
-import { throwError } from 'rxjs';
+import {Observable, throwError} from 'rxjs';
 import {ImageService} from '../../../containers/services/images/image.service';
 import {ImagePayload} from '../../../containers/model/image/image';
+import {AngularFireStorage} from '@angular/fire/storage';
 
 @Component({
   selector: 'app-view-house',
@@ -14,17 +15,20 @@ import {ImagePayload} from '../../../containers/model/image/image';
 export class ViewHouseComponent implements OnInit {
   houseId: number;
   house: HouseResponse;
-  images: ImagePayload[];
+  imagesRef: Observable<string | null>[];
   constructor(private router: Router,
               private houseService: HouseService,
               private activateRoute: ActivatedRoute,
               private route: Router,
-              private imageService: ImageService) {
+              private imageService: ImageService,
+              private storage: AngularFireStorage
+  ) {
       this.houseId = this.activateRoute.snapshot.params.houseId;
      }
 
   ngOnInit(): void {
     this.getHouseById();
+    this.getImagesByHouseId();
   }
 
   private getHouseById(): void {
@@ -40,10 +44,10 @@ export class ViewHouseComponent implements OnInit {
     );
   }
 
-  private getImageById(): void {
+  private getImagesByHouseId(): void {
     this.imageService.getAllImagesForHouse(this.houseId).subscribe(
       (data) => {
-        this.images = data;
+        this.imagesRef = data.map(image => this.storage.ref(image.ref).getDownloadURL());
       },
       (error) => {
         throwError(error);

@@ -15,7 +15,7 @@ export class ImageService {
 
   getAllImagesForHouse(houseId: number): Observable<ImagePayload[]> {
     return this.httpClient.get<any[]>(
-      environment.URL + 'api/by-house/' + houseId
+      environment.URL + 'api/images/by-house/' + houseId
     );
   }
   addHouseImage(data: ImagePayload): Observable<any> {
