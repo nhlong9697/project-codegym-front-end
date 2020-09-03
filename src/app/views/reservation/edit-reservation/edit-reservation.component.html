@@ -29,7 +29,7 @@
     </div>
     <div class="form-group">
       <button style="margin: 5px;" [disabled]="updateReservationForm.invalid" type="submit" class="btn btn-primary">Edit</button>
-      <button type="button" class="btn btn-secondary" routerLink = "">Cancel</button>
+      <button type="button" class="btn btn-secondary" [routerLink] = "['/reservations/byUser',reservation.username]">Cancel</button>
     </div>
   </form>
 </div>

@@ -32,7 +32,8 @@ export class EditReservationComponent implements OnInit {
         id:0,
         startDate:'',
         endDate:'',
-        houseId:0
+        houseId:0,
+        username:''
       }
     }
 
@@ -43,7 +44,8 @@ export class EditReservationComponent implements OnInit {
       id: [this.reservationId],
       startDate: ['',[Validators.required]],
       endDate: ['',[Validators.required]],
-      houseId: [this.reservation.houseId,[Validators.required]]
+      houseId: [this.reservation.houseId,[Validators.required]],
+      username:[this.reservation.username]
     })
   }
 
