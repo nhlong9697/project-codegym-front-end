@@ -17,11 +17,10 @@ export class ViewHouseComponent implements OnInit {
               private activateRoute: ActivatedRoute,
               private route: Router) {
       this.houseId = this.activateRoute.snapshot.params.houseId;
-      this.getHouseById();
      }
 
   ngOnInit(): void {
-
+    this.getHouseById();
   }
 
   private getHouseById() {

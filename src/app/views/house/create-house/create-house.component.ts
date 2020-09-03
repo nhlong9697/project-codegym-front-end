@@ -7,9 +7,11 @@ import { City } from 'src/app/containers/model/city/city';
 import { HouseRequest } from 'src/app/containers/model/house/house-request';
 import {HouseService} from '../../../containers/services/house/house.service';
 import {HouseResponse} from '../../../containers/model/house/house-response';
-import {HttpEventType, HttpResponse} from '@angular/common/http';
 import {AngularFireStorage} from '@angular/fire/storage';
-
+import {v4 as uuid} from 'uuid';
+import {finalize} from 'rxjs/operators';
+import {ImageService} from '../../../containers/services/images/image.service';
+import {ImagePayload} from '../../../containers/model/image/image';
 @Component({
   selector: 'app-create-house',
   templateUrl: './create-house.component.html',
@@ -21,12 +23,13 @@ export class CreateHouseComponent implements OnInit {
   createHouseForm: FormGroup;
   housePayLoad: HouseRequest;
   files: File[] = [];
-  uploadPercent: Observable<number>;
+  uploadPercents: Observable<number>[] = [];
 
   fileInfos: Observable<any>;
   constructor(  private router: Router,
                 private houseService: HouseService,
-                private storage: AngularFireStorage
+                private storage: AngularFireStorage,
+                private imageService: ImageService
   ) {
       this.housePayLoad = {
         houseName: '',
@@ -91,9 +94,9 @@ export class CreateHouseComponent implements OnInit {
         throwError(error);
       }
     );
-    this.router.navigate(['/'], {
-      queryParams: { created: 'true' },
-    });
+    // this.router.navigate(['/'], {
+    //   queryParams: { created: 'true' },
+    // });
    }
 
   onSelect(event): void {
@@ -106,6 +109,19 @@ export class CreateHouseComponent implements OnInit {
     this.files.splice(this.files.indexOf(event), 1);
   }
 
-  private upload(i: number, file: File, houseId: number) {
+  private upload(i: number, file: File, houseId: number): void {
+    const filePath = `houses/${Date.now()}_${uuid()}`;
+    const task = this.storage.upload(filePath, file);
+    // observe percentage changes
+    this.uploadPercents[i] = task.percentageChanges();
+
+    task.snapshotChanges().pipe(
+      finalize(() => {
+        const image = new ImagePayload();
+        image.houseId = houseId;
+        image.ref = filePath;
+        this.imageService.addHouseImage(image).subscribe();
+      })
+    ).subscribe();
   }
 }

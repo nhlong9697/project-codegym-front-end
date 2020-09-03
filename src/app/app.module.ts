@@ -29,6 +29,7 @@ import {environment} from '../environments/environment';
 import {AngularFireModule} from '@angular/fire';
 import {AngularFireStorageModule} from '@angular/fire/storage';
 import { ViewHouseComponent } from './views/house/view-house/view-house.component';
+import { ProgressBarComponent } from './shared/progress-bar/progress-bar.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { ViewHouseComponent } from './views/house/view-house/view-house.componen
     CreateHouseComponent,
     HouseTileComponent,
     HomeComponent,
-    ViewHouseComponent
+    ViewHouseComponent,
+    ProgressBarComponent
   ],
   imports: [
     BrowserModule,
