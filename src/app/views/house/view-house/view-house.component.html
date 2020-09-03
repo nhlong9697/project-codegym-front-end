@@ -6,15 +6,14 @@
         <div class="col-md-11">
           <span>
             <span class="subreddit-text">
-              <h1>{{house.houseName}}</h1>
+              <h1><b>{{house.houseName}}</b></h1>
             </span>
             <span>{{house.houseCategory}}</span>
             <br>
             <span>
               Post House
               <!-- <span> {{ house.duration }} </span> -->
-              by
-              <p class="username" (click)='goToProfile(house.userName)'>{{ house.userName }}</p>
+              by <b class="username" (click)='goToProfile(house.username)'>{{ house.username }}</b>
             </span>
           </span>
           <hr />
@@ -22,7 +21,7 @@
             <p class="post-text" [innerHtml]="house.description"></p>
           </div>
           <div>
-            <p class="post-text" [innerHtml]="house.address  + '.' +house.cityName"></p>
+            <p class="post-text" [innerHtml]="house.address  + ' , ' +house.cityName"></p>
           </div>
           <div>
             <mat-card-content>

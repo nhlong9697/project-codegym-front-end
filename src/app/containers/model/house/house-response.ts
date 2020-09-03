@@ -6,5 +6,5 @@ export class HouseResponse{
   houseId: number;
   houseName: string;
   price: number;
-  userName: string;
+  username: string;
 }
