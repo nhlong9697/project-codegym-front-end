@@ -4,7 +4,7 @@
 <!-- hiển thị thông tin house (đã có getHouseById() ở ts)  -->
 <!-- Thiết kế thêm html và css hiển thị nhà mà khách hàng muốn book -->
 
-  <form class="form-horizontal" [formGroup]="createReservationForm" (ngSubmit)= "reservationHouseByCurrentUser()">
+  <form class="form-horizontal" [formGroup]="updateReservationForm" (ngSubmit)= "updateReservationById()">
     <div class="form-group">
       <label for="startDate" class="col-sm-3 control-label">Start date </label>
       <div class="col-sm-9">
@@ -28,7 +28,7 @@
       </div>
     </div>
     <div class="form-group">
-      <button style="margin: 5px;" [disabled]="createReservationForm.invalid" type="submit" class="btn btn-primary">Book</button>
+      <button style="margin: 5px;" [disabled]="updateReservationForm.invalid" type="submit" class="btn btn-primary">Edit</button>
       <button type="button" class="btn btn-secondary" routerLink = "">Cancel</button>
     </div>
   </form>

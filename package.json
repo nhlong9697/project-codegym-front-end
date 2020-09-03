@@ -30,6 +30,7 @@
     "@tinymce/tinymce-angular": "^4.1.0",
     "bootstrap": "^4.5.2",
     "jquery": "^3.5.1",
+    "moment": "^2.27.0",
     "ngx-cookie-service": "^10.0.1",
     "ngx-toastr": "^13.0.0",
     "ngx-webstorage": "^6.0.0",

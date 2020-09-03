@@ -39,10 +39,21 @@ export class CreateReservationComponent implements OnInit {
       houseId: [this.houseId,[Validators.required]]
     })
   }
+  date: Date = null;
+
+  checkDateTimeNow(){
+    const getStartDate = this.reservation.startDate;
+    const dateTimeNow = new Date();
+    let date = new Date(getStartDate);
+
+    return date <= dateTimeNow ? null : { notSame: true };
+
+    // console.log(dateTimeNow);
+  }
 
   reservationHouseByCurrentUser(){
     this.reservation = this.createReservationForm.value;
-    console.log(this.reservation);
+    // console.log(this.reservation);
 
     this.reservationService.createProduct(this.reservation).subscribe((res) =>{
       window.alert("Reservation successed!");
@@ -66,11 +77,11 @@ export class CreateReservationComponent implements OnInit {
   }
 
   get startDate(){
-    return this.createReservationForm.get('startDate')
+    return this.createReservationForm.get('startDate');
   }
 
   get endDate(){
-    return this.createReservationForm.get('endDate')
+    return this.createReservationForm.get('endDate');
   }
 
 }

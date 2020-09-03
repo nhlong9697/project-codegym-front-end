@@ -3,5 +3,5 @@ export class Reservation{
   startDate: string;
   endDate: string;
   houseId: number;
-  // username: string;
+  username?: string;
 }

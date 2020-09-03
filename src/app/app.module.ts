@@ -25,6 +25,8 @@ import {HomeComponent} from './views/home/home.component';
 import {MatCardModule} from '@angular/material/card';
 import {MatButtonModule} from '@angular/material/button';
 import { CreateReservationComponent } from './views/reservation/create-reservation/create-reservation.component';
+import { ListReservationUserComponent } from './views/reservation/list-reservation-user/list-reservation-user.component';
+import { EditReservationComponent } from './views/reservation/edit-reservation/edit-reservation.component';
 
 
 
@@ -39,7 +41,9 @@ import { CreateReservationComponent } from './views/reservation/create-reservati
     CreateHouseComponent,
     HouseTileComponent,
     HomeComponent,
-    CreateReservationComponent
+    CreateReservationComponent,
+    ListReservationUserComponent,
+    EditReservationComponent
   ],
 
   imports: [
