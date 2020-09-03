@@ -1,4 +1,4 @@
-<div class="row post" *ngFor="let house of houses">
+<div class="row post" >
   <div class="col-md-11">
     <mat-card class="example-card">
       <mat-card-header>
@@ -6,7 +6,7 @@
         <mat-card-title>{{house.houseName}}</mat-card-title>
         <mat-card-subtitle>{{house.houseCategory}}</mat-card-subtitle>
       </mat-card-header>
-      <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+      <img mat-card-image [src]="retrieveImage" alt="Photo of a Shiba Inu">
       <mat-card-content [innerHTML]="house.description">
         <h3><span class="badge badge-pill badge-info">Giá : {{house.price}} $</span>
         </h3>

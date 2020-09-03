@@ -116,10 +116,12 @@
               </div>
             </div>
           </div>
-          <label class="btn btn-default">
-            <input type="file" accept="image/*" multiple (change)="selectFiles($event)" />
-          </label>
-
+          <ngx-dropzone (change)="onSelect($event)">
+            <ngx-dropzone-label>Drop it, baby!</ngx-dropzone-label>
+            <ngx-dropzone-preview *ngFor="let f of files" [removable]="true" (removed)="onRemove(f)">
+              <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+            </ngx-dropzone-preview>
+          </ngx-dropzone>
           <span>
             <div style="margin-top: 5px" class="float-right">
               <button (click)="discardPost()" class="btnDiscard">

@@ -24,6 +24,10 @@ import { HouseTileComponent } from './views/house/house-tile/house-tile.componen
 import {HomeComponent} from './views/home/home.component';
 import {MatCardModule} from '@angular/material/card';
 import {MatButtonModule} from '@angular/material/button';
+import {NgxDropzoneModule} from 'ngx-dropzone';
+import {environment} from '../environments/environment';
+import {AngularFireModule} from '@angular/fire';
+import {AngularFireStorageModule} from '@angular/fire/storage';
 
 @NgModule({
   declarations: [
@@ -49,6 +53,9 @@ import {MatButtonModule} from '@angular/material/button';
     FontAwesomeModule,
     EditorModule,
     NgbModule,
+    NgxDropzoneModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireStorageModule,
     MatIconModule,
     MatFormFieldModule,
     MatInputModule,
