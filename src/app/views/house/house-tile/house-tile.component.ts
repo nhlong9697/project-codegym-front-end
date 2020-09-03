@@ -17,10 +17,14 @@ export class HouseTileComponent implements OnInit {
   constructor(
     private router: Router,
     private houseService: HouseService
-  ) { }
+  ) {
+
+  }
 
   ngOnInit(): void {
     this.getImageForHouse();
+    console.log(this.houses)
+
   }
   goToHouse(houseId: number): void {
     this.router.navigateByUrl('/view-house/' + houseId);

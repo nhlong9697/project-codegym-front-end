@@ -1,0 +1,37 @@
+<div class="container">
+  <div class="row">
+    <hr />
+    <div class="col-md-9">
+      <div class="row post">
+        <div class="col-md-11">
+          <span>
+            <span class="subreddit-text">
+              <h1>{{house.houseName}}</h1>
+            </span>
+            <span>{{house.houseCategory}}</span>
+            <br>
+            <span>
+              Post House
+              <!-- <span> {{ house.duration }} </span> -->
+              by
+              <p class="username" (click)='goToProfile(house.userName)'>{{ house.userName }}</p>
+            </span>
+          </span>
+          <hr />
+          <div>
+            <p class="post-text" [innerHtml]="house.description"></p>
+          </div>
+          <div>
+            <p class="post-text" [innerHtml]="house.address  + '.' +house.cityName"></p>
+          </div>
+          <div>
+            <mat-card-content>
+              <h3><span class="badge badge-pill badge-info">Giá : {{house.price}} $</span>
+              </h3>
+            </mat-card-content>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

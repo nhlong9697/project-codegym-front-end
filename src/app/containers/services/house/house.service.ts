@@ -41,6 +41,10 @@ export class HouseService {
       environment.URL + 'api/houses/by-user/' + name
     );
   }
+
+  getHouse(houseId: number): Observable<HouseResponse> {
+    return this.httpClient.get<HouseResponse>(environment.URL + 'api/houses/' + houseId);
+  }
   //TODO: sửa API
   getAllHouse(): Observable<Array<HouseResponse>> {
     return this.httpClient.get<Array<HouseResponse>>(environment.URL + 'api/houses/');
