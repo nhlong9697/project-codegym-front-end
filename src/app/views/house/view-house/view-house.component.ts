@@ -3,6 +3,8 @@ import { HouseResponse } from 'src/app/containers/model/house/house-response';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HouseService } from 'src/app/containers/services/house/house.service';
 import { throwError } from 'rxjs';
+import {ImageService} from '../../../containers/services/images/image.service';
+import {ImagePayload} from '../../../containers/model/image/image';
 
 @Component({
   selector: 'app-view-house',
@@ -11,11 +13,13 @@ import { throwError } from 'rxjs';
 })
 export class ViewHouseComponent implements OnInit {
   houseId: number;
-  house: HouseResponse
+  house: HouseResponse;
+  images: ImagePayload[];
   constructor(private router: Router,
-    private houseService: HouseService,
-    private activateRoute: ActivatedRoute,
-    private route: Router) {
+              private houseService: HouseService,
+              private activateRoute: ActivatedRoute,
+              private route: Router,
+              private imageService: ImageService) {
       this.houseId = this.activateRoute.snapshot.params.houseId;
      }
 
@@ -23,7 +27,7 @@ export class ViewHouseComponent implements OnInit {
     this.getHouseById();
   }
 
-  private getHouseById() {
+  private getHouseById(): void {
     this.houseService.getHouse(this.houseId).subscribe(
       (data) => {
         console.log(data);
@@ -31,7 +35,18 @@ export class ViewHouseComponent implements OnInit {
       },
       (error) => {
         throwError(error);
-        console.log("error")
+        console.log('error');
+      }
+    );
+  }
+
+  private getImageById(): void {
+    this.imageService.getAllImagesForHouse(this.houseId).subscribe(
+      (data) => {
+        this.images = data;
+      },
+      (error) => {
+        throwError(error);
       }
     );
   }
