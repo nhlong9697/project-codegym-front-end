@@ -17,12 +17,16 @@ import { LoginComponent } from './views/auth/login/login.component';
 import { SignupComponent } from './views/auth/signup/signup.component';
 import { DetailUserComponent } from './views/user/detail-user/detail-user.component';
 import {MatIconModule} from '@angular/material/icon';
-import { CreatePostComponent } from './views/post/create-post/create-post.component';
+import { CreateHouseComponent } from './views/house/create-house/create-house.component';
 import { MatFormFieldModule} from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { HouseTileComponent } from './views/house/house-tile/house-tile.component'
+import {HomeComponent} from './views/home/home.component';
+import {MatCardModule} from '@angular/material/card';
+import {MatButtonModule} from '@angular/material/button';
 import { CreateReservationComponent } from './views/reservation/create-reservation/create-reservation.component';
-import { ListPostComponent } from './views/post/list-post/list-post.component';
-// import { UserModule } from './views/user/user.module';
+
+
 
 @NgModule({
   declarations: [
@@ -32,10 +36,12 @@ import { ListPostComponent } from './views/post/list-post/list-post.component';
     LoginComponent,
     SignupComponent,
     DetailUserComponent,
-    CreatePostComponent,
-    CreateReservationComponent,
-    ListPostComponent,
+    CreateHouseComponent,
+    HouseTileComponent,
+    HomeComponent,
+    CreateReservationComponent
   ],
+
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -51,7 +57,8 @@ import { ListPostComponent } from './views/post/list-post/list-post.component';
     MatIconModule,
     MatFormFieldModule,
     MatInputModule,
-    // UserModule
+    MatCardModule,
+    MatButtonModule
   ],
   providers: [
     {

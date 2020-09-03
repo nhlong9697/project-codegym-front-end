@@ -6,13 +6,11 @@ import { LocalStorageService } from 'ngx-webstorage';
 import { LoginRequestPayload } from '../../model/auth/login-request.payload';
 import { LoginResponse } from '../../model/auth/login-response.payload';
 import { map, tap } from 'rxjs/operators';
-
-import { House } from 'src/app/containers/model/house/house'
+import { CommentPayload } from 'src/app/containers/model/home/description.payload';
 
 
 
 import {environment} from '../../../../environments/environment';
-import { houseCategoryModel } from '../../model/house-category/house-category';
 import { City } from '../../model/city/city';
 
 @Injectable({
@@ -91,7 +89,7 @@ export class AuthService {
 
   logout(): void {
     this.httpClient
-      .post(environment.URL + 'api/auth/logout', this.refreshTokenPayload, {
+      .post( environment.URL + 'api/auth/logout', this.refreshTokenPayload, {
         responseType: 'text',
       })
       .subscribe(
@@ -108,23 +106,10 @@ export class AuthService {
     this.localStorage.clear('expiresAt');
   }
 
-  //nhờ anh long sửa
-  getAllhouseCategory(): Observable<Array<houseCategoryModel>> {
-    return this.httpClient.get<Array<houseCategoryModel>>(
-      'http://localhost:8080/api/subreddit'
-    );
-  }
+   //TODO: sửa API
 
-  //nhờ anh long sửa
-  getAllCity(): Observable<Array<City>>{
-    return this.httpClient.get<Array<City>>(
-      'http://localhost:8080/api/subreddit'
-    );
-  }
+   //TODO: sửa API
 
-  createHouse(postPayLoad: House): Observable<any> {
-    return this.httpClient.post('http://localhost:8080/api/posts/', postPayLoad);
-  }
 
   getAllAuth(): Observable< Array< SignupRequestPayload >> {
     return this.httpClient.get<Array<SignupRequestPayload>>('http://localhost:8080/api/auth/users');
