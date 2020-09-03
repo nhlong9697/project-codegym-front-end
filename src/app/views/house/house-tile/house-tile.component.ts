@@ -25,21 +25,13 @@ export class HouseTileComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.getImageForHouse(this.house.houseId);
+    this.getImageForHouse();
+
   }
   goToHouse(houseId: number): void {
     this.router.navigateByUrl('/view-house/' + houseId);
   }
 
-  private getImageForHouse(houseId: number) {
-    this.imageService.getAllImagesForHouse(houseId).subscribe(
-      res => {
-        console.log(res);
-        this.imageResponses = res;
-        this.base64Data = this.imageResponses[0].picByte;
-        console.log(this.base64Data);
-        this.retrieveImage = 'data:image/jpeg;base64,' + this.base64Data;
-      }
-    );
+  private getImageForHouse() {
   }
 }

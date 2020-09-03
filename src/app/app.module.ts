@@ -28,6 +28,7 @@ import {NgxDropzoneModule} from 'ngx-dropzone';
 import {environment} from '../environments/environment';
 import {AngularFireModule} from '@angular/fire';
 import {AngularFireStorageModule} from '@angular/fire/storage';
+import { ViewHouseComponent } from './views/house/view-house/view-house.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import {AngularFireStorageModule} from '@angular/fire/storage';
     DetailUserComponent,
     CreateHouseComponent,
     HouseTileComponent,
-    HomeComponent
+    HomeComponent,
+    ViewHouseComponent
   ],
   imports: [
     BrowserModule,
