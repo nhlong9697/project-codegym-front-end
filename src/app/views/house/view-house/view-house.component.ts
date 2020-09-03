@@ -11,11 +11,11 @@ import { throwError } from 'rxjs';
 })
 export class ViewHouseComponent implements OnInit {
   houseId: number;
-  house: HouseResponse;
+  house: HouseResponse
   constructor(private router: Router,
-              private houseService: HouseService,
-              private activateRoute: ActivatedRoute,
-              private route: Router) {
+    private houseService: HouseService,
+    private activateRoute: ActivatedRoute,
+    private route: Router) {
       this.houseId = this.activateRoute.snapshot.params.houseId;
      }
 
@@ -26,12 +26,12 @@ export class ViewHouseComponent implements OnInit {
   private getHouseById() {
     this.houseService.getHouse(this.houseId).subscribe(
       (data) => {
-        console.log(data, 'data');
+        console.log(data);
         this.house = data;
       },
       (error) => {
         throwError(error);
-        console.log('error');
+        console.log("error")
       }
     );
   }
