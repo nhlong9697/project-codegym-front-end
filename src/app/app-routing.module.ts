@@ -18,7 +18,7 @@ const routes: Routes = [
   { path: 'user-profile/:name', component: DetailUserComponent, canActivate: [UserGuard] },
   { path: 'signup', component: SignupComponent },
   { path: 'createHouse', component: CreateHouseComponent, canActivate: [UserGuard]},
-  { path: 'view-house/:houseId', component: ViewHouseComponent }
+  { path: 'view-house/:houseId', component: ViewHouseComponent },
   { path: 'createHouse', component: CreateHouseComponent, canActivate: [UserGuard]},
   { path: 'reservations/:houseId' , component: CreateReservationComponent },
   { path: 'reservations/byUser/:username', component: ListReservationUserComponent },

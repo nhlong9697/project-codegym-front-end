@@ -27,7 +27,7 @@ export class HouseTileComponent implements OnInit {
 
   ngOnInit(): void {
     this.getImagesByHouseId();
-
+    console.log(this.house);
   }
 
   goToHouse(houseId: number): void {
@@ -35,7 +35,7 @@ export class HouseTileComponent implements OnInit {
   }
 
   private getImagesByHouseId(): void {
-    this.imageService.getAllImagesForHouse(this.house.houseId).subscribe(
+    this.imageService.getAllImagesForHouse(this.house.id).subscribe(
       (data) => {
         this.imagesRef = data.map(image => this.storage.ref(image.ref).getDownloadURL());
       },
