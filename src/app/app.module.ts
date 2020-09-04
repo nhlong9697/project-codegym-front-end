@@ -24,6 +24,7 @@ import { HouseTileComponent } from './views/house/house-tile/house-tile.componen
 import {HomeComponent} from './views/home/home.component';
 import {MatCardModule} from '@angular/material/card';
 import {MatButtonModule} from '@angular/material/button';
+import { CommentComponent } from './views/comment/comment.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import {MatButtonModule} from '@angular/material/button';
     DetailUserComponent,
     CreateHouseComponent,
     HouseTileComponent,
-    HomeComponent
+    HomeComponent,
+    CommentComponent
   ],
   imports: [
     BrowserModule,
