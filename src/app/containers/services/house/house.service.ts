@@ -39,7 +39,7 @@ export class HouseService {
   }
   getAllHouseByUser(name: string): Observable<HouseResponse[]> {
     return this.httpClient.get<HouseResponse[]>(
-      environment.URL + 'api/house/by-user/' + name
+      environment.URL + 'api/houses/by-user/' + name
     );
   }
   //TODO: sửa API

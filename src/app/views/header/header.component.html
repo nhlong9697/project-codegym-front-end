@@ -40,6 +40,7 @@
         <a routerLink="/signup" class="float-right sign-up mr-2">Sign up</a>
         <a routerLink="/login" class="float-right login mr-2">Login</a>
       </div>
+      <a [routerLink] = "['/houses-owned-user/', username]" class="float-right sign-up mr-2">My Houses</a>
       <a [routerLink] = "['/reservations/byUser/', username]" class="float-right sign-up mr-2">My Reservation</a>
       <a routerLink='/createHouse' class="float-right sign-up mr-2">Create House</a>
     </div>

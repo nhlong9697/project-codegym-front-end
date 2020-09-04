@@ -1,18 +1,10 @@
 <div class="container">
   <div>
-    Welcome <b>{{ name }}</b
-    >.<br />
-    You have house <b>{{ postLength }}</b> time(s) and commented
-    <b>{{ commentLength }}</b> time(s). You can check your post and comment
-    history below.
+     House by <b>{{name}}</b>:
   </div>
+  <app-house-tile  [houses]="houses"></app-house-tile>
   <hr />
-  <div>
-    Your House:
-  </div>
-  <app-house-tile [houses]="houses"></app-house-tile>
-  <hr />
-  <div>
+  <!-- <div>
     Your Comments:
   </div>
   <div *ngFor="let comment of comments">
@@ -26,5 +18,5 @@
       <b>{{ comment.text }}</b>
     </div>
     <hr />
-  </div>
+  </div> -->
 </div>

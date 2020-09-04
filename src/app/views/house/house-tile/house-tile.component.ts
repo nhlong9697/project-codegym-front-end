@@ -10,9 +10,11 @@ import {HouseResponse} from '../../../containers/model/house/house-response';
 })
 export class HouseTileComponent implements OnInit {
   faComments = faComments;
+  // @Input() house: HouseResponse;
   @Input() houses: HouseResponse[];
 
-  constructor(private router: Router) { }
+  constructor(private router: Router) {
+  }
 
   ngOnInit(): void {
   }

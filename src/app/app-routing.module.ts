@@ -10,6 +10,7 @@ import { HomeComponent } from 'src/app/views/home/home.component'
 import { CreateReservationComponent } from './views/reservation/create-reservation/create-reservation.component';
 import { ListReservationUserComponent } from './views/reservation/list-reservation-user/list-reservation-user.component';
 import { EditReservationComponent } from './views/reservation/edit-reservation/edit-reservation.component';
+import { ListReservationHouseComponent } from './views/reservation/list-reservation-house/list-reservation-house.component';
 
 
 const routes: Routes = [
@@ -20,7 +21,8 @@ const routes: Routes = [
   { path: 'createHouse', component: CreateHouseComponent, canActivate: [UserGuard]},
   { path: 'reservations/:houseId' , component: CreateReservationComponent },
   { path: 'reservations/byUser/:username', component: ListReservationUserComponent },
-  { path: 'reservations/update/:id', component: EditReservationComponent }
+  { path: 'reservations/update/:id', component: EditReservationComponent },
+  { path: 'houses-owned-user/:username', component: ListReservationHouseComponent }
 
 ];
 

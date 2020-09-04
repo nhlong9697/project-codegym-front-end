@@ -27,6 +27,7 @@ import {MatButtonModule} from '@angular/material/button';
 import { CreateReservationComponent } from './views/reservation/create-reservation/create-reservation.component';
 import { ListReservationUserComponent } from './views/reservation/list-reservation-user/list-reservation-user.component';
 import { EditReservationComponent } from './views/reservation/edit-reservation/edit-reservation.component';
+import { ListReservationHouseComponent } from './views/reservation/list-reservation-house/list-reservation-house.component';
 
 
 
@@ -43,7 +44,8 @@ import { EditReservationComponent } from './views/reservation/edit-reservation/e
     HomeComponent,
     CreateReservationComponent,
     ListReservationUserComponent,
-    EditReservationComponent
+    EditReservationComponent,
+    ListReservationHouseComponent
   ],
 
   imports: [
