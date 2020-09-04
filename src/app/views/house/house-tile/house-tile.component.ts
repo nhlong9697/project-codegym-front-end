@@ -29,6 +29,7 @@ export class HouseTileComponent implements OnInit {
     this.getImagesByHouseId();
 
   }
+
   goToHouse(houseId: number): void {
     this.router.navigateByUrl('/view-house/' + houseId);
   }

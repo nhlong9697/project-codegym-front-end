@@ -74,10 +74,10 @@ export class SignupComponent implements OnInit {
   }
 
   onSubmitForm(): void {
-    this.createUser();
+    this.signUp();
   }
 
-  createUser(): void {
+  signUp(): void {
     const data = this.formUser.value;
     console.log(data);
     this.authService.signup(data).subscribe((res) => {
@@ -90,12 +90,7 @@ export class SignupComponent implements OnInit {
     );
   }
 
-  // listUser(): void{
-  //    this.authService.getAllAuth().subscribe(res => {
-  //     this.signupRequestPayloads = res;
 
-  //   });
-  // }
 
   // test(){
   //   const data = this.formUser.value;

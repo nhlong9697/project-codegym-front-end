@@ -8,6 +8,7 @@ import {HouseResponse} from '../../model/house/house-response';
 import {HouseCategory} from '../../model/house-category/house-category';
 import {catchError} from 'rxjs/operators';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -46,6 +47,10 @@ export class HouseService {
     return this.httpClient.get<Array<HouseResponse>>(environment.URL + 'api/houses/');
   }
 
+  getHouseById(id: number): Observable<HouseResponse> {
+    return this.httpClient.get<HouseResponse>(environment.URL + 'api/houses/'+id);
+  }
+
   errorMgmt(error: HttpErrorResponse) {
     let errorMessage = '';
     if (error.error instanceof ErrorEvent) {
@@ -57,5 +62,6 @@ export class HouseService {
     }
     console.log(errorMessage);
     return throwError(errorMessage);
+
   }
 }
