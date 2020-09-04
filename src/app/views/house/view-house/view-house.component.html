@@ -1,0 +1,44 @@
+<div class="container">
+  <div class="row">
+    <hr />
+    <div class="col-md-9">
+      <div class="row post">
+        <div class="col-md-11">
+          <mdb-carousel class="carousel slide carousel-fade" [animation]="'fade'">
+            <mdb-carousel-item *ngFor="let imageRef of imagesRef">
+              <div class="view w-100">
+                <img class="d-block w-100" [src]="imageRef | async" loading="lazy" alt="First slide">
+                <div class="mask rgba-black-light waves-light" mdbWavesEffect></div>
+              </div>
+            </mdb-carousel-item>
+          </mdb-carousel>
+          <span>
+            <span class="subreddit-text">
+              <h1><b>{{house.houseName}}</b></h1>
+            </span>
+            <span>{{house.houseCategory}}</span>
+            <br>
+            <span>
+              Post House
+              <!-- <span> {{ house.duration }} </span> -->
+              by <b class="username" (click)='goToProfile(house.username)'>{{ house.username }}</b>
+            </span>
+          </span>
+          <hr />
+          <div>
+            <p class="post-text" [innerHtml]="house.description"></p>
+          </div>
+          <div>
+            <p class="post-text" [innerHtml]="house.address  + ' , ' +house.cityName"></p>
+          </div>
+          <div>
+            <mat-card-content>
+              <h3><span class="badge badge-pill badge-info">Giá : {{house.price}} $</span>
+              </h3>
+            </mat-card-content>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

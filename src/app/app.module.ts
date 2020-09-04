@@ -24,7 +24,13 @@ import { HouseTileComponent } from './views/house/house-tile/house-tile.componen
 import {HomeComponent} from './views/home/home.component';
 import {MatCardModule} from '@angular/material/card';
 import {MatButtonModule} from '@angular/material/button';
-import { CommentComponent } from './views/comment/comment.component';
+import {NgxDropzoneModule} from 'ngx-dropzone';
+import {environment} from '../environments/environment';
+import {AngularFireModule} from '@angular/fire';
+import {AngularFireStorageModule} from '@angular/fire/storage';
+import { ViewHouseComponent } from './views/house/view-house/view-house.component';
+import { ProgressBarComponent } from './shared/progress-bar/progress-bar.component';
+import {MDBBootstrapModule} from 'angular-bootstrap-md';
 
 @NgModule({
   declarations: [
@@ -37,7 +43,8 @@ import { CommentComponent } from './views/comment/comment.component';
     CreateHouseComponent,
     HouseTileComponent,
     HomeComponent,
-    CommentComponent
+    ViewHouseComponent,
+    ProgressBarComponent
   ],
   imports: [
     BrowserModule,
@@ -48,9 +55,13 @@ import { CommentComponent } from './views/comment/comment.component';
     NgxWebstorageModule.forRoot(),
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
+    MDBBootstrapModule.forRoot(),
     FontAwesomeModule,
     EditorModule,
     NgbModule,
+    NgxDropzoneModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireStorageModule,
     MatIconModule,
     MatFormFieldModule,
     MatInputModule,

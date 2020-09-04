@@ -20,26 +20,26 @@ export class HouseService {
     );
   }
 
-  //TODO: sửa API
   getAllCity(): Observable<Array<City>>{
     return this.httpClient.get<Array<City>>(
       environment.URL + 'api/houses/show-all-city'
     );
   }
+
   createHouse(data: HouseRequest): Observable<any> {
     return this.httpClient.post(environment.URL + 'api/houses/', data);
   }
 
-  addHouseImage(data: FormData): Observable<any> {
-    return this.httpClient.post(environment.URL + 'api/images', data, {
-      reportProgress: true,
-      observe: 'events'
-    }).pipe(catchError(this.errorMgmt));
-  }
+
   getAllHouseByUser(name: string): Observable<HouseResponse[]> {
     return this.httpClient.get<HouseResponse[]>(
       environment.URL + 'api/houses/by-user/' + name
     );
+  }
+
+
+  getHouse(houseId: number): Observable<HouseResponse> {
+    return this.httpClient.get<HouseResponse>(environment.URL + 'api/houses/' + houseId);
   }
   //TODO: sửa API
   getAllHouse(): Observable<Array<HouseResponse>> {

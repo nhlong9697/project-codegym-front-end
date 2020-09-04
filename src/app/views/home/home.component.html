@@ -5,7 +5,7 @@
       <div class="col-md-9">
         <!-- Display Posts-->
         <!-- TODO: xem hộ phần house -->
-        <app-house-tile [houses]="houses"></app-house-tile>
+        <app-house-tile *ngFor="let house of houses" [house]="house"></app-house-tile>
       </div>
       <div class="col-md-3">
         <!-- <app-side-bar></app-side-bar> -->

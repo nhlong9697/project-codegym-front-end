@@ -6,12 +6,14 @@ import { SignupComponent } from './views/auth/signup/signup.component';
 import { CreateHouseComponent } from './views/house/create-house/create-house.component'
 import { UserGuard } from 'src/app/containers/guards/user/user.guard';
 import { HomeComponent } from 'src/app/views/home/home.component'
+import { ViewHouseComponent } from 'src/app/views/house/view-house/view-house.component'
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'login', component: LoginComponent },
   { path: 'user-profile/:name', component: DetailUserComponent, canActivate: [UserGuard] },
   { path: 'signup', component: SignupComponent },
-  { path: 'createHouse', component: CreateHouseComponent, canActivate: [UserGuard]}
+  { path: 'createHouse', component: CreateHouseComponent, canActivate: [UserGuard]},
+  { path: 'view-house/:houseId', component: ViewHouseComponent }
 ];
 
 @NgModule({

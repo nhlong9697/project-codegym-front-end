@@ -7,8 +7,11 @@ import { City } from 'src/app/containers/model/city/city';
 import { HouseRequest } from 'src/app/containers/model/house/house-request';
 import {HouseService} from '../../../containers/services/house/house.service';
 import {HouseResponse} from '../../../containers/model/house/house-response';
-import {HttpEventType, HttpResponse} from '@angular/common/http';
-
+import {AngularFireStorage} from '@angular/fire/storage';
+import {v4 as uuid} from 'uuid';
+import {finalize} from 'rxjs/operators';
+import {ImageService} from '../../../containers/services/images/image.service';
+import {ImagePayload} from '../../../containers/model/image/image';
 @Component({
   selector: 'app-create-house',
   templateUrl: './create-house.component.html',
@@ -19,13 +22,15 @@ export class CreateHouseComponent implements OnInit {
   allCity: Array<City>;
   createHouseForm: FormGroup;
   housePayLoad: HouseRequest;
-  selectedFiles: FileList;
-  progressInfos = [];
-  message = '';
+  files: File[] = [];
+  uploadPercents: Observable<number>[] = [];
 
   fileInfos: Observable<any>;
   constructor(  private router: Router,
-                private houseService: HouseService) {
+                private houseService: HouseService,
+                private storage: AngularFireStorage,
+                private imageService: ImageService
+  ) {
       this.housePayLoad = {
         houseName: '',
         houseCategory: '',
@@ -60,7 +65,6 @@ export class CreateHouseComponent implements OnInit {
       (data) => {
         this.allCity = data;
         console.log(data);
-        debugger
       },
       (error) => {
         throwError(error);
@@ -68,75 +72,56 @@ export class CreateHouseComponent implements OnInit {
     );
   }
 
-  discardPost() {
+  discardPost(): void {
     this.router.navigateByUrl('/');
   }
-   createHouse() {
-      this.housePayLoad.houseName = this.createHouseForm.get('Name').value;
-      this.housePayLoad.address = this.createHouseForm.get('Address').value;
-      this.housePayLoad.houseCategory = this.createHouseForm.get('HouseCategory').value;
-      this.housePayLoad.cityName = this.createHouseForm.get('City').value;
-      this.housePayLoad.price = this.createHouseForm.get('Price').value;
-      this.housePayLoad.description = this.createHouseForm.get('Description').value;
-      this.houseService.createHouse(this.housePayLoad).subscribe(
-        (data) => {
-          const house: HouseResponse = data;
-          console.log(data);
-          for (let i = 0; i < this.selectedFiles.length; i++) {
-            this.upload(i, this.selectedFiles[i], house.houseId);
-          }
-          this.router.navigate(['/'], {
-            queryParams: { created: 'true' },
-          });
-        },
-        (error) => {
-          throwError(error);
-        }
-      );
-    }
-
-  selectFiles(event): void {
-    this.progressInfos = [];
-
-    const files = event.target.files;
-    let isImage = true;
-
-    for (let i = 0; i < files.length; i++) {
-      if (files.item(i).type.match('image.*')) {
-        continue;
-      } else {
-        isImage = false;
-        alert('invalid format!');
-        break;
-      }
-    }
-
-    if (isImage) {
-      this.selectedFiles = event.target.files;
-    } else {
-      this.selectedFiles = undefined;
-    }
-  }
-
-  private upload(i: number, selectedFile: File, houseId: number) {
-    const formData = new FormData();
-    formData.append('file', this.selectedFiles[i]);
-    formData.append('houseId', houseId.toString());
-    this.progressInfos[i] = { value: 0, fileName: selectedFile.name };
-    this.houseService.addHouseImage(formData).subscribe(
-      event => {
-        console.log('this is event');
-        console.log(event);
-        if (event.type === HttpEventType.UploadProgress) {
-          this.progressInfos[i].percentage = Math.round(100 * event.loaded / event.total);
+  createHouse(): void {
+    this.housePayLoad.houseName = this.createHouseForm.get('Name').value;
+    this.housePayLoad.address = this.createHouseForm.get('Address').value;
+    this.housePayLoad.houseCategory = this.createHouseForm.get('HouseCategory').value;
+    this.housePayLoad.cityName = this.createHouseForm.get('City').value;
+    this.housePayLoad.price = this.createHouseForm.get('Price').value;
+    this.housePayLoad.description = this.createHouseForm.get('Description').value;
+    this.houseService.createHouse(this.housePayLoad).subscribe(
+      (data) => {
+        const house: HouseResponse = data;
+        console.log(data);
+        for (let i = 0; i < this.files.length; i++) {
+          this.upload(i, this.files[i], house.houseId);
         }
       },
-      err => {
-        console.log('error with add house');
-        console.log(err);
-        this.progressInfos[i].percentage = 0;
-        this.message = 'Could not upload the file:' + selectedFile.name;
+      (error) => {
+        throwError(error);
       }
     );
+    // this.router.navigate(['/'], {
+    //   queryParams: { created: 'true' },
+    // });
+   }
+
+  onSelect(event): void {
+    console.log(event);
+    this.files.push(...event.addedFiles);
+  }
+
+  onRemove(event): void {
+    console.log(event);
+    this.files.splice(this.files.indexOf(event), 1);
+  }
+
+  private upload(i: number, file: File, houseId: number): void {
+    const filePath = `houses/${Date.now()}_${uuid()}`;
+    const task = this.storage.upload(filePath, file);
+    // observe percentage changes
+    this.uploadPercents[i] = task.percentageChanges();
+
+    task.snapshotChanges().pipe(
+      finalize(() => {
+        const image = new ImagePayload();
+        image.houseId = houseId;
+        image.ref = filePath;
+        this.imageService.addHouseImage(image).subscribe();
+      })
+    ).subscribe();
   }
 }
