@@ -32,7 +32,7 @@ export class CreateHouseComponent implements OnInit {
                 private imageService: ImageService
   ) {
       this.housePayLoad = {
-        houseName: '',
+        name: '',
         houseCategory: '',
         cityName: '',
         address: '',
@@ -76,7 +76,7 @@ export class CreateHouseComponent implements OnInit {
     this.router.navigateByUrl('/');
   }
   createHouse(): void {
-    this.housePayLoad.houseName = this.createHouseForm.get('Name').value;
+    this.housePayLoad.name = this.createHouseForm.get('Name').value;
     this.housePayLoad.address = this.createHouseForm.get('Address').value;
     this.housePayLoad.houseCategory = this.createHouseForm.get('HouseCategory').value;
     this.housePayLoad.cityName = this.createHouseForm.get('City').value;
@@ -87,7 +87,7 @@ export class CreateHouseComponent implements OnInit {
         const house: HouseResponse = data;
         console.log(data);
         for (let i = 0; i < this.files.length; i++) {
-          this.upload(i, this.files[i], house.houseId);
+          this.upload(i, this.files[i], house.id);
         }
       },
       (error) => {

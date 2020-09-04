@@ -19,20 +19,20 @@ export class ReservationService {
 
   getAllReservationByUsername(username: string): Observable<Array<Reservation>>{
     return this.http.get<Array<Reservation>>(
-      this.url + 'api/reservations/byUsername/'+ username
+      this.url + 'api/reservations/by-username/' + username
     );
   }
 
   deleteReservationById(id: number): Observable<Reservation>{
-    return this.http.delete<Reservation>(this.url + "api/reservations/" + id);
+    return this.http.delete<Reservation>(this.url + 'api/reservations/' + id);
   }
 
   updateReservationById(data: Reservation): Observable<Reservation> {
-    return this.http.put<Reservation>(this.url + "api/reservations/", data);
+    return this.http.put<Reservation>(this.url + 'api/reservations/', data);
   }
 
   getReservationById(id: number): Observable<Reservation> {
-    return this.http.get<Reservation>(this.url + "api/reservations/" + id);
+    return this.http.get<Reservation>(this.url + 'api/reservations/' + id);
   }
 
 }

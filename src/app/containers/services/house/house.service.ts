@@ -17,7 +17,7 @@ export class HouseService {
   constructor(private httpClient: HttpClient) { }
   getAllHouseCategory(): Observable<Array<HouseCategory>> {
     return this.httpClient.get<Array<HouseCategory>>(
-      environment.URL + 'api/houses/show-all-houseCategory'
+      environment.URL + 'api/houses/show-all-house-category'
     );
   }
 
@@ -42,7 +42,6 @@ export class HouseService {
   getHouse(houseId: number): Observable<HouseResponse> {
     return this.httpClient.get<HouseResponse>(environment.URL + 'api/houses/' + houseId);
   }
-  //TODO: sửa API
   getAllHouse(): Observable<Array<HouseResponse>> {
     return this.httpClient.get<Array<HouseResponse>>(environment.URL + 'api/houses/');
   }
@@ -62,6 +61,5 @@ export class HouseService {
     }
     console.log(errorMessage);
     return throwError(errorMessage);
-
   }
 }

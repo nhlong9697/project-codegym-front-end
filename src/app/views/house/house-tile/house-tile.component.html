@@ -3,7 +3,7 @@
     <mat-card class="example-card">
       <mat-card-header>
         <div mat-card-avatar class="example-header-image"></div>
-        <mat-card-title (click)="goToHouse(house.houseId)">{{house.houseName}}</mat-card-title>
+        <mat-card-title (click)="goToHouse(house.id)">{{house.name}}</mat-card-title>
         <mat-card-subtitle>{{house.houseCategory}}</mat-card-subtitle>
       </mat-card-header>
       <mdb-carousel class="carousel slide carousel-fade" [animation]="'fade'">
@@ -15,11 +15,11 @@
         </mdb-carousel-item>
       </mdb-carousel>
       <mat-card-content [innerHTML]="house.description">
-        <h3><span class="badge badge-pill badge-info">Giá : {{house.price}} $</span>
-        </h3>
       </mat-card-content>
+      <h3><span class="badge badge-pill badge-info">Giá : {{house.price}} $</span>
+      </h3>
       <mat-card-actions>
-        <button mat-raised-button color="link" [routerLink] = "['/reservations', house.houseId]">Reservation</button>
+        <button mat-raised-button color="link" [routerLink] = "['/reservations', house.id]">Reservation</button>
         <button mat-raised-button color="accent">LIKE</button>
         <button mat-raised-button color="primary">SHARE</button>
       </mat-card-actions>

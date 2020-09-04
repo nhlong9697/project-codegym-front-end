@@ -89,21 +89,7 @@ export class SignupComponent implements OnInit {
     }
     );
   }
-
-
-
-  // test(){
-  //   const data = this.formUser.value;
-  //   console.log(data);
-
-  // }
-
   get password(){
     return this.formUser.get('password');
   }
-
-  // get phoneNumber(){
-  //   return this.formUser.get('phoneNumber');
-  // }
-
 }

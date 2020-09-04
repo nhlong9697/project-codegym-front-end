@@ -49,7 +49,7 @@ import { EditReservationComponent } from './views/reservation/edit-reservation/e
     HouseTileComponent,
     HomeComponent,
     ViewHouseComponent,
-    ProgressBarComponent
+    ProgressBarComponent,
     HomeComponent,
     CreateReservationComponent,
     ListReservationUserComponent,
