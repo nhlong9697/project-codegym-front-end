@@ -31,6 +31,11 @@ import {AngularFireStorageModule} from '@angular/fire/storage';
 import { ViewHouseComponent } from './views/house/view-house/view-house.component';
 import { ProgressBarComponent } from './shared/progress-bar/progress-bar.component';
 import {MDBBootstrapModule} from 'angular-bootstrap-md';
+import { CreateReservationComponent } from './views/reservation/create-reservation/create-reservation.component';
+import { ListReservationUserComponent } from './views/reservation/list-reservation-user/list-reservation-user.component';
+import { EditReservationComponent } from './views/reservation/edit-reservation/edit-reservation.component';
+
+
 
 @NgModule({
   declarations: [
@@ -45,6 +50,10 @@ import {MDBBootstrapModule} from 'angular-bootstrap-md';
     HomeComponent,
     ViewHouseComponent,
     ProgressBarComponent
+    HomeComponent,
+    CreateReservationComponent,
+    ListReservationUserComponent,
+    EditReservationComponent
   ],
   imports: [
     BrowserModule,

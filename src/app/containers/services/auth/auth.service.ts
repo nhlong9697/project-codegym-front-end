@@ -7,7 +7,6 @@ import { LoginRequestPayload } from '../../model/auth/login-request.payload';
 import { LoginResponse } from '../../model/auth/login-response.payload';
 import { map, tap } from 'rxjs/operators';
 import { CommentPayload } from 'src/app/containers/model/home/description.payload';
-import { HouseRequest } from 'src/app/containers/model/house/house-request';
 
 
 
@@ -104,6 +103,15 @@ export class AuthService {
     this.localStorage.clear('username');
     this.localStorage.clear('refreshToken');
     this.localStorage.clear('expiresAt');
+  }
+
+   //TODO: sửa API
+
+   //TODO: sửa API
+
+
+  getAllAuth(): Observable< Array< SignupRequestPayload >> {
+    return this.httpClient.get<Array<SignupRequestPayload>>('http://localhost:8080/api/auth/users');
   }
 
   getUserName(): string {

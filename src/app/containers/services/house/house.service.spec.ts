@@ -2,7 +2,11 @@ import { TestBed } from '@angular/core/testing';
 
 import { HouseService } from './house.service';
 
+<<<<<<< HEAD
+describe('HouseService', () => {
+=======
 describe('HousesServiceService', () => {
+>>>>>>> long
   let service: HouseService;
 
   beforeEach(() => {
