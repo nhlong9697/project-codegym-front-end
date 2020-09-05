@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../../containers/services/auth/auth.service';
 import { SignupRequestPayload } from '../../../containers/model/auth/signup.payload';
-import { Router } from '@angular/router';
+import {Router} from '@angular/router';
+import {ToastrService} from 'ngx-toastr';
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
@@ -14,9 +15,10 @@ export class SignupComponent implements OnInit {
   signupRequestPayloads: SignupRequestPayload[];
 
   constructor(
-    private _formBuilder: FormBuilder,
+    private formBuilder: FormBuilder,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private toastr: ToastrService
   ) {}
 
   ngOnInit(): void {
@@ -25,7 +27,7 @@ export class SignupComponent implements OnInit {
   }
 
   createForm() {
-    this.formUser = this._formBuilder.group(
+    this.formUser = this.formBuilder.group(
       {
         firstName: [''],
         lastName: [''],
@@ -72,36 +74,22 @@ export class SignupComponent implements OnInit {
   }
 
   onSubmitForm(): void {
-    this.createUser();
+    this.signUp();
   }
 
-  createUser(): void {
+  signUp(): void {
     const data = this.formUser.value;
     console.log(data);
     this.authService.signup(data).subscribe((res) => {
-      window.alert('create user success');
-      this.router.navigate(['login'])
+        this.router.navigate(['/login'], {
+          queryParams: { registered: 'true' },
+        });
     }, error => {
-      window.alert(error.error.message);
+        this.toastr.error('Registration failed try again');
     }
     );
   }
-
-  listUser(): void{
-     this.authService.getAllAuth().subscribe(res => {
-      this.signupRequestPayloads = res;
-
-    });
-  }
-
-  // test(){
-  //   const data = this.formUser.value;
-  //   console.log(data);
-
-  // }
-
   get password(){
     return this.formUser.get('password');
   }
-
 }

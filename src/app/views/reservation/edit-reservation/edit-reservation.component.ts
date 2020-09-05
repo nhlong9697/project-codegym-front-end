@@ -51,8 +51,7 @@ export class EditReservationComponent implements OnInit {
 
   updateReservationById(){
     this.reservation = this.updateReservationForm.value;
-    console.log(this.reservation);
-
+    // console.log(this.reservation);
 
     this.reservationService.updateReservationById(this.reservation).subscribe((res) =>{
       window.alert("Update reservation successed!");

@@ -17,32 +17,31 @@ export class HouseService {
   constructor(private httpClient: HttpClient) { }
   getAllHouseCategory(): Observable<Array<HouseCategory>> {
     return this.httpClient.get<Array<HouseCategory>>(
-      environment.URL + 'api/houses/show-all-houseCategory'
+      environment.URL + 'api/houses/show-all-house-category'
     );
   }
 
-  //TODO: sửa API
   getAllCity(): Observable<Array<City>>{
     return this.httpClient.get<Array<City>>(
       environment.URL + 'api/houses/show-all-city'
     );
   }
+
   createHouse(data: HouseRequest): Observable<any> {
     return this.httpClient.post(environment.URL + 'api/houses/', data);
   }
 
-  addHouseImage(data: FormData): Observable<any> {
-    return this.httpClient.post(environment.URL + 'api/images', data, {
-      reportProgress: true,
-      observe: 'events'
-    }).pipe(catchError(this.errorMgmt));
-  }
+
   getAllHouseByUser(name: string): Observable<HouseResponse[]> {
     return this.httpClient.get<HouseResponse[]>(
       environment.URL + 'api/houses/by-user/' + name
     );
   }
-  //TODO: sửa API
+
+
+  getHouse(houseId: number): Observable<HouseResponse> {
+    return this.httpClient.get<HouseResponse>(environment.URL + 'api/houses/' + houseId);
+  }
   getAllHouse(): Observable<Array<HouseResponse>> {
     return this.httpClient.get<Array<HouseResponse>>(environment.URL + 'api/houses/');
   }
@@ -62,6 +61,9 @@ export class HouseService {
     }
     console.log(errorMessage);
     return throwError(errorMessage);
+  }
 
+  deleteHouseById(id: number): Observable<number>{
+    return this.httpClient.delete<number>(environment.URL + 'api/houses/' + id);
   }
 }

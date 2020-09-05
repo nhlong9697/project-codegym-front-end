@@ -24,10 +24,19 @@ import { HouseTileComponent } from './views/house/house-tile/house-tile.componen
 import {HomeComponent} from './views/home/home.component';
 import {MatCardModule} from '@angular/material/card';
 import {MatButtonModule} from '@angular/material/button';
+import {NgxDropzoneModule} from 'ngx-dropzone';
+import {environment} from '../environments/environment';
+import {AngularFireModule} from '@angular/fire';
+import {AngularFireStorageModule} from '@angular/fire/storage';
+import { ViewHouseComponent } from './views/house/view-house/view-house.component';
+import { ProgressBarComponent } from './shared/progress-bar/progress-bar.component';
+import {MDBBootstrapModule} from 'angular-bootstrap-md';
 import { CreateReservationComponent } from './views/reservation/create-reservation/create-reservation.component';
 import { ListReservationUserComponent } from './views/reservation/list-reservation-user/list-reservation-user.component';
 import { EditReservationComponent } from './views/reservation/edit-reservation/edit-reservation.component';
 import { ListReservationHouseComponent } from './views/reservation/list-reservation-house/list-reservation-house.component';
+import { ListHouseUserComponent } from './views/house/list-house-user/list-house-user.component';
+import { MyHouseComponent } from './views/house/my-house/my-house.component';
 
 
 
@@ -42,12 +51,16 @@ import { ListReservationHouseComponent } from './views/reservation/list-reservat
     CreateHouseComponent,
     HouseTileComponent,
     HomeComponent,
+    ViewHouseComponent,
+    ProgressBarComponent,
+    HomeComponent,
     CreateReservationComponent,
     ListReservationUserComponent,
     EditReservationComponent,
-    ListReservationHouseComponent
+    ListReservationHouseComponent,
+    ListHouseUserComponent,
+    MyHouseComponent
   ],
-
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -57,9 +70,13 @@ import { ListReservationHouseComponent } from './views/reservation/list-reservat
     NgxWebstorageModule.forRoot(),
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
+    MDBBootstrapModule.forRoot(),
     FontAwesomeModule,
     EditorModule,
     NgbModule,
+    NgxDropzoneModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireStorageModule,
     MatIconModule,
     MatFormFieldModule,
     MatInputModule,

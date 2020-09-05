@@ -11,6 +11,7 @@ import { CommentPayload } from 'src/app/containers/model/home/description.payloa
 
 
 import {environment} from '../../../../environments/environment';
+import { HouseCategory } from '../../model/house-category/house-category';
 import { City } from '../../model/city/city';
 
 @Injectable({
@@ -24,8 +25,6 @@ export class AuthService {
     refreshToken: this.getRefreshToken(),
     username: this.getUserName(),
   };
-
-
 
   constructor(
     private httpClient: HttpClient,
@@ -89,7 +88,7 @@ export class AuthService {
 
   logout(): void {
     this.httpClient
-      .post( environment.URL + 'api/auth/logout', this.refreshTokenPayload, {
+      .post(environment.URL + 'api/auth/logout', this.refreshTokenPayload, {
         responseType: 'text',
       })
       .subscribe(

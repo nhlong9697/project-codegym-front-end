@@ -4,7 +4,7 @@ export class HouseRequest{
   cityName: string;
   description: string;
   houseCategory: string;
-  houseId?: number;
-  houseName: string;
+  id?: number;
+  name: string;
   price: number;
 }

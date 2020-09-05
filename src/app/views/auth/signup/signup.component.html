@@ -49,6 +49,14 @@
                   class="form-control"
                   formControlName="phoneNumber"
                 />
+                <span
+                  class="alert alert-danger"
+                  *ngIf="
+                    formUser.controls.email.dirty &&
+                    formUser.controls.email.errors?.pattern
+                  "
+                  >vui lòng nhập đúng đinh dạng số điện thoại</span
+                >
               </div>
             </div>
             <div class="form-group">
@@ -62,7 +70,7 @@
                   formControlName="username"
                 />
                 <span
-                  class="label label-danger"
+                  class="alert alert-danger"
                   *ngIf="
                     formUser.controls.username.dirty &&
                     formUser.controls.username.errors?.required
@@ -70,7 +78,7 @@
                   >vui lòng nhập username</span
                 >
                 <span
-                  class="label label-danger"
+                  class="alert alert-danger"
                   *ngIf="
                     formUser.controls.username.dirty &&
                     formUser.controls.username.errors?.maxlength
@@ -78,7 +86,7 @@
                   >vui lòng nhập không quá 20 kí tự</span
                 >
                 <span
-                  class="label label-danger"
+                  class="alert alert-danger"
                   *ngIf="
                     formUser.controls.username.dirty &&
                     formUser.controls.username.errors?.minlength
@@ -96,7 +104,7 @@
                   formControlName="email"
                 />
                 <span
-                  class="label label-danger"
+                  class="alert alert-danger"
                   *ngIf="
                     formUser.controls.email.dirty &&
                     formUser.controls.email.errors?.pattern

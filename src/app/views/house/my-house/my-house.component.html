@@ -1,4 +1,5 @@
-<div class="row post" >
+<div class="row post">
+  <!-- <app-reservation-house house=[house]></app-reservation-house> -->
   <div class="col-md-11">
     <mat-card class="example-card">
       <mat-card-header>
@@ -19,9 +20,9 @@
       <h3><span class="badge badge-pill badge-info">Giá : {{house.price}} $</span>
       </h3>
       <mat-card-actions>
-        <button mat-raised-button color="link" [routerLink] = "['/reservations', house.id]">Reservation</button>
-        <button mat-raised-button color="accent">LIKE</button>
-        <button mat-raised-button color="primary">SHARE</button>
+        <button mat-raised-button color="accent" (click) = "deleteReservationById(house.id)">DELETE</button>
+        <button mat-raised-button color="primary" [routerLink] = "['/get-reservations-by-house/',house.id]">MY CUSTOMERS</button>
+        <!-- <button mat-raised-button color="primary">SHARE</button> -->
       </mat-card-actions>
     </mat-card>
   </div>

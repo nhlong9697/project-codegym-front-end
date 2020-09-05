@@ -2,7 +2,9 @@
   <div>
      House by <b>{{name}}</b>:
   </div>
-  <app-house-tile  [houses]="houses"></app-house-tile>
+
+  <app-house-tile *ngFor="let house of houses" [house]="house"></app-house-tile>
+
   <hr />
   <!-- <div>
     Your Comments:
