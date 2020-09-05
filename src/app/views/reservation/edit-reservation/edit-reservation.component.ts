@@ -7,6 +7,7 @@ import { Reservation } from 'src/app/containers/model/reservation/reservation';
 import { HouseResponse } from 'src/app/containers/model/house/house-response';
 // import {Moment} from 'moment/moment';
 import * as moment from 'moment';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-edit-reservation',
@@ -27,7 +28,8 @@ export class EditReservationComponent implements OnInit {
     private reservationService: ReservationService,
     private route: Router,
     private activateRouter: ActivatedRoute,
-    private houseService: HouseService) {
+    private houseService: HouseService,
+    private location: Location) {
       this.reservation ={
         id:0,
         startDate:'',
@@ -35,6 +37,10 @@ export class EditReservationComponent implements OnInit {
         houseId:0,
         username:''
       }
+    }
+
+    goBack() {
+      this.location.back(); // <-- go back to previous location on cancel
     }
 
   ngOnInit(): void {

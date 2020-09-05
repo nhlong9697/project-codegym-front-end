@@ -5,6 +5,7 @@ import { HouseResponse } from 'src/app/containers/model/house/house-response';
 import { Observable, throwError } from 'rxjs';
 import { ImageService } from 'src/app/containers/services/images/image.service';
 import { AngularFireStorage } from '@angular/fire/storage';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-my-house',
@@ -14,12 +15,10 @@ import { AngularFireStorage } from '@angular/fire/storage';
 export class MyHouseComponent implements OnInit {
   imagesRef: Observable<string | null>[];
   @Input() house: HouseResponse;
-  @Input() username: string;
   houses: HouseResponse[];
 
   constructor(
     private router: Router,
-    private activateRoute: ActivatedRoute,
     private houseService: HouseService,
     private imageService: ImageService,
     private storage: AngularFireStorage
@@ -27,7 +26,6 @@ export class MyHouseComponent implements OnInit {
 
   ngOnInit(): void {
     this.getImagesByHouseId();
-    this.getAllHouseByUsename();
   }
 
   goToHouse(houseId: number): void {
@@ -49,20 +47,23 @@ export class MyHouseComponent implements OnInit {
     );
   }
 
-  getAllHouseByUsename() {
-    this.houseService.getAllHouseByUser(this.username).subscribe((data) => {
-      this.houses = data;
-      // console.log(data);
-    });
+  reLoad(){
+    // this.location.reload()
+    window.location.reload();
   }
 
-  deleteReservationById(id: number) {
+  deleteHouseById(id: number) {
     if (confirm('Are you sure?')) {
-      this.houseService.deleteHouseById(id).subscribe((res) => {
-        this.getAllHouseByUsename();
-      // this.router.navigate(['/houses-owned-user/' + this.username]);
-        // console.log(res);
-      });
+      this.houseService.deleteHouseById(id).subscribe(
+        (res) => {
+          window.alert('Delete house succeed!');
+          this.reLoad();
+          // console.log(res);
+        },
+        (rej) => {
+          window.alert('Delete error for this house!');
+        }
+      );
     }
   }
 }

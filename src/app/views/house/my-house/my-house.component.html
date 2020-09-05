@@ -20,7 +20,7 @@
       <h3><span class="badge badge-pill badge-info">Giá : {{house.price}} $</span>
       </h3>
       <mat-card-actions>
-        <button mat-raised-button color="accent" (click) = "deleteReservationById(house.id)">DELETE</button>
+        <button mat-raised-button color="accent" (click) = "deleteHouseById(house.id)">DELETE</button>
         <button mat-raised-button color="primary" [routerLink] = "['/get-reservations-by-house/',house.id]">MY CUSTOMERS</button>
         <!-- <button mat-raised-button color="primary">SHARE</button> -->
       </mat-card-actions>
