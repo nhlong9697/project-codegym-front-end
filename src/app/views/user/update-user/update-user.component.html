@@ -5,167 +5,112 @@
       <div class="card">
         <div class="container-fluid">
           <div class="card-header" style="text-align: center">
-            <h4>Editter</h4>
+            <h4>My profile</h4>
           </div>
-          <form
-            class="form-horizontal"
-            role="form"
-            [formGroup]="formUser"
-            autocomplete="on"
-            novalidate
-            (ngSubmit)="onSubmitForm()"
-          >
+          <form class="form-horizontal" role="form" [formGroup]="updateUserForm" (ngSubmit)="updateUser()">
             <div class="form-group">
-              <label for="firstName" class="col-sm-3 control-label"
-                >FirstName
-              </label>
+              <label for="firstName" class="col-sm-3 control-label">FirstName</label>
               <div class="col-sm-9">
-                <input
-                  type="text"
-                  class="form-control"
-                  formControlName="firstName"
-                />
+                <input type="text" class="form-control" formControlName="firstName"/>
+                <span class="alert alert-danger" *ngIf="updateUserForm.controls.firstName.dirty &&
+                updateUserForm.controls.firstName.errors?.required">
+                    vui lòng nhập firstname
+                </span>
               </div>
             </div>
             <div class="form-group">
-              <label for="lastName" class="col-sm-3 control-label"
-                >LastName</label
-              >
+              <label for="lastName" class="col-sm-3 control-label">LastName</label>
               <div class="col-sm-9">
-                <input
-                  type="text"
-                  class="form-control"
-                  formControlName="lastName"
-                />
+                <input type="text" class="form-control" formControlName="lastName"/>
+                <span class="alert alert-danger" *ngIf="updateUserForm.controls.lastName.dirty &&
+                updateUserForm.controls.lastName.errors?.required">
+                    vui lòng nhập lastname
+                </span>
               </div>
             </div>
             <div class="form-group">
-              <label for="phoneNumber" class="col-sm-3 control-label"
-                >PhoneNumber</label
-              >
+              <label for="phoneNumber" class="col-sm-3 control-label">Phone Number</label>
               <div class="col-sm-9">
-                <input
-                  type="text"
-                  class="form-control"
-                  formControlName="phoneNumber"
-                />
+                <input type="text" class="form-control" formControlName="phoneNumber"/>
+                <span class="alert alert-danger" *ngIf=" updateUserForm.controls.phoneNumber.dirty &&
+                updateUserForm.controls.phoneNumber.errors?.pattern">
+                    Vui lòng nhập đúng đinh dạng số điện thoại
+                </span>
+                <span class="alert alert-danger" *ngIf="updateUserForm.controls.phoneNumber.dirty &&
+                updateUserForm.controls.phoneNumber.errors?.required">
+                    Vui lòng nhập phone number
+                </span>
               </div>
             </div>
             <div class="form-group">
-              <label for="username" class="col-sm-3 control-label"
-                >Username
-              </label>
+              <label for="username" class="col-sm-3 control-label">Username</label>
               <div class="col-sm-9">
-                <input
-                  type="text"
-                  class="form-control"
-                  formControlName="username"
-                />
-                <span
-                  class="label label-danger"
-                  *ngIf="
-                    formUser.controls.username.dirty &&
-                    formUser.controls.username.errors?.required
-                  "
-                  >vui lòng nhập username</span
-                >
-                <span
-                  class="label label-danger"
-                  *ngIf="
-                    formUser.controls.username.dirty &&
-                    formUser.controls.username.errors?.maxlength
-                  "
-                  >vui lòng nhập không quá 20 kí tự</span
-                >
-                <span
-                  class="label label-danger"
-                  *ngIf="
-                    formUser.controls.username.dirty &&
-                    formUser.controls.username.errors?.minlength
-                  "
-                  >vui lòng nhập nhiều hơn 5 kí tự</span
-                >
+                <input type="text" class="form-control" formControlName="username" disabled/>
+                <span class="alert alert-danger" *ngIf="updateUserForm.controls.username.dirty &&
+                updateUserForm.controls.username.errors?.required">
+                    vui lòng nhập username
+                </span>
+                <span class="alert alert-danger" *ngIf="updateUserForm.controls.username.dirty &&
+                updateUserForm.controls.username.errors?.maxlength">
+                    vui lòng nhập không quá 20 kí tự
+                </span>
+                <span class="alert alert-danger" *ngIf="updateUserForm.controls.username.dirty &&
+                updateUserForm.controls.username.errors?.minlength">
+                    vui lòng nhập nhiều hơn 5 kí tự
+                </span>
               </div>
             </div>
-
             <div class="form-group">
               <label for="email" class="col-sm-3 control-label">Email* </label>
               <div class="col-sm-9">
-                <input
-                  type="email"
-                  class="form-control"
-                  formControlName="email"
-                />
-                <span
-                  class="label label-danger"
-                  *ngIf="
-                    formUser.controls.email.dirty &&
-                    formUser.controls.email.errors?.pattern
-                  "
-                  >vui lòng nhập đúng đinh dạng email</span
-                >
+                <input type="email" class="form-control" formControlName="email" disabled/>
+                <span class="alert alert-danger" *ngIf="updateUserForm.controls.email.dirty &&
+                updateUserForm.controls.email.errors?.pattern">
+                    vui lòng nhập đúng đinh dạng email
+                </span>
+                <span class="alert alert-danger" *ngIf="updateUserForm.controls.email.dirty &&
+                updateUserForm.controls.email.errors?.required">
+                    Vui lòng nhập email
+                </span>
               </div>
             </div>
-            <!-- <fieldset formGroupName="pwGroup"> -->
-            <div class="form-group">
-              <label for="password" class="col-sm-3 control-label"
-                >Password*</label
-              >
+            <!-- <div class="mb-2">
+              <div *ngIf="uploadPercent | async as pct">
+                <app-progress-bar ></app-progress-bar>
+                <span>{{pct | number}}</span>
+              </div>
+            </div> -->
+            <ngx-dropzone (change)="onSelect($event)">
+              <ngx-dropzone-label>Drop it, baby!</ngx-dropzone-label>
+              <ngx-dropzone-preview [removable]="true" (removed)="onRemove(file)">
+                <ngx-dropzone-label>{{ file.name }} ({{ file.type }})</ngx-dropzone-label>
+              </ngx-dropzone-preview>
+            </ngx-dropzone>
+            <!-- <div class="form-group">
+              <label for="password" class="col-sm-3 control-label">Password*</label>
               <div class="col-sm-9">
-                <input
-                  type="password"
-                  class="form-control"
-                  formControlName="password"
-                />
-                <div
-                  *ngIf="
-                    password.invalid && (password.dirty || password.touched)
-                  "
-                  class="alert alert-danger"
-                >
+                <input type="password" class="form-control" formControlName="password"/>
+                <div *ngIf="password.invalid && (password.dirty || password.touched)" class="alert alert-danger">
                   vui lòng nhập nhiều hơn 5 kí tự
                   <div *ngIf="password.errors.required">
                     password is required.
                   </div>
                 </div>
-                <!-- <span
-            class="alert alert-danger"
-            *ngIf="
-              formUser.controls.password.dirty &&
-              formUser.controls.password.errors?.required
-            "
-            >vui lòng nhập password</span > -->
               </div>
             </div>
             <div class="form-group">
-              <label for="password" class="col-sm-3 control-label"
-                >Confirm Password</label
-              >
+              <label for="password" class="col-sm-3 control-label">Confirm Password</label>
               <div class="col-sm-9">
-                <input
-                  type="password"
-                  class="form-control"
-                  formControlName="confirmPassword"
-                />
+                <input type="password" class="form-control" formControlName="confirmPassword"/>
               </div>
-            </div>
-            <!-- </fieldset> -->
-
-            <button
-              [disabled]="formUser.invalid"
-              type="submit"
-              class="btn btn-primary"
-            >
-              Edit
-            </button>
-            <!-- <button (click)="onResetForm()" type="button" class="btn btn-primary" > Reset </button> -->
+            </div> -->
+            <!-- [disabled] = "updateUserForm.invalid" -->
+            <button style="margin: 5px;"  type="submit" class="btn btn-primary">Update</button>
+            <button type="button" class="btn btn-primary" routerLink = "">Back</button>
           </form>
-          <!-- /form -->
         </div>
-        <!-- ./container -->
       </div>
     </div>
     <div class="col-md-3"></div>
   </div>
 </div>
-

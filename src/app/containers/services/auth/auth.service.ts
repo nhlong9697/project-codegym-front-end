@@ -7,6 +7,7 @@ import { LoginRequestPayload } from '../../model/auth/login-request.payload';
 import { LoginResponse } from '../../model/auth/login-response.payload';
 import { map, tap } from 'rxjs/operators';
 import { CommentPayload } from 'src/app/containers/model/home/description.payload';
+import { UpdateUserRequest } from 'src/app/containers/model/auth/update-user-request';
 
 
 
@@ -123,5 +124,17 @@ export class AuthService {
 
   isLoggedIn(): boolean {
     return this.getJwtToken() != null;
+  }
+
+  getUserById(id: number): Observable<UpdateUserRequest> {
+    return this.httpClient.get<UpdateUserRequest>(environment.URL+"api/auth/users/" + id);
+  }
+
+  getUserByUsername(username: string): Observable<UpdateUserRequest> {
+    return this.httpClient.get<UpdateUserRequest>(environment.URL+"api/auth/users/" + username);
+  }
+
+  updateUser (data : UpdateUserRequest) :Observable<UpdateUserRequest> {
+    return this.httpClient.put<UpdateUserRequest>(environment.URL + "api/auth/users", data)
   }
 }

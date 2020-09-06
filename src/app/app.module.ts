@@ -37,6 +37,7 @@ import { EditReservationComponent } from './views/reservation/edit-reservation/e
 import { ListReservationHouseComponent } from './views/reservation/list-reservation-house/list-reservation-house.component';
 import { ListHouseUserComponent } from './views/house/list-house-user/list-house-user.component';
 import { MyHouseComponent } from './views/house/my-house/my-house.component';
+import { UpdateUserComponent } from './views/user/update-user/update-user.component';
 
 
 
@@ -59,7 +60,8 @@ import { MyHouseComponent } from './views/house/my-house/my-house.component';
     EditReservationComponent,
     ListReservationHouseComponent,
     ListHouseUserComponent,
-    MyHouseComponent
+    MyHouseComponent,
+    UpdateUserComponent
   ],
   imports: [
     BrowserModule,
