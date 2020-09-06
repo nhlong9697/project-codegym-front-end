@@ -34,6 +34,7 @@ import {MDBBootstrapModule} from 'angular-bootstrap-md';
 import { CreateReservationComponent } from './views/reservation/create-reservation/create-reservation.component';
 import { ListReservationUserComponent } from './views/reservation/list-reservation-user/list-reservation-user.component';
 import { EditReservationComponent } from './views/reservation/edit-reservation/edit-reservation.component';
+import { RatingBarComponent } from './views/rating-bar/rating-bar.component';
 
 
 
@@ -53,7 +54,8 @@ import { EditReservationComponent } from './views/reservation/edit-reservation/e
     HomeComponent,
     CreateReservationComponent,
     ListReservationUserComponent,
-    EditReservationComponent
+    EditReservationComponent,
+    RatingBarComponent
   ],
   imports: [
     BrowserModule,

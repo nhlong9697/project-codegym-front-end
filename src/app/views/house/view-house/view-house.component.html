@@ -38,6 +38,48 @@
             </mat-card-content>
           </div>
         </div>
+
+        <!-- form ne -->
+          <!-- <div class="row"> -->
+            <div class="post-comment">
+              <form [formGroup]="commentForm" (ngSubmit)="postComment()">
+                <div class="form-group">
+                  <textarea
+                    class="form-control"
+                    [formControlName]="'text'"
+                    placeholder="Your Thoughts?"
+                  ></textarea>
+                  <!-- modal -->
+                  <app-rating-bar [max]="10" (rateChange)="onRateChange($event)"></app-rating-bar>
+                  <!-- end modal -->
+                </div>
+
+                <button type="submit" class="login float-right" >Comment</button>
+
+              </form>
+
+              <!-- list comment -->
+              <div>
+                <h2>Comment:</h2>
+                <hr>
+              </div>
+              <div  *ngFor="let comment of comments">
+                <div class="comment">
+                  <div class="username">
+                    <a>{{
+                      comment.username
+                    }}</a>
+                  </div>
+                  <b>{{ comment.text }}</b>
+                </div>
+                <hr />
+              </div>
+              <!-- end list comment -->
+
+            </div>
+
+          <!-- </div> -->
+        <!-- het form  -->
       </div>
     </div>
   </div>

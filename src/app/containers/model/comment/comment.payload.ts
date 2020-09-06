@@ -3,5 +3,5 @@ export class CommentPayload {
   houseId: number;
   username: string;
   votes: number;
-  duration: string;
+  duration?: string;
 }

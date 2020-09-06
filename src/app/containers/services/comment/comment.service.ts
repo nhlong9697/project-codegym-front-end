@@ -12,20 +12,20 @@ export class CommentService {
 
   getAllCommentsForHouse(houseId: number): Observable<CommentPayload[]> {
     return this.httpClient.get<CommentPayload[]>(
-      environment.URL + '/api/comments/by-house/' + houseId
+      environment.URL + 'api/comments/by-house/' + houseId
     );
   }
 
-  postComment(commentPayload: CommentPayload): Observable<any> {
-    return this.httpClient.post<any>(
-      environment.URL + '/api/comments/',
+  postComment(commentPayload: CommentPayload): Observable<CommentPayload> {
+    return this.httpClient.post<CommentPayload>(
+      environment.URL + 'api/comments',
       commentPayload
     );
   }
 
   getAllCommentsByUser(username: string) {
     return this.httpClient.get<CommentPayload[]>(
-      environment.URL + '/api/comments/by-house/' +username
+      environment.URL + 'api/comments/by-house/' +username
     );
   }
 }
