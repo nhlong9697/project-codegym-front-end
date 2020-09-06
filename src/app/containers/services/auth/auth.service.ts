@@ -14,6 +14,7 @@ import { UpdateUserRequest } from 'src/app/containers/model/auth/update-user-req
 import {environment} from '../../../../environments/environment';
 import { HouseCategory } from '../../model/house-category/house-category';
 import { City } from '../../model/city/city';
+import { UserPassword } from '../../model/auth/user-password';
 
 @Injectable({
   providedIn: 'root',
@@ -136,5 +137,9 @@ export class AuthService {
 
   updateUser (data : UpdateUserRequest) :Observable<UpdateUserRequest> {
     return this.httpClient.put<UpdateUserRequest>(environment.URL + "api/auth/users", data)
+  }
+
+  changePasswordUser(data: UserPassword) :Observable<UserPassword>{
+    return this.httpClient.put<UserPassword>(environment.URL + "api/auth/users/change-pass", data)
   }
 }

@@ -28,8 +28,13 @@ export class HeaderComponent implements OnInit {
     this.isLoggedIn = this.authService.isLoggedIn();
     this.username = this.authService.getUserName();
   }
+
   goToUserUpdate(): void{
     this.router.navigateByUrl('/user-update/' + this.username);
+  }
+
+  goToChangePass(): void{
+    this.router.navigateByUrl('/user/change-pass/' + this.username);
   }
 
   logout(): void{
