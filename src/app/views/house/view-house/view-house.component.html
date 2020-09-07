@@ -34,10 +34,7 @@
             <span>
               Post House
               <!-- <span> {{ house.duration }} </span> -->
-              by
-              <b class="username" (click)="goToProfile(house.username)">{{
-                house.username
-              }}</b>
+              by <b class="username" (click)='goToListByUser(house.username)'>{{ house.username }}</b>
             </span>
           </span>
           <hr />
@@ -58,6 +55,9 @@
                 >
               </h3>
             </mat-card-content>
+            <mat-card-actions>
+              <button mat-raised-button color="link" [routerLink] = "['/reservations', house.id]">Reservation</button>
+            </mat-card-actions>
           </div>
         </div>
 

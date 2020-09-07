@@ -6,7 +6,7 @@ import { LocalStorageService } from 'ngx-webstorage';
 import { LoginRequestPayload } from '../../model/auth/login-request.payload';
 import { LoginResponse } from '../../model/auth/login-response.payload';
 import { map, tap } from 'rxjs/operators';
-import { CommentPayload } from 'src/app/containers/model/home/description.payload';
+import { CommentPayload } from 'src/app/containers/model/comment/comment.payload';
 import { UpdateUserRequest } from 'src/app/containers/model/auth/update-user-request';
 
 

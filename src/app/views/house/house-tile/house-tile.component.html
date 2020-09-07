@@ -6,6 +6,7 @@
         <mat-card-title (click)="goToHouse(house.id)">{{house.name}}</mat-card-title>
         <mat-card-subtitle>{{house.houseCategory}}</mat-card-subtitle>
       </mat-card-header>
+
       <mdb-carousel class="carousel slide carousel-fade" [animation]="'fade'">
         <mdb-carousel-item *ngFor="let imageRef of imagesRef">
           <div class="view w-100">

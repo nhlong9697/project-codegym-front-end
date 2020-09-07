@@ -54,7 +54,7 @@ export class ViewHouseComponent implements OnInit {
   ngOnInit(): void {
     this.getHouseById();
     this.getImagesByHouseId();
-    this.getCommentForHouse();
+    this.getCommentsForHouse();
   }
 
   private getHouseById(): void {
@@ -83,32 +83,11 @@ export class ViewHouseComponent implements OnInit {
     );
   }
 
-  goToProfile(userName: string): void {
-    this.router.navigateByUrl('/user-profile/' + userName);
+  goToListByUser(userName: string): void {
+    this.router.navigateByUrl('/list-house/' + userName);
   }
 
-  postComment() {
-    this.commentPayload.text = this.commentForm.get('text').value;
-    this.commentPayload.votes = this.votes;
-
-    // console.log('da nhan'+ this.votes);
-    console.log(this.commentPayload);
-    this.commentService.postComment(this.commentPayload).subscribe(
-      (data) => {
-        // console.log('da gui text'+this.commentForm.get('text').value);
-        console.log('da gui votes'+ this.votes);
-
-        this.commentForm.get('text').setValue('');
-
-        this.getCommentForHouse();
-      },
-      (error) => {
-        throwError(error);
-      }
-    );
-  }
-
-  private getCommentForHouse() {
+  private getCommentsForHouse(): void {
     this.commentService.getAllCommentsForHouse(this.houseId).subscribe(
       (data) => {
         this.comments = data;
@@ -119,7 +98,29 @@ export class ViewHouseComponent implements OnInit {
     );
   }
 
-  onRateChange(value) {
+  postComment(): void {
+    this.commentPayload.text = this.commentForm.get('text').value;
+    this.commentPayload.votes = this.votes;
+
+    // console.log('da nhan'+ this.votes);
+    console.log(this.commentPayload);
+    this.commentService.postComment(this.commentPayload).subscribe(
+      (data) => {
+        // console.log('da gui text'+this.commentForm.get('text').value);
+        console.log('da gui votes' + this.votes);
+
+        this.commentForm.get('text').setValue('');
+
+        this.getCommentsForHouse();
+      },
+      (error) => {
+        throwError(error);
+      }
+    );
+  }
+
+
+  onRateChange(value): void {
     this.votes = value;
   }
 }
