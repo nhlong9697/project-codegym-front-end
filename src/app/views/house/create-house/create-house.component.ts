@@ -37,7 +37,9 @@ export class CreateHouseComponent implements OnInit {
         cityName: '',
         address: '',
         price: 0,
-        description: ''
+        description: '',
+        bathrooms: 0,
+        sleepingRooms: 0
       };
     }
 
@@ -50,6 +52,8 @@ export class CreateHouseComponent implements OnInit {
       Address: new FormControl('', Validators.required),
       Price: new FormControl('', Validators.required),
       Description: new FormControl('', Validators.required),
+      Bathrooms: new FormControl(''),
+      SleepingRooms: new FormControl('')
     });
 
     this.houseService.getAllHouseCategory().subscribe(
@@ -82,21 +86,22 @@ export class CreateHouseComponent implements OnInit {
     this.housePayLoad.cityName = this.createHouseForm.get('City').value;
     this.housePayLoad.price = this.createHouseForm.get('Price').value;
     this.housePayLoad.description = this.createHouseForm.get('Description').value;
+    this.housePayLoad.bathrooms = this.createHouseForm.get('Bathrooms').value;
+    this.housePayLoad.sleepingRooms = this.createHouseForm.get('SleepingRooms').value;
     this.houseService.createHouse(this.housePayLoad).subscribe(
       (data) => {
         const house: HouseResponse = data;
         console.log(data);
-        for (let i = 0; i < this.files.length; i++) {
-          this.upload(i, this.files[i], house.id);
+        let i = 0;
+        for (; i < this.files.length; i++) {
+          this.upload(i, this.files[i], house.id, this.files.length);
+          console.log(1);
         }
       },
       (error) => {
         throwError(error);
       }
     );
-    // this.router.navigate(['/'], {
-    //   queryParams: { created: 'true' },
-    // });
    }
 
   onSelect(event): void {
@@ -109,7 +114,7 @@ export class CreateHouseComponent implements OnInit {
     this.files.splice(this.files.indexOf(event), 1);
   }
 
-  private upload(i: number, file: File, houseId: number): void {
+  private upload(i: number, file: File, houseId: number, size: number): void {
     const filePath = `houses/${Date.now()}_${uuid()}`;
     const task = this.storage.upload(filePath, file);
     // observe percentage changes
@@ -121,6 +126,11 @@ export class CreateHouseComponent implements OnInit {
         image.houseId = houseId;
         image.ref = filePath;
         this.imageService.addHouseImage(image).subscribe();
+        if (i === size - 1){
+          this.router.navigate(['/'], {
+            queryParams: { created: 'true' },
+          });
+        }
       })
     ).subscribe();
   }
