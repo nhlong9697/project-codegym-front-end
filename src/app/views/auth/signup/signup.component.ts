@@ -35,7 +35,7 @@ export class SignupComponent implements OnInit {
         [
           Validators.required,
           Validators.pattern(
-            '^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$'
+            '(09|01[2|6|8|9])+([0-9]{8})\\b'
           ),
         ]
       ],
@@ -54,7 +54,7 @@ export class SignupComponent implements OnInit {
           [
             Validators.required,
             Validators.pattern(
-              '[a-z][a-z0-9]{5,32}@[a-z0-9]{2,}(.[a-z0-9]{2,4}){1,2}'
+              '^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$'
             ),
           ],
         ],

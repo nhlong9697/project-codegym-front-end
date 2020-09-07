@@ -13,6 +13,9 @@
           <div *ngIf="startDate.errors.required">
             Start date is required.
           </div>
+          <div *ngIf="startDate.errors.checkDate">
+            Start date is required.
+          </div>
         </div>
       </div>
     </div>

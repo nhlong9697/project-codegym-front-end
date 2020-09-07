@@ -62,4 +62,8 @@ export class HouseService {
     console.log(errorMessage);
     return throwError(errorMessage);
   }
+
+  deleteHouseById(id: number): Observable<number>{
+    return this.httpClient.delete<number>(environment.URL + 'api/houses/' + id);
+  }
 }

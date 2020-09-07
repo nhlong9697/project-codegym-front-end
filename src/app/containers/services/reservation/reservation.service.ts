@@ -35,4 +35,8 @@ export class ReservationService {
     return this.http.get<Reservation>(this.url + 'api/reservations/' + id);
   }
 
+  getReservationByHouseId(houseId: number): Observable<Array<Reservation>> {
+    return this.http.get<Array<Reservation>>(this.url + 'api/reservations/by-house/' + houseId);
+  }
+
 }

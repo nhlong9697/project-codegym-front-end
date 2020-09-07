@@ -23,11 +23,12 @@ export class DetailUserComponent implements OnInit {
     private houseService: HouseService
   ) {
       this.name = this.activateRoute.snapshot.params.name;
+      // console.log(this.name);
       this.houseService.getAllHouseByUser(this.name).subscribe((data) => {
-      this.houses = data;
-      this.postLength = data.length;
+        this.houses = data;
+        this.postLength = data.length;
+        // console.log(data);
     });
-
   }
 
   ngOnInit(): void {

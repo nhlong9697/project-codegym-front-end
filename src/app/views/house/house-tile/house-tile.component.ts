@@ -16,6 +16,7 @@ import {AngularFireStorage} from '@angular/fire/storage';
 })
 export class HouseTileComponent implements OnInit {
   faComments = faComments;
+
   @Input() house: HouseResponse;
   imagesRef: Observable<string | null>[];
   constructor(
@@ -27,7 +28,7 @@ export class HouseTileComponent implements OnInit {
 
   ngOnInit(): void {
     this.getImagesByHouseId();
-    console.log(this.house);
+    // console.log(this.house);
   }
 
   goToHouse(houseId: number): void {
