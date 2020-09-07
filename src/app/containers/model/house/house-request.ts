@@ -7,4 +7,6 @@ export class HouseRequest{
   id?: number;
   name: string;
   price: number;
+  bathrooms: number;
+  sleepingRooms: number;
 }

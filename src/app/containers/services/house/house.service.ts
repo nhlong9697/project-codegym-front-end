@@ -7,6 +7,7 @@ import {environment} from '../../../../environments/environment';
 import {HouseResponse} from '../../model/house/house-response';
 import {HouseCategory} from '../../model/house-category/house-category';
 import {catchError} from 'rxjs/operators';
+import {SearchPayload} from '../../model/search/search.payload';
 
 
 @Injectable({
@@ -65,5 +66,9 @@ export class HouseService {
 
   deleteHouseById(id: number): Observable<number>{
     return this.httpClient.delete<number>(environment.URL + 'api/houses/' + id);
+  }
+
+  searchHouse(searchPayLoad: SearchPayload): Observable<Array<HouseResponse>> {
+    return this.httpClient.post<Array<HouseResponse>>(environment.URL + 'api/houses/search', searchPayLoad);
   }
 }

@@ -37,7 +37,9 @@ export class CreateHouseComponent implements OnInit {
         cityName: '',
         address: '',
         price: 0,
-        description: ''
+        description: '',
+        bathrooms: 0,
+        sleepingRooms: 0
       };
     }
 
@@ -50,6 +52,8 @@ export class CreateHouseComponent implements OnInit {
       Address: new FormControl('', Validators.required),
       Price: new FormControl('', Validators.required),
       Description: new FormControl('', Validators.required),
+      Bathrooms: new FormControl(''),
+      SleepingRooms: new FormControl('')
     });
 
     this.houseService.getAllHouseCategory().subscribe(
@@ -82,6 +86,8 @@ export class CreateHouseComponent implements OnInit {
     this.housePayLoad.cityName = this.createHouseForm.get('City').value;
     this.housePayLoad.price = this.createHouseForm.get('Price').value;
     this.housePayLoad.description = this.createHouseForm.get('Description').value;
+    this.housePayLoad.bathrooms = this.createHouseForm.get('Bathrooms').value;
+    this.housePayLoad.sleepingRooms = this.createHouseForm.get('SleepingRooms').value;
     this.houseService.createHouse(this.housePayLoad).subscribe(
       (data) => {
         const house: HouseResponse = data;

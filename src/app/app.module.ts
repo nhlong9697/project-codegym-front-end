@@ -60,7 +60,7 @@ import { UpdatePasswordComponent } from './views/user/update-password/update-pas
     CreateReservationComponent,
     ListReservationUserComponent,
     EditReservationComponent,
-    HomeComponent
+    HomeComponent,
     EditReservationComponent,
     ListReservationHouseComponent,
     ListHouseUserComponent,
