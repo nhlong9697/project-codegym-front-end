@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/containers/services/auth/auth.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UserPassword } from 'src/app/containers/model/auth/user-password';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+import { Route } from '@angular/compiler/src/core';
 
 @Component({
   selector: 'app-update-password',
@@ -18,7 +20,9 @@ export class UpdatePasswordComponent implements OnInit {
   constructor(
     private activatedRoute: ActivatedRoute,
     private authService: AuthService,
-    private fb: FormBuilder)
+    private fb: FormBuilder,
+    private toastr: ToastrService,
+    private router: Router)
     {
       this.userPass = {
         // id: 0,
@@ -52,10 +56,11 @@ export class UpdatePasswordComponent implements OnInit {
     console.log(this.userPass);
 
     this.authService.changePasswordUser(this.userPass).subscribe((res) => {
-      window.alert("Change pass successed!");
+      this.toastr.success("Change pass successed!");
+      this.router.navigate(['']);
     },
     (rej) => {
-      window.alert("Change pass failed");
+      this.toastr.error("Change password failed");
     })
   }
 }

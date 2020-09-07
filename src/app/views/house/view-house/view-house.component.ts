@@ -56,6 +56,6 @@ export class ViewHouseComponent implements OnInit {
   }
 
   goToProfile(userName: string): void {
-    this.router.navigateByUrl('/user-profile/' + userName);
+    this.router.navigateByUrl('/houses-owned-user/' + userName);
   }
 }

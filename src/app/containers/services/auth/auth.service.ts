@@ -6,14 +6,8 @@ import { LocalStorageService } from 'ngx-webstorage';
 import { LoginRequestPayload } from '../../model/auth/login-request.payload';
 import { LoginResponse } from '../../model/auth/login-response.payload';
 import { map, tap } from 'rxjs/operators';
-import { CommentPayload } from 'src/app/containers/model/home/description.payload';
 import { UpdateUserRequest } from 'src/app/containers/model/auth/update-user-request';
-
-
-
 import {environment} from '../../../../environments/environment';
-import { HouseCategory } from '../../model/house-category/house-category';
-import { City } from '../../model/city/city';
 import { UserPassword } from '../../model/auth/user-password';
 
 @Injectable({
