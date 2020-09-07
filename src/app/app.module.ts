@@ -21,7 +21,7 @@ import { CreateHouseComponent } from './views/house/create-house/create-house.co
 import { MatFormFieldModule} from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { HouseTileComponent } from './views/house/house-tile/house-tile.component'
-import {HomeComponent} from './views/home/home.component';
+import {ListHouseComponent} from './views/house/list-house/list-house.component';
 import {MatCardModule} from '@angular/material/card';
 import {MatButtonModule} from '@angular/material/button';
 import {NgxDropzoneModule} from 'ngx-dropzone';
@@ -34,6 +34,7 @@ import {MDBBootstrapModule} from 'angular-bootstrap-md';
 import { CreateReservationComponent } from './views/reservation/create-reservation/create-reservation.component';
 import { ListReservationUserComponent } from './views/reservation/list-reservation-user/list-reservation-user.component';
 import { EditReservationComponent } from './views/reservation/edit-reservation/edit-reservation.component';
+import { HomeComponent } from './views/home/home.component';
 
 
 
@@ -47,13 +48,14 @@ import { EditReservationComponent } from './views/reservation/edit-reservation/e
     DetailUserComponent,
     CreateHouseComponent,
     HouseTileComponent,
-    HomeComponent,
+    ListHouseComponent,
     ViewHouseComponent,
     ProgressBarComponent,
-    HomeComponent,
+    ListHouseComponent,
     CreateReservationComponent,
     ListReservationUserComponent,
-    EditReservationComponent
+    EditReservationComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,

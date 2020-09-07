@@ -19,60 +19,60 @@ export class CreateReservationComponent implements OnInit {
 
 
   constructor(private fb: FormBuilder,
-    private reservationService: ReservationService,
-    private route: Router,
-    private activateRouter: ActivatedRoute,
-    private houseService: HouseService) {
-      this.reservation ={
-        startDate:'',
-        endDate:'',
-        houseId:0
-      }
+              private reservationService: ReservationService,
+              private route: Router,
+              private activateRouter: ActivatedRoute,
+              private houseService: HouseService) {
+      this.reservation = {
+        startDate: '',
+        endDate: '',
+        houseId: 0
+      };
     }
 
   ngOnInit(): void {
     this.getHouseById();
 
     this.createReservationForm = this.fb.group({
-      startDate: ['',[Validators.required]],
-      endDate: ['',[Validators.required]],
-      houseId: [this.houseId,[Validators.required]]
-    })
+      startDate: ['', [Validators.required]],
+      endDate: ['', [Validators.required]],
+      houseId: [this.houseId, [Validators.required]]
+    });
   }
-  date: Date = null;
-
-  checkDateTimeNow(){
+  checkDateTimeNow() {
     const getStartDate = this.reservation.startDate;
     const dateTimeNow = new Date();
-    let date = new Date(getStartDate);
+    const date = new Date(getStartDate);
 
     return date <= dateTimeNow ? null : { notSame: true };
 
     // console.log(dateTimeNow);
   }
 
-  reservationHouseByCurrentUser(){
+  reservationHouseByCurrentUser() {
     this.reservation = this.createReservationForm.value;
     // console.log(this.reservation);
 
-    this.reservationService.createProduct(this.reservation).subscribe((res) =>{
-      window.alert("Reservation successed!");
-      this.route.navigate([''])
+    this.reservationService.createProduct(this.reservation).subscribe((res) => {
+      window.alert('Reservation successed!');
+      console.log(res);
+      this.route.navigate(['']);
       // window.alert(res.message);
     },
-    (rej)=>{
-      window.alert('Reservation failed!')
+    (rej) => {
+      console.log(rej);
+      window.alert('Reservation failed!');
       // window.alert(rej.message);
     });
   }
 
-  getHouseById(){
-    this.houseService.getHouseById(this.houseId).subscribe((res)=>{
+  getHouseById(): void{
+    this.houseService.getHouseById(this.houseId).subscribe((res) => {
       // console.log(res);
       this.house = res;
     },
     (rej) => {
-
+      console.log(rej);
     })
   }
 

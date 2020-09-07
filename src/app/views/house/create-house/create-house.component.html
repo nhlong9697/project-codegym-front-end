@@ -37,9 +37,9 @@
             !createHouseForm.get('Address').valid &&
             createHouseForm.get('Address').touched
           "
-        >
+          >
           Please provide a valid address
-        </span>
+          </span>
           <p>House Category</p>
           <select
             class="form-control"
@@ -56,9 +56,9 @@
             !createHouseForm.get('HouseCategory').valid &&
             createHouseForm.get('HouseCategory').touched
           "
-        >
+          >
           Please provide a valid house category
-        </span>
+          </span>
           <p>City</p>
           <select
             class="form-control"
@@ -73,9 +73,9 @@
             !createHouseForm.get('City').valid &&
             createHouseForm.get('City').touched
           "
-        >
+          >
           Please provide a valid city
-        </span>
+          </span>
           <p>Price</p>
           <input
             type="number"
@@ -101,18 +101,18 @@
                           bullist numlist outdent indent | removeformat | help'
             }"
           ></editor>
-          <div *ngFor="let uploadPercent of uploadPercents" class="mb-2">
-            <div *ngIf="uploadPercent | async as pct">
-              <app-progress-bar width="pct"></app-progress-bar>
-              <span>{{pct | number}}</span>
-            </div>
-          </div>
           <ngx-dropzone (change)="onSelect($event)">
             <ngx-dropzone-label>Drop it, baby!</ngx-dropzone-label>
             <ngx-dropzone-preview *ngFor="let f of files" [removable]="true" (removed)="onRemove(f)">
               <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
             </ngx-dropzone-preview>
           </ngx-dropzone>
+          <div *ngFor="let uploadPercent of uploadPercents" class="mb-2">
+            <div *ngIf="uploadPercent | async as pct">
+              <app-progress-bar width="pct"></app-progress-bar>
+              <span>{{pct | number}}</span>
+            </div>
+          </div>
           <span>
             <div style="margin-top: 5px" class="float-right">
               <button (click)="discardPost()" class="btnDiscard">

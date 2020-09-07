@@ -105,15 +105,6 @@ export class AuthService {
     this.localStorage.clear('expiresAt');
   }
 
-   //TODO: sửa API
-
-   //TODO: sửa API
-
-
-  getAllAuth(): Observable< Array< SignupRequestPayload >> {
-    return this.httpClient.get<Array<SignupRequestPayload>>('http://localhost:8080/api/auth/users');
-  }
-
   getUserName(): string {
     return this.localStorage.retrieve('username');
   }
