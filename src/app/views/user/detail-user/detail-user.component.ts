@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CommentPayload } from 'src/app/containers/model/home/description.payload';
+import { CommentPayload } from 'src/app/containers/model/comment/comment.payload';
 import { ActivatedRoute } from '@angular/router';
 import {HouseService} from '../../../containers/services/house/house.service';
 import {HouseResponse} from '../../../containers/model/house/house-response';

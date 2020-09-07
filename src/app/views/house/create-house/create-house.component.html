@@ -101,21 +101,12 @@
                           bullist numlist outdent indent | removeformat | help'
             }"
           ></editor>
-<!--          <div *ngFor="let progressInfo of progressInfos" class="mb-2">-->
-<!--            <span>{{ progressInfo.fileName }}</span>-->
-<!--            <div class="progress">-->
-<!--              <div-->
-<!--                class="progress-bar progress-bar-info progress-bar-striped"-->
-<!--                role="progressbar"-->
-<!--                attr.aria-valuenow="{{ progressInfo.percentage }}"-->
-<!--                aria-valuemin="0"-->
-<!--                aria-valuemax="100"-->
-<!--                [ngStyle]="{ width: progressInfo.percentage + '%' }"-->
-<!--              >-->
-<!--                {{ progressInfo.percentage }}%-->
-<!--              </div>-->
-<!--            </div>-->
-<!--          </div>-->
+          <div *ngFor="let uploadPercent of uploadPercents" class="mb-2">
+            <div *ngIf="uploadPercent | async as pct">
+              <app-progress-bar width="pct"></app-progress-bar>
+              <span>{{pct | number}}</span>
+            </div>
+          </div>
           <ngx-dropzone (change)="onSelect($event)">
             <ngx-dropzone-label>Drop it, baby!</ngx-dropzone-label>
             <ngx-dropzone-preview *ngFor="let f of files" [removable]="true" (removed)="onRemove(f)">

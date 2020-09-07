@@ -4,9 +4,17 @@
     <div class="col-md-9">
       <div class="row post">
         <div class="col-md-11">
+          <mdb-carousel class="carousel slide carousel-fade" [animation]="'fade'">
+            <mdb-carousel-item *ngFor="let imageRef of imagesRef">
+              <div class="view w-100">
+                <img class="d-block w-100" [src]="imageRef | async" loading="lazy" alt="First slide">
+                <div class="mask rgba-black-light waves-light" mdbWavesEffect></div>
+              </div>
+            </mdb-carousel-item>
+          </mdb-carousel>
           <span>
             <span class="subreddit-text">
-              <h1><b>{{house.houseName}}</b></h1>
+              <h1><b>{{house.name}}</b></h1>
             </span>
             <span>{{house.houseCategory}}</span>
             <br>
@@ -28,6 +36,21 @@
               <h3><span class="badge badge-pill badge-info">Giá : {{house.price}} $</span>
               </h3>
             </mat-card-content>
+          </div>
+          <div>
+            <h2>Comment:</h2>
+            <hr>
+          </div>
+          <div style="margin-top: 60px;" *ngFor="let comment of comments">
+            <div class="comment">
+              <div class="username">
+                <a>{{
+                  comment.username
+                }}</a>
+              </div>
+              <b>{{ comment.text }}</b>
+            </div>
+            <hr />
           </div>
         </div>
       </div>

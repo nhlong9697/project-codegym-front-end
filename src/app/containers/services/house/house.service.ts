@@ -8,6 +8,7 @@ import {HouseResponse} from '../../model/house/house-response';
 import {HouseCategory} from '../../model/house-category/house-category';
 import {catchError} from 'rxjs/operators';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -16,7 +17,7 @@ export class HouseService {
   constructor(private httpClient: HttpClient) { }
   getAllHouseCategory(): Observable<Array<HouseCategory>> {
     return this.httpClient.get<Array<HouseCategory>>(
-      environment.URL + 'api/houses/show-all-houseCategory'
+      environment.URL + 'api/houses/show-all-house-category'
     );
   }
 
@@ -41,9 +42,12 @@ export class HouseService {
   getHouse(houseId: number): Observable<HouseResponse> {
     return this.httpClient.get<HouseResponse>(environment.URL + 'api/houses/' + houseId);
   }
-  //TODO: sửa API
   getAllHouse(): Observable<Array<HouseResponse>> {
     return this.httpClient.get<Array<HouseResponse>>(environment.URL + 'api/houses/');
+  }
+
+  getHouseById(id: number): Observable<HouseResponse> {
+    return this.httpClient.get<HouseResponse>(environment.URL + 'api/houses/'+id);
   }
 
   errorMgmt(error: HttpErrorResponse) {
