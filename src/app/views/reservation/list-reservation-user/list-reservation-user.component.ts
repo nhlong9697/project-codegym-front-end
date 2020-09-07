@@ -9,8 +9,10 @@ import { Reservation } from 'src/app/containers/model/reservation/reservation';
   styleUrls: ['./list-reservation-user.component.css']
 })
 export class ListReservationUserComponent implements OnInit {
+  houseName: string
   reservationByUser: Array<Reservation>;
   username = this.activateRouter.snapshot.paramMap.get('username');
+
 
 
   constructor(private reservationService: ReservationService,
@@ -20,6 +22,8 @@ export class ListReservationUserComponent implements OnInit {
   ngOnInit(): void {
     this.getAllReservationByUsername();
   }
+
+
 
   getAllReservationByUsername(){
     this.reservationService.getAllReservationByUsername(this.username).subscribe((res)=>{

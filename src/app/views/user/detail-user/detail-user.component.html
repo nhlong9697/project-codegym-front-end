@@ -1,1 +1,24 @@
-ádasd
+<div class="container">
+  <div>
+     House by <b>{{name}}</b>:
+  </div>
+  <app-house-tile *ngFor="let house of houses" [house]="house">
+
+  </app-house-tile>
+  <hr />
+  <!-- <div>
+    Your Comments:
+  </div>
+  <div *ngFor="let comment of comments">
+    <div class="comment">
+      <div class="username">
+        <a routerLink="/user/comment.username">{{ comment.username }}</a>
+      </div>
+      <div>
+        <p>{{ comment.duration }}</p>
+      </div>
+      <b>{{ comment.text }}</b>
+    </div>
+    <hr />
+  </div> -->
+</div>
