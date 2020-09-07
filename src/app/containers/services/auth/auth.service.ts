@@ -7,12 +7,14 @@ import { LoginRequestPayload } from '../../model/auth/login-request.payload';
 import { LoginResponse } from '../../model/auth/login-response.payload';
 import { map, tap } from 'rxjs/operators';
 import { CommentPayload } from 'src/app/containers/model/comment/comment.payload';
+import { UpdateUserRequest } from 'src/app/containers/model/auth/update-user-request';
 
 
 
 import {environment} from '../../../../environments/environment';
 import { HouseCategory } from '../../model/house-category/house-category';
 import { City } from '../../model/city/city';
+import { UserPassword } from '../../model/auth/user-password';
 
 @Injectable({
   providedIn: 'root',
@@ -123,5 +125,21 @@ export class AuthService {
 
   isLoggedIn(): boolean {
     return this.getJwtToken() != null;
+  }
+
+  getUserById(id: number): Observable<UpdateUserRequest> {
+    return this.httpClient.get<UpdateUserRequest>(environment.URL+"api/auth/users/" + id);
+  }
+
+  getUserByUsername(username: string): Observable<UpdateUserRequest> {
+    return this.httpClient.get<UpdateUserRequest>(environment.URL+"api/auth/users/" + username);
+  }
+
+  updateUser (data : UpdateUserRequest) :Observable<UpdateUserRequest> {
+    return this.httpClient.put<UpdateUserRequest>(environment.URL + "api/auth/users", data)
+  }
+
+  changePasswordUser(data: UserPassword) :Observable<UserPassword>{
+    return this.httpClient.put<UserPassword>(environment.URL + "api/auth/users/change-pass", data)
   }
 }

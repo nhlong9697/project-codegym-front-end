@@ -2,24 +2,29 @@
 <div class="container">
   <div class="row">
     <div class="col-md-12">
-      <h4 style="float: left;">My Reservation</h4>
+      <div class="form-group">
+        <h2 style="float: left;">My Customers</h2>
+        <button style="float: right;" class="btn btn-square btn-secondary btn-sm" (click)="goBack()">Go back</button>
+      </div>
       <table class="table table-active table-hover">
         <thead>
           <tr>
             <th scope="col">#</th>
+            <th scope="col">Customer</th>
             <th scope="col">Start date</th>
             <th scope="col">End date</th>
             <!-- <th scope="col">Category</th> -->
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let item of reservationByUser let i = index">
+          <tr *ngFor="let item of reservations let i = index">
             <th scope="row">{{i+1}}</th>
             <!-- <td scope="row"><a style="text-decoration: none;" [routerLink] = "['/products/detail', item.id]">{{item.name}}</a></td> -->
+            <td scope="row">{{item.username}}</td>
             <td scope="row">{{item.startDate| date:'yyyy-MM-dd HH:mm:ss'}}</td>
             <td scope="row">{{item.endDate | date:'yyyy-MM-dd HH:mm:ss'}}</td>
-            <!-- <td scope="row"><button class="btn btn-square btn-success btn-sm" [routerLink] = "['/reservations/update',item.id]" >Edit</button></td> -->
-            <td><button class="btn btn-square btn-danger btn-sm" (click) = "deleteReservationByIdIsCustomer(item.id)">Cancel reservation</button></td>
+            <td scope="row"><button class="btn btn-square btn-success btn-sm" [routerLink] = "['/reservations/update',item.id]" >Edit</button></td>
+            <td><button class="btn btn-square btn-danger btn-sm" (click) = "deleteReservationByIdIsHouseOwner(item.id)">Delete</button></td>
             <!-- <td><button class="btn btn-square btn-info btn-sm" [routerLink] = "['/products/detail', item.id]">Detail</button></td> -->
           </tr>
         </tbody>

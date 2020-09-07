@@ -1,0 +1,29 @@
+<div class="row post">
+  <!-- <app-reservation-house house=[house]></app-reservation-house> -->
+  <div class="col-md-11">
+    <mat-card class="example-card">
+      <mat-card-header>
+        <div mat-card-avatar class="example-header-image"></div>
+        <mat-card-title (click)="goToHouse(house.id)">{{house.name}}</mat-card-title>
+        <mat-card-subtitle>{{house.houseCategory}}</mat-card-subtitle>
+      </mat-card-header>
+      <mdb-carousel class="carousel slide carousel-fade" [animation]="'fade'">
+        <mdb-carousel-item *ngFor="let imageRef of imagesRef">
+          <div class="view w-100">
+            <img class="d-block w-100" [src]="imageRef | async" loading="lazy" alt="First slide">
+            <div class="mask rgba-black-light waves-light" mdbWavesEffect></div>
+          </div>
+        </mdb-carousel-item>
+      </mdb-carousel>
+      <mat-card-content [innerHTML]="house.description">
+      </mat-card-content>
+      <h3><span class="badge badge-pill badge-info">Giá : {{house.price}} $</span>
+      </h3>
+      <mat-card-actions>
+        <button mat-raised-button color="accent" (click) = "deleteHouseById(house.id)">DELETE</button>
+        <button mat-raised-button color="primary" [routerLink] = "['/get-reservations-by-house/',house.id]">MY CUSTOMERS</button>
+        <!-- <button mat-raised-button color="primary">SHARE</button> -->
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</div>

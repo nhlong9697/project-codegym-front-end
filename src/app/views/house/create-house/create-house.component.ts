@@ -64,7 +64,7 @@ export class CreateHouseComponent implements OnInit {
     this.houseService.getAllCity().subscribe(
       (data) => {
         this.allCity = data;
-        console.log(data);
+        // console.log(data);
       },
       (error) => {
         throwError(error);

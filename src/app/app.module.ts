@@ -34,6 +34,11 @@ import {MDBBootstrapModule} from 'angular-bootstrap-md';
 import { CreateReservationComponent } from './views/reservation/create-reservation/create-reservation.component';
 import { ListReservationUserComponent } from './views/reservation/list-reservation-user/list-reservation-user.component';
 import { EditReservationComponent } from './views/reservation/edit-reservation/edit-reservation.component';
+import { ListReservationHouseComponent } from './views/reservation/list-reservation-house/list-reservation-house.component';
+import { ListHouseUserComponent } from './views/house/list-house-user/list-house-user.component';
+import { MyHouseComponent } from './views/house/my-house/my-house.component';
+import { UpdateUserComponent } from './views/user/update-user/update-user.component';
+import { UpdatePasswordComponent } from './views/user/update-password/update-password.component';
 
 
 
@@ -53,7 +58,12 @@ import { EditReservationComponent } from './views/reservation/edit-reservation/e
     HomeComponent,
     CreateReservationComponent,
     ListReservationUserComponent,
-    EditReservationComponent
+    EditReservationComponent,
+    ListReservationHouseComponent,
+    ListHouseUserComponent,
+    MyHouseComponent,
+    UpdateUserComponent,
+    UpdatePasswordComponent
   ],
   imports: [
     BrowserModule,
