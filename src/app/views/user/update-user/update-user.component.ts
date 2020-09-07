@@ -3,13 +3,10 @@ import { ActivatedRoute } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/containers/services/auth/auth.service';
 import { UpdateUserRequest } from 'src/app/containers/model/auth/update-user-request';
-import {v4 as uuid} from 'uuid';
-import {Observable, throwError} from 'rxjs';
-import {AngularFireStorage} from '@angular/fire/storage';
-import {finalize} from 'rxjs/operators';
-
-
-
+import { v4 as uuid } from 'uuid';
+import { Observable, throwError } from 'rxjs';
+import { AngularFireStorage } from '@angular/fire/storage';
+import { finalize } from 'rxjs/operators';
 
 @Component({
   selector: 'app-update-user',
@@ -22,9 +19,7 @@ export class UpdateUserComponent implements OnInit {
   user: UpdateUserRequest;
   uploadPercent: Observable<number>;
   // image: string;
-  file: File;
-
-
+  files: File[] = [];
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -51,22 +46,30 @@ export class UpdateUserComponent implements OnInit {
       id: [this.user.id],
       firstName: ['', [Validators.required]],
       lastName: ['', [Validators.required]],
-      phoneNumber: ['', [
-        Validators.required,
-        Validators.pattern('(09|01[2|6|8|9])+([0-9]{8})\\b'),]
+      phoneNumber: [
+        '',
+        [
+          Validators.required,
+          Validators.pattern('(09|01[2|6|8|9])+([0-9]{8})\\b'),
+        ],
       ],
-      email: ['', [
-        Validators.required,
-        Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$'),]
+      email: [
+        '',
+        [
+          Validators.required,
+          Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$'),
+        ],
       ],
-      username: ['', [
-        Validators.required,
-        Validators.minLength(5),
-        Validators.maxLength(30),]
+      username: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(5),
+          Validators.maxLength(30),
+        ],
       ],
       image: [this.user.image],
     });
-
   }
 
   getUserByUsername = () => {
@@ -77,43 +80,61 @@ export class UpdateUserComponent implements OnInit {
         console.log(this.user);
       },
       (rej) => {
-        console.log("Get user failed!");
+        console.log('Get user failed!');
       }
     );
   };
 
-  updateUser() {
-    this.user = this.updateUserForm.value;
-    console.log(this.user);
-
-    this.authService.updateUser(this.user).subscribe((res) => {
-      window.alert("Update successed!");
-    },
-    (rej) => {
-      window.alert("Update failed");
-    })
-  }
-
-  onSelect(event): void {
+  onSelect(event) {
     console.log(event);
-    this.file = event.addedFiles[0]
+    this.files.push(...event.addedFiles);
+    if (this.files.length > 1) {
+      // checking if files array has more than one content
+      this.replaceFile(); // replace file
+    }
   }
 
-  onRemove(event): void {
+  onRemove(event) {
     console.log(event);
-    this.file= null;
+    this.files.splice(this.files.indexOf(event), 1);
   }
 
-  private upload(file: File): void {
-    const filePath = `users/${Date.now()}_${uuid()}`;
+  updateUser(): void {
+    let filePath = '';
+    const file = this.files[0];
+    if (this.user.image == null) {
+      filePath = `users/${Date.now()}_${uuid()}`;
+    }
+    else {
+      filePath = this.user.image;
+    }
     const task = this.storage.upload(filePath, file);
     // observe percentage changes
     this.uploadPercent = task.percentageChanges();
 
-    task.snapshotChanges().pipe(
-      finalize(() => {
-        this.user.image = filePath;
-      })
-    ).subscribe();
+    task
+      .snapshotChanges()
+      .pipe(
+        finalize(() => {
+          this.user = this.updateUserForm.value;
+          this.user.image = filePath;
+          // console.log(this.user);
+          // console.log(filePath);
+          this.authService.updateUser(this.user).subscribe(
+            (res) => {
+              window.alert('Update successed!');
+            },
+            (rej) => {
+              window.alert('Update failed');
+            }
+          );
+
+        })
+      )
+      .subscribe();
+  }
+
+  replaceFile() {
+    this.files.splice(0, 1); // index =0 , remove_count = 1
   }
 }

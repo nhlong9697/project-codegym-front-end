@@ -4,6 +4,11 @@ import { faUser } from '@fortawesome/free-solid-svg-icons';
 import { LocalStorageService } from 'ngx-webstorage';
 import { AuthService } from '../../containers/services/auth/auth.service';
 import {Router} from '@angular/router';
+import { UpdateUserRequest } from 'src/app/containers/model/auth/update-user-request';
+import {Observable, throwError} from 'rxjs';
+import { AngularFireStorage } from '@angular/fire/storage';
+
+
 
 @Component({
   selector: 'app-header',
@@ -14,10 +19,13 @@ export class HeaderComponent implements OnInit {
   faUser = faUser;
   isLoggedIn: boolean;
   username: string;
+  // user: UpdateUserRequest;
+  imageRef: Observable<string | null>;
+
 
   constructor(
     private httpClient: HttpClient,
-    private localStorage: LocalStorageService,
+    private storage: AngularFireStorage,
     private authService: AuthService,
     private router: Router
   ) { }
@@ -27,6 +35,8 @@ export class HeaderComponent implements OnInit {
     this.authService.username.subscribe((data: string) => this.username = data);
     this.isLoggedIn = this.authService.isLoggedIn();
     this.username = this.authService.getUserName();
+
+    this.getUserByUsername();
   }
 
   goToUserUpdate(): void{
@@ -42,5 +52,18 @@ export class HeaderComponent implements OnInit {
     this.isLoggedIn = false;
     this.router.navigateByUrl('');
   }
+
+  getUserByUsername = () => {
+    this.authService.getUserByUsername(this.username).subscribe(
+      (res) => {
+        // this.user = res;
+        this.imageRef = this.storage.ref(res.image).getDownloadURL();
+        // console.log(this.user);
+      },
+      (rej) => {
+        console.log('Get user failed!');
+      }
+    );
+  };
 
 }
