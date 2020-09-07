@@ -62,8 +62,8 @@ export class ViewHouseComponent implements OnInit {
     );
   }
 
-  goToProfile(userName: string): void {
-    this.router.navigateByUrl('/user-profile/' + userName);
+  goToListByUser(userName: string): void {
+    this.router.navigateByUrl('/list-house/' + userName);
   }
 
   private getCommentsForHouse() {

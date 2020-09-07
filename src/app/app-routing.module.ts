@@ -11,9 +11,10 @@ import { CreateReservationComponent } from './views/reservation/create-reservati
 import { ListReservationUserComponent } from './views/reservation/list-reservation-user/list-reservation-user.component';
 import { EditReservationComponent } from './views/reservation/edit-reservation/edit-reservation.component';
 import { ListReservationHouseComponent } from './views/reservation/list-reservation-house/list-reservation-house.component';
-import { ListHouseUserComponent } from './views/house/list-house-user/list-house-user.component';
+import { ListHouseUserComponent } from 'src/app/views/house/list-house-user/list-house-user.component';
 import { UpdateUserComponent } from './views/user/update-user/update-user.component';
 import { UpdatePasswordComponent } from './views/user/update-password/update-password.component';
+import { ListHouseByUserComponent } from './views/house/list-house-by-user/list-house-by-user.component'
 
 
 const routes: Routes = [
@@ -29,7 +30,8 @@ const routes: Routes = [
   { path: 'reservations/update/:id', component: EditReservationComponent, canActivate: [UserGuard] },
   { path: 'get-reservations-by-house/:houseId', component: ListReservationHouseComponent, canActivate: [UserGuard] },
   { path: 'houses-owned-user/:username', component: ListHouseUserComponent, canActivate: [UserGuard] },
-  { path: 'user/change-pass/:username', component: UpdatePasswordComponent, canActivate: [UserGuard]}
+  { path: 'user/change-pass/:username', component: UpdatePasswordComponent, canActivate: [UserGuard]},
+  { path: 'list-house/:username', component: ListHouseByUserComponent}
 ];
 
 @NgModule({
