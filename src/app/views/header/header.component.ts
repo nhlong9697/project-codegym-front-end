@@ -16,7 +16,7 @@ import { AngularFireStorage } from '@angular/fire/storage';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  faUser = faUser;
+  // faUser = faUser;
   isLoggedIn: boolean;
   username: string;
   imageRef: Observable<string | null>;
