@@ -72,14 +72,10 @@
                             class="form-control"
                             style="margin-top: 10px"
                             [formControlName]="'cityId'"
-                            required
                           >
                             <option value="" selected disabled>Select city</option>
                             <option *ngFor="let city of cities " value="{{city.id}}">{{ city.name }}</option>
                           </select>
-                          <span class="alert alert-danger"
-                            *ngIf="!searchFrom.get('cityId').valid && searchFrom.get('cityId').touched"
-                          >
                           Please provide a valid city
                           </span>
                         </div>
