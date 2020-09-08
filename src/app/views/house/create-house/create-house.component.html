@@ -16,7 +16,7 @@
             style="margin-top: 5px"
             placeholder="Name"
           />
-          <span
+          <span class="alert alert-danger"
                   *ngIf="
                     !createHouseForm.get('Name').valid &&
                     createHouseForm.get('Name').touched
@@ -32,7 +32,7 @@
             style="margin-top: 5px"
             placeholder="address"
           />
-          <span
+          <span class="alert alert-danger"
           *ngIf="
             !createHouseForm.get('Address').valid &&
             createHouseForm.get('Address').touched
@@ -51,7 +51,7 @@
               {{ category.name }}
             </option>
           </select>
-          <span
+          <span class="alert alert-danger"
           *ngIf="
             !createHouseForm.get('HouseCategory').valid &&
             createHouseForm.get('HouseCategory').touched
@@ -68,7 +68,7 @@
             <option value="" selected disabled>Select city</option>
             <option *ngFor="let city of allCity" value="{{city.id}}">{{ city.name }}</option>
           </select>
-          <span
+          <span class="alert alert-danger"
           *ngIf="
             !createHouseForm.get('City').valid &&
             createHouseForm.get('City').touched
