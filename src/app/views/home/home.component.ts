@@ -49,8 +49,8 @@ export class HomeComponent implements OnInit {
       bathrooms: new FormControl(''),
       sleepingRooms: new FormControl(''),
       price: new FormControl(''),
-      startDate: new FormControl(''),
-      endDate: new FormControl(''),
+      startDate: new FormControl('', Validators.required),
+      endDate: new FormControl('', Validators.required),
     }, timeDateValidator);
     this.houseService.getAllHouseCategory().subscribe(
       (data) => {
