@@ -8,6 +8,7 @@ import { HouseResponse } from 'src/app/containers/model/house/house-response';
 // import {Moment} from 'moment/moment';
 import * as moment from 'moment';
 import { Location } from '@angular/common';
+import {ToastrService} from 'ngx-toastr';
 
 @Component({
   selector: 'app-edit-reservation',
@@ -29,7 +30,9 @@ export class EditReservationComponent implements OnInit {
     private route: Router,
     private activateRouter: ActivatedRoute,
     private houseService: HouseService,
-    private location: Location) {
+    private location: Location,
+    private toastr: ToastrService
+  ) {
       this.reservation ={
         id:0,
         startDate:'',
@@ -59,13 +62,13 @@ export class EditReservationComponent implements OnInit {
     this.reservation = this.updateReservationForm.value;
     // console.log(this.reservation);
 
-    this.reservationService.updateReservationById(this.reservation).subscribe((res) =>{
-      window.alert("Update reservation successed!");
+    this.reservationService.updateReservationById(this.reservation).subscribe((res) => {
+      this.toastr.success('Update reservation successful');
       // this.route.navigate([''])
       // window.alert(res.message);
     },
     (rej)=>{
-      window.alert('Update reservation failed!')
+      this.toastr.error('Update reservation failed!');
       // window.alert(rej.message);
     });
 

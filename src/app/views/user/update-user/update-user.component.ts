@@ -7,6 +7,7 @@ import { v4 as uuid } from 'uuid';
 import { Observable, throwError } from 'rxjs';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { finalize } from 'rxjs/operators';
+import {ToastrService} from 'ngx-toastr';
 
 @Component({
   selector: 'app-update-user',
@@ -25,7 +26,8 @@ export class UpdateUserComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private authService: AuthService,
     private fb: FormBuilder,
-    private storage: AngularFireStorage
+    private storage: AngularFireStorage,
+    private toastr: ToastrService
   ) {
     this.user = {
       id: 0,
@@ -122,13 +124,12 @@ export class UpdateUserComponent implements OnInit {
           // console.log(filePath);
           this.authService.updateUser(this.user).subscribe(
             (res) => {
-              window.alert('Update successed!');
+              this.toastr.success('Update successed!');
             },
             (rej) => {
-              window.alert('Update failed');
+              this.toastr.error('Update failed');
             }
           );
-
         })
       )
       .subscribe();
