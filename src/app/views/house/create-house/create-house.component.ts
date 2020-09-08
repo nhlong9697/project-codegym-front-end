@@ -33,8 +33,8 @@ export class CreateHouseComponent implements OnInit {
   ) {
       this.housePayLoad = {
         name: '',
-        houseCategory: '',
-        cityName: '',
+        houseCategory: 0,
+        city: 0,
         address: '',
         price: 0,
         description: '',
@@ -83,7 +83,7 @@ export class CreateHouseComponent implements OnInit {
     this.housePayLoad.name = this.createHouseForm.get('Name').value;
     this.housePayLoad.address = this.createHouseForm.get('Address').value;
     this.housePayLoad.houseCategory = this.createHouseForm.get('HouseCategory').value;
-    this.housePayLoad.cityName = this.createHouseForm.get('City').value;
+    this.housePayLoad.city = this.createHouseForm.get('City').value;
     this.housePayLoad.price = this.createHouseForm.get('Price').value;
     this.housePayLoad.description = this.createHouseForm.get('Description').value;
     this.housePayLoad.bathrooms = this.createHouseForm.get('Bathrooms').value;
