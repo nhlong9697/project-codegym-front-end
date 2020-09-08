@@ -14,7 +14,8 @@ export const environment = {
     messagingSenderId: '297709533412',
     appId: '1:297709533412:web:a07c96009a820279f454f1',
     measurementId: 'G-J8J5WXJ8P8'
-  }};
+  }
+};
 
 /*
  * For easier debugging in development mode, you can import the following file
