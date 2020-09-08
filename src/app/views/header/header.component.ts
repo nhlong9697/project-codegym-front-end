@@ -46,6 +46,10 @@ export class HeaderComponent implements OnInit {
     this.router.navigateByUrl('/user/change-pass/' + this.username);
   }
 
+  goToHouses(): void{
+    this.router.navigateByUrl('/houses');
+  }
+
   logout(): void{
     this.authService.logout();
     this.isLoggedIn = false;
