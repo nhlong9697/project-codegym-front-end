@@ -7,4 +7,6 @@ export class HouseResponse{
   name: string;
   price: number;
   username: string;
+  bathrooms: number;
+  sleepingRooms: number;
 }
