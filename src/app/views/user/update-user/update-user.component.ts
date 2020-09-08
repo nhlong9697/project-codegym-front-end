@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/containers/services/auth/auth.service';
 import { UpdateUserRequest } from 'src/app/containers/model/auth/update-user-request';
@@ -27,7 +27,8 @@ export class UpdateUserComponent implements OnInit {
     private authService: AuthService,
     private fb: FormBuilder,
     private storage: AngularFireStorage,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private router: Router
   ) {
     this.user = {
       id: 0,
@@ -125,6 +126,7 @@ export class UpdateUserComponent implements OnInit {
           this.authService.updateUser(this.user).subscribe(
             (res) => {
               this.toastr.success('Update successed!');
+              this.router.navigate(['']);
             },
             (rej) => {
               this.toastr.error('Update failed');
