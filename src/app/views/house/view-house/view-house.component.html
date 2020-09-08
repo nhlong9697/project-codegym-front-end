@@ -4,24 +4,37 @@
     <div class="col-md-9">
       <div class="row post">
         <div class="col-md-11">
-          <mdb-carousel class="carousel slide carousel-fade" [animation]="'fade'">
+          <mdb-carousel
+            class="carousel slide carousel-fade"
+            [animation]="'fade'"
+          >
             <mdb-carousel-item *ngFor="let imageRef of imagesRef">
               <div class="view w-100">
-                <img class="d-block w-100" [src]="imageRef | async" loading="lazy" alt="First slide">
-                <div class="mask rgba-black-light waves-light" mdbWavesEffect></div>
+                <img
+                  class="d-block w-100"
+                  [src]="imageRef | async"
+                  loading="lazy"
+                  alt="First slide"
+                />
+                <div
+                  class="mask rgba-black-light waves-light"
+                  mdbWavesEffect
+                ></div>
               </div>
             </mdb-carousel-item>
           </mdb-carousel>
           <span>
             <span class="subreddit-text">
-              <h1><b>{{house.name}}</b></h1>
+              <h1>
+                <b>{{ house.name }}</b>
+              </h1>
             </span>
-            <span>{{house.houseCategory}}</span>
-            <br>
+            <span>{{ house.houseCategory }}</span>
+            <br />
             <span>
               Post House
               <!-- <span> {{ house.duration }} </span> -->
-              by <b class="username" (click)='goToProfile(house.username)'>{{ house.username }}</b>
+              by <b class="username" (click)='goToListByUser(house.username)'>{{ house.username }}</b>
             </span>
           </span>
           <hr />
@@ -29,15 +42,71 @@
             <p class="post-text" [innerHtml]="house.description"></p>
           </div>
           <div>
-            <p class="post-text" [innerHtml]="house.address  + ' , ' +house.cityName"></p>
+            <p
+              class="post-text"
+              [innerHtml]="house.address + ' , ' + house.city"
+            ></p>
           </div>
           <div>
             <mat-card-content>
-              <h3><span class="badge badge-pill badge-info">Giá : {{house.price}} $</span>
+              <h3>
+                <span class="badge badge-pill badge-info"
+                  >Giá : {{ house.price }} $</span
+                >
               </h3>
             </mat-card-content>
+            <mat-card-actions>
+              <button mat-raised-button color="link" [routerLink] = "['/reservations', house.id]">Reservation</button>
+            </mat-card-actions>
           </div>
         </div>
+
+        <!-- form ne -->
+        <!-- <div class="row"> -->
+        <div class="post-comment">
+          <form [formGroup]="commentForm" (ngSubmit)="postComment()">
+            <div class="form-group">
+              <textarea
+                class="form-control"
+                [formControlName]="'text'"
+                placeholder="Your Thoughts?"
+              ></textarea>
+              <!-- modal -->
+              <app-rating-bar
+                [max]="5"
+                (rateChange)="onRateChange($event)"
+              ></app-rating-bar>
+              <!-- end modal -->
+            </div>
+
+            <button type="submit" class="login float-right">Comment</button>
+          </form>
+
+          <!-- list comment -->
+          <div>
+            <h2>Comment:</h2>
+            <hr />
+          </div>
+          <div *ngFor="let comment of comments">
+            <div class="comment">
+              <div class="username">
+                <a>{{ comment.username }}</a>
+              </div>
+              <span *ngFor="let item of arrayVote(comment.votes);let i =index;">
+                <span class="fa fa-star checked"></span>
+              </span>
+              <br>
+
+
+              <b>{{ comment.text }}</b>
+            </div>
+            <hr />
+          </div>
+          <!-- end list comment -->
+        </div>
+
+        <!-- </div> -->
+        <!-- het form  -->
       </div>
     </div>
   </div>

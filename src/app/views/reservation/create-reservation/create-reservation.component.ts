@@ -7,6 +7,7 @@ import { HouseService } from 'src/app/containers/services/house/house.service';
 import { HouseResponse } from 'src/app/containers/model/house/house-response';
 import * as moment from 'moment';
 import { throwError } from 'rxjs';
+import {ToastrService} from 'ngx-toastr';
 
 @Component({
   selector: 'app-create-reservation',
@@ -24,7 +25,8 @@ export class CreateReservationComponent implements OnInit {
     private reservationService: ReservationService,
     private route: Router,
     private activateRouter: ActivatedRoute,
-    private houseService: HouseService
+    private houseService: HouseService,
+    private toastr: ToastrService
   ) {
     this.reservation = {
       startDate: '',
@@ -67,12 +69,12 @@ export class CreateReservationComponent implements OnInit {
 
     this.reservationService.createReservation(this.reservation).subscribe(
       (res) => {
-        window.alert('Reservation successed!');
+        this.toastr.success('Reservation success!');
         this.route.navigate(['']);
         // window.alert(res.message);
       },
       (rej) => {
-        window.alert('Reservation failed!');
+        this.toastr.error('Reservation failed');
         // window.alert(throwError(rej.message))
         // window.alert(rej.message);
       }

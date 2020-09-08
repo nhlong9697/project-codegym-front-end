@@ -40,6 +40,8 @@ import { ListHouseUserComponent } from './views/house/list-house-user/list-house
 import { MyHouseComponent } from './views/house/my-house/my-house.component';
 import { UpdateUserComponent } from './views/user/update-user/update-user.component';
 import { UpdatePasswordComponent } from './views/user/update-password/update-password.component';
+import { RatingBarComponent } from './views/rating-bar/rating-bar.component';
+import { ListHouseByUserComponent } from './views/house/list-house-by-user/list-house-by-user.component';
 
 
 
@@ -64,7 +66,11 @@ import { UpdatePasswordComponent } from './views/user/update-password/update-pas
     ListHouseUserComponent,
     MyHouseComponent,
     UpdateUserComponent,
-    UpdatePasswordComponent
+    UpdatePasswordComponent,
+    EditReservationComponent,
+    RatingBarComponent,
+    UpdatePasswordComponent,
+    ListHouseByUserComponent
   ],
   imports: [
     BrowserModule,

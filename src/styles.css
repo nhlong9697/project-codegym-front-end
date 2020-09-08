@@ -3,7 +3,7 @@
 html, body { height: 100%; }
 /*body { margin-top: 80px; font-family: Roboto, "Helvetica Neue", sans-serif; }*/
 
-body { margin-top: 80px;}
+body { }
 /*!
  * Bootstrap v4.1.0 (https://getbootstrap.com/)
  * Copyright 2011-2018 The Bootstrap Authors
@@ -74,7 +74,9 @@ body {
   line-height: 1.5;
   color: #212529;
   text-align: left;
-  background-color: #fff; }
+  background-color: #fff;
+  margin-top: 80px;
+}
 
 [tabindex="-1"]:focus {
   outline: 0 !important; }

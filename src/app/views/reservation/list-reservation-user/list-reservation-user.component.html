@@ -9,6 +9,8 @@
             <th scope="col">#</th>
             <th scope="col">Start date</th>
             <th scope="col">End date</th>
+            <th scope="col">HouseName</th>
+
             <!-- <th scope="col">Category</th> -->
           </tr>
         </thead>
@@ -17,7 +19,9 @@
             <th scope="row">{{i+1}}</th>
             <td scope="row">{{item.startDate| date:'yyyy-MM-dd HH:mm:ss'}}</td>
             <td scope="row">{{item.endDate | date:'yyyy-MM-dd HH:mm:ss'}}</td>
-            <td><button class="btn btn-square btn-danger btn-sm" (click) = "deleteReservationByIdIsCustomer(item.id)">Cancel reservation</button></td>
+            <!-- <td scope="row"><button class="btn btn-square btn-success btn-sm" [routerLink] = "['/reservations/update',item.id]" >Edit</button></td> -->
+            <td><button class="btn btn-square btn-danger btn-sm" (click) = "deleteReservationByCustomer(item.id)">Cancel reservation</button></td>
+            <!-- <td><button class="btn btn-square btn-info btn-sm" [routerLink] = "['/products/detail', item.id]">Detail</button></td> -->
           </tr>
         </tbody>
       </table>

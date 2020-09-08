@@ -1,6 +1,6 @@
 export class HouseResponse{
   address: string;
-  cityName: string;
+  city: string;
   description: string;
   houseCategory: string;
   id: number;

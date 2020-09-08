@@ -12,6 +12,10 @@ import {v4 as uuid} from 'uuid';
 import {finalize} from 'rxjs/operators';
 import {ImageService} from '../../../containers/services/images/image.service';
 import {ImagePayload} from '../../../containers/model/image/image';
+import { ToastrService } from 'ngx-toastr';
+
+
+
 @Component({
   selector: 'app-create-house',
   templateUrl: './create-house.component.html',
@@ -29,12 +33,14 @@ export class CreateHouseComponent implements OnInit {
   constructor(  private router: Router,
                 private houseService: HouseService,
                 private storage: AngularFireStorage,
-                private imageService: ImageService
+                private imageService: ImageService,
+                private toastr: ToastrService,
+
   ) {
       this.housePayLoad = {
         name: '',
-        houseCategory: '',
-        cityName: '',
+        houseCategory: 0,
+        city: 0,
         address: '',
         price: 0,
         description: '',
@@ -83,7 +89,7 @@ export class CreateHouseComponent implements OnInit {
     this.housePayLoad.name = this.createHouseForm.get('Name').value;
     this.housePayLoad.address = this.createHouseForm.get('Address').value;
     this.housePayLoad.houseCategory = this.createHouseForm.get('HouseCategory').value;
-    this.housePayLoad.cityName = this.createHouseForm.get('City').value;
+    this.housePayLoad.city = this.createHouseForm.get('City').value;
     this.housePayLoad.price = this.createHouseForm.get('Price').value;
     this.housePayLoad.description = this.createHouseForm.get('Description').value;
     this.housePayLoad.bathrooms = this.createHouseForm.get('Bathrooms').value;
@@ -97,8 +103,11 @@ export class CreateHouseComponent implements OnInit {
           this.upload(i, this.files[i], house.id, this.files.length);
           console.log(1);
         }
+      this.toastr.success("Change password successfully");
+        this.router.navigate([''])
       },
       (error) => {
+      this.toastr.success("Change password successfully");
         throwError(error);
       }
     );

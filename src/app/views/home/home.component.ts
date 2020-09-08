@@ -36,17 +36,6 @@ export class HomeComponent implements OnInit {
     private router: Router,
     private houseService: HouseService
   ) {
-    this.searchPayLoad = {
-      houseCategoryId: null,
-      cityId: null,
-      address: null,
-      name: null,
-      bathrooms: null,
-      sleepingRooms: null,
-      price: null,
-      startDate: null,
-      endDate: null
-    };
   }
 
   ngOnInit(): void {
@@ -60,8 +49,8 @@ export class HomeComponent implements OnInit {
       bathrooms: new FormControl(''),
       sleepingRooms: new FormControl(''),
       price: new FormControl(''),
-      startDate: new FormControl(''),
-      endDate: new FormControl(''),
+      startDate: new FormControl('', Validators.required),
+      endDate: new FormControl('', Validators.required),
     }, timeDateValidator);
     this.houseService.getAllHouseCategory().subscribe(
       (data) => {
@@ -85,30 +74,21 @@ export class HomeComponent implements OnInit {
 
   searchHouse(): void {
     console.log('search');
-    this.searchPayLoad.name = this.searchFrom.get('name').value;
-    this.searchPayLoad.address = this.searchFrom.get('address').value;
-    this.searchPayLoad.houseCategoryId = this.searchFrom.get('houseCategoryId').value;
-    this.searchPayLoad.cityId = this.searchFrom.get('cityId').value;
-    this.searchPayLoad.price = this.searchFrom.get('price').value;
-    this.searchPayLoad.bathrooms = this.searchFrom.get('bathrooms').value;
-    this.searchPayLoad.sleepingRooms = this.searchFrom.get('sleepingRooms').value;
-    this.searchPayLoad.startDate = this.searchFrom.get('startDate').value;
-    this.searchPayLoad.endDate = this.searchFrom.get('endDate').value;
     this.router.navigate(
       ['/houses'],
-      {queryParams:
-          {
-            name: this.searchPayLoad.name,
-            address: this.searchPayLoad.address,
-            category: this.searchPayLoad.houseCategoryId,
-            city: this.searchPayLoad.cityId,
-            price: this.searchPayLoad.price,
-            bathrooms: this.searchPayLoad.bathrooms,
-            sleepingrooms: this.searchPayLoad.sleepingRooms,
-            start: this.searchPayLoad.startDate,
-            end: this.searchPayLoad.endDate
+        {queryParams:
+            {
+            name: this.searchFrom.get('name').value,
+            address: this.searchFrom.get('address').value,
+            category: this.searchFrom.get('houseCategoryId').value,
+            city: this.searchFrom.get('cityId').value,
+            price: this.searchFrom.get('price').value,
+            bathrooms: this.searchFrom.get('bathrooms').value,
+            sleepingrooms: this.searchFrom.get('sleepingRooms').value,
+            start: this.searchFrom.get('startDate').value,
+            end: this.searchFrom.get('endDate').value
           }
-      }
+        }
       );
   }
 }

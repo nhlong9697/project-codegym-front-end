@@ -38,6 +38,8 @@
                     </div>
                   </div>
                 </div>
+              </div>
+              <div class="row">
                 <div class="col-md align-items-end">
                   <div class="form-group">
                     <label for="#">House Category</label>
@@ -68,11 +70,12 @@
                           class="form-control"
                           style="margin-top: 10px"
                           [formControlName]="'cityId'"
+                          required
                         >
                           <option value="" selected disabled>Select city</option>
                           <option *ngFor="let city of cities " value="{{city.id}}">{{ city.name }}</option>
                         </select>
-                        <span
+                        <span class="alert alert-danger"
                           *ngIf="!searchFrom.get('cityId').valid && searchFrom.get('cityId').touched"
                         >
                         Please provide a valid city
@@ -81,24 +84,10 @@
                     </div>
                   </div>
                 </div>
-                <div class="col-md align-items-end">
-                  <div class="form-group">
-                    <label for="#">Check In</label>
-                    <div class="form-field">
-                      <div class="icon"><span class="icon-map-marker"></span></div>
-                      <input type="datetime-local" class="form-control" [formControlName]="'startDate'" />
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md align-items-end">
-                  <div class="form-group">
-                    <label for="#">Check Out</label>
-                    <div class="form-field">
-                      <div class="icon"><span class="icon-map-marker"></span></div>
-                      <input type="datetime-local" class="form-control" [formControlName]="'endDate'" />
-                    </div>
-                  </div>
-                </div>
+              </div>
+              <div class="row">
+
+
                 <div class="col-md align-items-end">
                   <div class="form-group">
                     <label >Bathrooms</label>
@@ -143,10 +132,47 @@
                     </div>
                   </div>
                 </div>
+
+              </div>
+              <div class="row">
+                <div class="col-md align-items-end">
+                  <div class="form-group">
+                    <label for="#">Check In</label>
+                    <div class="form-field">
+                      <div class="icon"><span class="icon-map-marker"></span></div>
+                      <input type="datetime-local" class="form-control" [formControlName]="'startDate'" required/>
+                    </div>
+                    <span class="alert alert-danger"
+                          *ngIf="
+                    !searchFrom.get('startDate').valid &&
+                    searchFrom.get('startDate').touched
+                  "
+                    >
+                  Please provide a valid startDate
+                </span>
+                  </div>
+                </div>
+                <div class="col-md align-items-end">
+                  <div class="form-group">
+                    <label for="#">Check Out</label>
+                    <div class="form-field">
+                      <div class="icon"><span class="icon-map-marker"></span></div>
+                      <input type="datetime-local" class="form-control" [formControlName]="'endDate'" required/>
+                    </div>
+                    <span class="alert alert-danger"
+                          *ngIf="
+                    !searchFrom.get('endDate').valid &&
+                    searchFrom.get('endDate').touched
+                  "
+                    >
+                  Please provide a valid endDate
+                </span>
+                  </div>
+                </div>
                 <div class="col-md align-self-end">
                   <div class="form-group">
                     <div class="form-field">
-                      <input type="submit" value="Search" class="form-control btn btn-primary">
+                      <input [disabled]="searchFrom.invalid" type="submit" value="Search" class="form-control btn btn-primary">
                     </div>
                   </div>
                 </div>
