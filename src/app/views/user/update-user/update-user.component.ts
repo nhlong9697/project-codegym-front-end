@@ -80,7 +80,7 @@ export class UpdateUserComponent implements OnInit {
       (res) => {
         this.user = res;
         this.updateUserForm.patchValue(res);
-        console.log(this.user);
+        // console.log(this.user);
       },
       (rej) => {
         console.log('Get user failed!');
@@ -105,6 +105,8 @@ export class UpdateUserComponent implements OnInit {
   updateUser(): void {
     let filePath = '';
     const file = this.files[0];
+    console.log(this.user.image);
+
     if (this.user.image == null) {
       filePath = `users/${Date.now()}_${uuid()}`;
     }
