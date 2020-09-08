@@ -69,7 +69,7 @@ import { ListHouseByUserComponent } from './views/house/list-house-by-user/list-
     UpdateUserComponent,
     UpdatePasswordComponent,
     EditReservationComponent,
-    RatingBarComponent
+    RatingBarComponent,
     UpdatePasswordComponent,
     ListHouseByUserComponent
   ],
