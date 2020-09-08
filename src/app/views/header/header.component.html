@@ -29,13 +29,16 @@
           <button (click)="goToChangePass()" ngbDropdownItem>Change password</button>
           <button (click)="logout()" ngbDropdownItem>Logout</button>
         </div>
-        <button class="userdetails" id="dropdownBasic1" ngbDropdownToggle>
-          <!-- <img class="account-icon"
+        <div >
+          <button class="userdetails" id="dropdownBasic1" ngbDropdownToggle>
+          <img *ngIf="!imageRef" class="account-icon"
             src="https://www.redditstatic.com/avatars/avatar_default_08_D4E815.png"
-          /> -->
-          <img class="account-icon" [src]="imageRef | async" loading="lazy" alt="First slide">
+          />
+          <img *ngIf="imageRef" class="account-icon" [src]="imageRef | async" loading="lazy" alt="First slide">
           {{ username }}
         </button>
+        </div>
+
       </div>
       <div *ngIf="!isLoggedIn">
         <a routerLink="/signup" class="float-right sign-up mr-2">Sign up</a>
