@@ -41,7 +41,7 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
 
     this.searchFrom = new FormGroup({
-      cityId: new FormControl('', Validators.required),
+      cityId: new FormControl(''),
       houseCategoryId: new FormControl(''),
 
       address: new FormControl(''),
