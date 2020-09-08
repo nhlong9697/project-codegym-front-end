@@ -16,10 +16,9 @@ import { AngularFireStorage } from '@angular/fire/storage';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  faUser = faUser;
+  // faUser = faUser;
   isLoggedIn: boolean;
   username: string;
-  // user: UpdateUserRequest;
   imageRef: Observable<string | null>;
 
 
@@ -56,9 +55,8 @@ export class HeaderComponent implements OnInit {
   getUserByUsername = () => {
     this.authService.getUserByUsername(this.username).subscribe(
       (res) => {
-        // this.user = res;
         this.imageRef = this.storage.ref(res.image).getDownloadURL();
-        // console.log(this.user);
+        // console.log(res);
       },
       (rej) => {
         console.log('Get user failed!');

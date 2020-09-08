@@ -35,7 +35,7 @@ export class ListReservationUserComponent implements OnInit {
     })
   }
 
-  deleteReservationByIdIsCustomer(id:number){
+  deleteReservationByCustomer(id:number){
     if(confirm('Are you sure?')) {
       this.reservationService.deleteReservationById(id).subscribe(res =>{
         window.alert('Successful cancellation!')

@@ -30,10 +30,15 @@
           <button (click)="logout()" ngbDropdownItem>Logout</button>
         </div>
         <button class="userdetails" id="dropdownBasic1" ngbDropdownToggle>
-          <!-- <img class="account-icon"
-            src="https://www.redditstatic.com/avatars/avatar_default_08_D4E815.png"
-          /> -->
-          <img class="account-icon" [src]="imageRef | async" loading="lazy">
+          <span *ngIf="!imageRef">
+            <img class="account-icon"
+                        src="https://www.redditstatic.com/avatars/avatar_default_08_D4E815.png"
+                      />
+          </span>
+          <span *ngIf="imageRef" >
+            <img class="account-icon" [src]="imageRef | async" loading="lazy">
+
+          </span>
           {{ username }}
         </button>
       </div>

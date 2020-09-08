@@ -13,7 +13,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 @Component({
   selector: 'app-view-house',
   templateUrl: './view-house.component.html',
-  styleUrls: ['./view-house.component.css'],
+  styleUrls: ['./view-house.component.css']
 })
 export class ViewHouseComponent implements OnInit {
   commentForm: FormGroup;
@@ -98,6 +98,9 @@ export class ViewHouseComponent implements OnInit {
     );
   }
 
+  goToProfile(userName: string): void {
+    this.router.navigateByUrl('/houses-owned-user/' + userName);
+  }
   postComment(): void {
     this.commentPayload.text = this.commentForm.get('text').value;
     this.commentPayload.votes = this.votes;

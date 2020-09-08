@@ -62,7 +62,6 @@ import { ListHouseByUserComponent } from './views/house/list-house-by-user/list-
     ListReservationUserComponent,
     EditReservationComponent,
     HomeComponent,
-    EditReservationComponent,
     ListReservationHouseComponent,
     ListHouseUserComponent,
     MyHouseComponent,
