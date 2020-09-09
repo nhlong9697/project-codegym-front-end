@@ -122,7 +122,7 @@
           </ngx-dropzone>
           <div *ngFor="let uploadPercent of uploadPercents" class="mb-2">
             <div *ngIf="uploadPercent | async as pct">
-              <app-progress-bar width="pct"></app-progress-bar>
+              <app-progress-bar width="{{pct | number}}"></app-progress-bar>
               <span>{{pct | number}}</span>
             </div>
           </div>
