@@ -103,11 +103,11 @@ export class CreateHouseComponent implements OnInit {
           this.upload(i, this.files[i], house.id, this.files.length);
           console.log(1);
         }
-      this.toastr.success("Change password successfully");
-        this.router.navigate([''])
+        this.toastr.success('Create house successfully');
+        this.router.navigate(['']);
       },
       (error) => {
-      this.toastr.success("Change password successfully");
+        this.toastr.success('Create house successfully');
         throwError(error);
       }
     );

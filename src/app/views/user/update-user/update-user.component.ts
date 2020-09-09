@@ -127,11 +127,10 @@ export class UpdateUserComponent implements OnInit {
           // console.log(filePath);
           this.authService.updateUser(this.user).subscribe(
             (res) => {
-              this.toastr.success('Update successed!');
-              this.router.navigate(['']);
+              this.toastr.success('Update user detail successfully!');
             },
             (rej) => {
-              this.toastr.error('Update failed');
+              this.toastr.error('Update user detail failed');
             }
           );
         })
