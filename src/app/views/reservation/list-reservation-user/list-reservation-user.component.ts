@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ReservationService } from 'src/app/containers/services/reservation/reservation.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Reservation } from 'src/app/containers/model/reservation/reservation';
+import {ToastrService} from 'ngx-toastr';
 
 @Component({
   selector: 'app-list-reservation-user',
@@ -9,7 +10,7 @@ import { Reservation } from 'src/app/containers/model/reservation/reservation';
   styleUrls: ['./list-reservation-user.component.css']
 })
 export class ListReservationUserComponent implements OnInit {
-  houseName: string
+  houseName: string;
   reservationByUser: Array<Reservation>;
   username = this.activateRouter.snapshot.paramMap.get('username');
 
@@ -17,7 +18,9 @@ export class ListReservationUserComponent implements OnInit {
 
   constructor(private reservationService: ReservationService,
               private route: Router,
-              private activateRouter: ActivatedRoute) { }
+              private activateRouter: ActivatedRoute,
+              private toastr: ToastrService
+  ) { }
 
   ngOnInit(): void {
     this.getAllReservationByUsername();
@@ -30,21 +33,21 @@ export class ListReservationUserComponent implements OnInit {
       this.reservationByUser = res;
       // console.log(res);
     },
-    (rej)=>{
+    (rej) => {
 
-    })
+    });
   }
 
-  deleteReservationByCustomer(id:number){
-    if(confirm('Are you sure?')) {
-      this.reservationService.deleteReservationById(id).subscribe(res =>{
-        window.alert('Successful cancellation!')
+  deleteReservationByCustomer(id: number){
+    if (confirm('Are you sure?')) {
+      this.reservationService.deleteReservationById(id).subscribe(res => {
+        this.toastr.success('Delete reservation successfully');
         this.getAllReservationByUsername();
         // console.log(res);
       },
       (rej) => {
-        window.alert('You can only cancel within three days of booking and one day before the rental period')
-      })
+        this.toastr.error('Delete reservation failed');
+      });
     }
   }
 

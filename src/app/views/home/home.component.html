@@ -27,8 +27,16 @@
                       <label for="#">Address</label>
                       <div class="form-field">
                         <div class="icon"><span class="icon-my_location"></span></div>
-                        <input type="text" class="form-control" placeholder="Address" [formControlName]="'address'">
+                        <input type="text" class="form-control" placeholder="Address" [formControlName]="'address'" required>
                       </div>
+                      <span class="alert alert-danger"
+                            *ngIf="
+                      !searchFrom.get('address').valid &&
+                      searchFrom.get('address').touched
+                    "
+                      >
+                    Please provide a valid address
+                  </span>
                     </div>
                   </div>
                   <div class="col-md align-items-end">
@@ -36,8 +44,16 @@
                       <label for="#">Name</label>
                       <div class="form-field">
                         <div class="icon"><span class="icon-my_location"></span></div>
-                        <input type="text" class="form-control" placeholder="Address" [formControlName]="'name'">
+                        <input type="text" class="form-control" placeholder="Name" [formControlName]="'name'" required>
                       </div>
+                      <span class="alert alert-danger"
+                            *ngIf="
+                      !searchFrom.get('name').valid &&
+                      searchFrom.get('name').touched
+                    "
+                      >
+                    Please provide a valid name
+                  </span>
                     </div>
                   </div>
                 </div>

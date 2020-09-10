@@ -4,6 +4,7 @@ import { HouseService } from 'src/app/containers/services/house/house.service';
 import { ReservationService } from 'src/app/containers/services/reservation/reservation.service';
 import { Reservation } from 'src/app/containers/model/reservation/reservation';
 import { Location } from '@angular/common';
+import {ToastrService} from 'ngx-toastr';
 
 @Component({
   selector: 'app-list-reservation-house',
@@ -20,7 +21,8 @@ export class ListReservationHouseComponent implements OnInit {
     private router: Router,
     private activateRouter: ActivatedRoute,
     private houseService: HouseService,
-    private location: Location
+    private location: Location,
+    private toastr: ToastrService
   ) { }
 
   ngOnInit(): void {
@@ -44,12 +46,12 @@ export class ListReservationHouseComponent implements OnInit {
   deleteReservationByIdIsHouseOwner(id:number){
     if(confirm('Are you sure?')) {
       this.reservationService.deleteReservationById(id).subscribe(res =>{
-        window.alert('Delete reservation succeed!');
+        this.toastr.success('Delete reservation successfully');
         this.getReservationsByHouse();
         // console.log(res);
       },
       (rej) => {
-        window.alert('Delete error for this reservation!');
+        this.toastr.error('Delete reservation failed');
       })
     }
   }
