@@ -44,8 +44,8 @@ export class HomeComponent implements OnInit {
       cityId: new FormControl(''),
       houseCategoryId: new FormControl(''),
 
-      address: new FormControl('', Validators.required),
-      name: new FormControl('', Validators.required),
+      address: new FormControl(''),
+      name: new FormControl(''),
       bathrooms: new FormControl(''),
       sleepingRooms: new FormControl(''),
       price: new FormControl(''),
