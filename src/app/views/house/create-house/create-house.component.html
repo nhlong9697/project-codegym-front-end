@@ -16,7 +16,7 @@
             style="margin-top: 5px"
             placeholder="Name"
           />
-          <span
+          <span class="alert alert-danger"
                   *ngIf="
                     !createHouseForm.get('Name').valid &&
                     createHouseForm.get('Name').touched
@@ -32,7 +32,7 @@
             style="margin-top: 5px"
             placeholder="address"
           />
-          <span
+          <span class="alert alert-danger"
           *ngIf="
             !createHouseForm.get('Address').valid &&
             createHouseForm.get('Address').touched
@@ -51,7 +51,7 @@
               {{ category.name }}
             </option>
           </select>
-          <span
+          <span class="alert alert-danger"
           *ngIf="
             !createHouseForm.get('HouseCategory').valid &&
             createHouseForm.get('HouseCategory').touched
@@ -68,7 +68,7 @@
             <option value="" selected disabled>Select city</option>
             <option *ngFor="let city of allCity" value="{{city.id}}">{{ city.name }}</option>
           </select>
-          <span
+          <span class="alert alert-danger"
           *ngIf="
             !createHouseForm.get('City').valid &&
             createHouseForm.get('City').touched
@@ -114,15 +114,15 @@
                           bullist numlist outdent indent | removeformat | help'
             }"
           ></editor>
-          <ngx-dropzone (change)="onSelect($event)">
+          <ngx-dropzone (change)="onSelect($event)" [accept]="'image/*'">
             <ngx-dropzone-label>Drop it, baby!</ngx-dropzone-label>
-            <ngx-dropzone-preview *ngFor="let f of files" [removable]="true" (removed)="onRemove(f)">
+            <ngx-dropzone-image-preview *ngFor="let f of files" [removable]="true" (removed)="onRemove(f)" [file]="f">
               <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
-            </ngx-dropzone-preview>
+            </ngx-dropzone-image-preview>
           </ngx-dropzone>
           <div *ngFor="let uploadPercent of uploadPercents" class="mb-2">
             <div *ngIf="uploadPercent | async as pct">
-              <app-progress-bar width="pct"></app-progress-bar>
+              <app-progress-bar width="{{pct}}"></app-progress-bar>
               <span>{{pct | number}}</span>
             </div>
           </div>

@@ -25,7 +25,7 @@ export class CommentService {
 
   getAllCommentsByUser(username: string) {
     return this.httpClient.get<CommentPayload[]>(
-      environment.URL + 'api/comments/by-house/' +username
+      environment.URL + 'api/comments/by-house/' + username
     );
   }
 }

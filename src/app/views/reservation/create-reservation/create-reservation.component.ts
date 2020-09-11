@@ -67,7 +67,7 @@ export class CreateReservationComponent implements OnInit {
     this.reservation = this.createReservationForm.value;
     // console.log(this.reservation);
 
-    this.reservationService.createProduct(this.reservation).subscribe(
+    this.reservationService.createReservation(this.reservation).subscribe(
       (res) => {
         this.toastr.success('Reservation success!');
         this.route.navigate(['']);

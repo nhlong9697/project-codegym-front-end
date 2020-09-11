@@ -2,8 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/containers/services/auth/auth.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UserPassword } from 'src/app/containers/model/auth/user-password';
-import { ActivatedRoute } from '@angular/router';
-import {ToastrService} from 'ngx-toastr';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+import { Route } from '@angular/compiler/src/core';
+import {Observable, throwError} from 'rxjs';
+import { AngularFireStorage } from '@angular/fire/storage';
+
+
 
 @Component({
   selector: 'app-update-password',
@@ -14,14 +19,17 @@ export class UpdatePasswordComponent implements OnInit {
   userPass: UserPassword;
   updatePasswordUserForm: FormGroup;
   username = this.activatedRoute.snapshot.paramMap.get('username');
+  imageRef: Observable<string | null>;
 
 
   constructor(
     private activatedRoute: ActivatedRoute,
     private authService: AuthService,
     private fb: FormBuilder,
-    private toastr: ToastrService
-  )
+    private toastr: ToastrService,
+    private router: Router,
+    private storage: AngularFireStorage,
+    )
     {
       this.userPass = {
         // id: 0,
@@ -32,6 +40,8 @@ export class UpdatePasswordComponent implements OnInit {
     }
 
   ngOnInit(): void {
+    this.getUserByUsername();
+
     this.updatePasswordUserForm = this.fb.group({
       username: [this.username],
       newPassword: ['', [Validators.required, Validators.minLength(6)]],
@@ -55,10 +65,23 @@ export class UpdatePasswordComponent implements OnInit {
     console.log(this.userPass);
 
     this.authService.changePasswordUser(this.userPass).subscribe((res) => {
-      this.toastr.success('Change password success');
+      this.toastr.success("Change password successfully");
+      this.router.navigate(['']);
     },
     (rej) => {
-      this.toastr.error('Failed to change password');
-    });
+      this.toastr.error("Change password failed");
+    })
   }
+
+  getUserByUsername = () => {
+    this.authService.getUserByUsername(this.username).subscribe(
+      (res) => {
+        this.imageRef = this.storage.ref(res.image).getDownloadURL();
+        // console.log(res);
+      },
+      (rej) => {
+        console.log('Get user failed!');
+      }
+    );
+  };
 }

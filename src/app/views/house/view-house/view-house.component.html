@@ -12,7 +12,7 @@
             <mdb-carousel-item *ngFor="let imageRef of imagesRef">
               <div class="view w-100">
                 <img
-                  class="d-block w-100"
+                  class="d-block w-100 h-100"
                   [src]="imageRef | async"
                   loading="lazy"
                   alt="First slide"
@@ -48,6 +48,14 @@
               [innerHtml]="house.address + ' , ' + house.city"
             ></p>
           </div>
+          <div>
+            bathroom:
+            <span><fa-icon [icon]="faBath"></fa-icon>{{house.bathrooms}}</span>
+          </div>
+          <div>
+            sleepingroom:
+            <span><fa-icon [icon]="faBed"></fa-icon>{{house.sleepingRooms}}</span>
+            <div>
           <div>
             <mat-card-content>
               <h3>

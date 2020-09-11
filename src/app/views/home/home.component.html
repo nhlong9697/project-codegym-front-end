@@ -1,4 +1,4 @@
-<div class="hero-wrap js-fullheight" style="background-image: url('assets/bg_1.jpg');">
+<!-- <div  class="hero-wrap js-fullheight bg" >
   <div class="overlay"></div>
   <div class="container">
     <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-start" data-scrollax-parent="true">
@@ -8,179 +8,194 @@
       </div>
     </div>
   </div>
-</div>
+</div> -->
+<div class="hero-image">
 
-<section class="ftco-section justify-content-end ftco-search">
-  <div class="container-wrap ml-auto">
-    <div class="row no-gutters">
-      <div class="col-md-12 tab-wrap">
+<div class="hero-text">
+  <section class="ftco-section justify-content-end ftco-search">
+    <div class="container-wrap ml-auto">
+      <div class="row no-gutters">
+        <div class="col-md-12 tab-wrap">
 
-        <div class="tab-content p-4 px-5" id="v-pills-tabContent">
+          <div class="tab-content p-4 px-5" id="v-pills-tabContent">
 
-          <div class="tab-pane fade show active" id="v-pills-1" role="tabpanel" aria-labelledby="v-pills-nextgen-tab">
-            <form action="#" class="search-destination" [formGroup]="searchFrom" (ngSubmit)="searchHouse()">
-              <div class="row">
-                <div class="col-md align-items-end">
-                  <div class="form-group">
-                    <label for="#">Address</label>
-                    <div class="form-field">
-                      <div class="icon"><span class="icon-my_location"></span></div>
-                      <input type="text" class="form-control" placeholder="Address" [formControlName]="'address'">
+            <div class="tab-pane fade show active" id="v-pills-1" role="tabpanel" aria-labelledby="v-pills-nextgen-tab">
+              <form action="#" class="search-destination" [formGroup]="searchFrom" (ngSubmit)="searchHouse()">
+                <div class="row">
+                  <div class="col-md align-items-end">
+                    <div class="form-group">
+                      <label for="#">Address</label>
+                      <div class="form-field">
+                        <div class="icon"><span class="icon-my_location"></span></div>
+                        <input type="text" class="form-control" placeholder="Address" [formControlName]="'address'" >
+                      </div>
+<!--                      <span class="alert alert-danger"-->
+<!--                            *ngIf="-->
+<!--                      !searchFrom.get('address').valid &&-->
+<!--                      searchFrom.get('address').touched-->
+<!--                    "-->
+<!--                      >-->
+<!--                    Please provide a valid address-->
+<!--                  </span>-->
+                    </div>
+                  </div>
+                  <div class="col-md align-items-end">
+                    <div class="form-group">
+                      <label for="#">Name</label>
+                      <div class="form-field">
+                        <div class="icon"><span class="icon-my_location"></span></div>
+                        <input type="text" class="form-control" placeholder="Name" [formControlName]="'name'">
+                      </div>
+<!--                      <span class="alert alert-danger"-->
+<!--                            *ngIf="-->
+<!--                      !searchFrom.get('name').valid &&-->
+<!--                      searchFrom.get('name').touched-->
+<!--                    "-->
+<!--                      >-->
+<!--                    Please provide a valid name-->
+<!--                  </span>-->
                     </div>
                   </div>
                 </div>
-                <div class="col-md align-items-end">
-                  <div class="form-group">
-                    <label for="#">Name</label>
-                    <div class="form-field">
-                      <div class="icon"><span class="icon-my_location"></span></div>
-                      <input type="text" class="form-control" placeholder="Address" [formControlName]="'name'">
+                <div class="row">
+                  <div class="col-md align-items-end">
+                    <div class="form-group">
+                      <label for="#">House Category</label>
+                      <div class="form-field">
+                        <div class="select-wrap">
+                          <div class="icon"><span class="ion-ios-arrow-down"></span></div>
+                          <select
+                            class="form-control"
+                            style="margin-top: 10px"
+                            [formControlName]="'houseCategoryId'"
+                          >
+                            <option value="" selected disabled>Select house category</option>
+                            <option *ngFor="let houseCategory of houseCategories" value="{{houseCategory.id}}">
+                              {{ houseCategory.name }}
+                            </option>
+                          </select>
+                        </div>
+                      </div>
                     </div>
                   </div>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-md align-items-end">
-                  <div class="form-group">
-                    <label for="#">House Category</label>
-                    <div class="form-field">
-                      <div class="select-wrap">
-                        <div class="icon"><span class="ion-ios-arrow-down"></span></div>
-                        <select
-                          class="form-control"
-                          style="margin-top: 10px"
-                          [formControlName]="'houseCategoryId'"
-                        >
-                          <option value="" selected disabled>Select house category</option>
-                          <option *ngFor="let houseCategory of houseCategories" value="{{houseCategory.id}}">
-                            {{ houseCategory.name }}
-                          </option>
-                        </select>
+                  <div class="col-md align-items-end">
+                    <div class="form-group">
+                      <label for="#">City</label>
+                      <div class="form-field">
+                        <div class="select-wrap">
+                          <div class="icon"><span class="ion-ios-arrow-down"></span></div>
+                          <select
+                            class="form-control"
+                            style="margin-top: 10px"
+                            [formControlName]="'cityId'"
+                          >
+                            <option value="" selected disabled>Select city</option>
+                            <option *ngFor="let city of cities " value="{{city.id}}">{{ city.name }}</option>
+                          </select>
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
-                <div class="col-md align-items-end">
-                  <div class="form-group">
-                    <label for="#">City</label>
-                    <div class="form-field">
-                      <div class="select-wrap">
+                <div class="row">
+
+
+                  <div class="col-md align-items-end">
+                    <div class="form-group">
+                      <label >Bathrooms</label>
+                      <div class="form-field">
                         <div class="icon"><span class="ion-ios-arrow-down"></span></div>
-                        <select
-                          class="form-control"
-                          style="margin-top: 10px"
-                          [formControlName]="'cityId'"
-                          required
-                        >
-                          <option value="" selected disabled>Select city</option>
-                          <option *ngFor="let city of cities " value="{{city.id}}">{{ city.name }}</option>
-                        </select>
-                        <span class="alert alert-danger"
-                          *ngIf="!searchFrom.get('cityId').valid && searchFrom.get('cityId').touched"
-                        >
-                        Please provide a valid city
-                        </span>
+                          <input
+                            type="number"
+                            class="form-control"
+                            [formControlName]="'bathrooms'"
+                            style="margin-top: 5px"
+                            placeholder="Bathrooms"
+                          />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md align-items-end">
+                    <div class="form-group">
+                      <label >Sleeping rooms</label>
+                      <div class="form-field">
+                        <div class="icon"><span class="ion-ios-arrow-down"></span></div>
+                          <input
+                            type="number"
+                            class="form-control"
+                            [formControlName]="'sleepingRooms'"
+                            style="margin-top: 5px"
+                            placeholder="Sleeping rooms"
+                          />
+                      </div>
+                    </div>
+                  </div><div class="col-md align-items-end">
+                    <div class="form-group">
+                      <label for="#">Price</label>
+                      <div class="form-field">
+                        <div class="icon"><span class="ion-ios-arrow-down"></span></div>
+                          <input
+                            type="number"
+                            class="form-control"
+                            [formControlName]="'price'"
+                            style="margin-top: 5px"
+                            placeholder="Price"
+                          />
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+                <div class="row">
+                  <div class="col-md align-items-end">
+                    <div class="form-group">
+                      <label for="#">Check In</label>
+                      <div class="form-field">
+                        <div class="icon"><span class="icon-map-marker"></span></div>
+                        <input type="datetime-local" class="form-control" [formControlName]="'startDate'" required/>
+                      </div>
+                      <span class="alert alert-danger"
+                            *ngIf="
+                      !searchFrom.get('startDate').valid &&
+                      searchFrom.get('startDate').touched
+                    "
+                      >
+                    Please provide a valid startDate
+                  </span>
+                    </div>
+                  </div>
+                  <div class="col-md align-items-end">
+                    <div class="form-group">
+                      <label for="#">Check Out</label>
+                      <div class="form-field">
+                        <div class="icon"><span class="icon-map-marker"></span></div>
+                        <input type="datetime-local" class="form-control" [formControlName]="'endDate'" required/>
+                      </div>
+                      <span class="alert alert-danger"
+                            *ngIf="
+                      !searchFrom.get('endDate').valid &&
+                      searchFrom.get('endDate').touched
+                    "
+                      >
+                    Please provide a valid endDate
+                  </span>
+                    </div>
+                  </div>
+                  <div class="col-md align-self-end">
+                    <div class="form-group">
+                      <div class="form-field">
+                        <input type="submit" value="Search" class="form-control btn btn-primary">
                       </div>
                     </div>
                   </div>
                 </div>
-              </div>
-              <div class="row">
-
-
-                <div class="col-md align-items-end">
-                  <div class="form-group">
-                    <label >Bathrooms</label>
-                    <div class="form-field">
-                      <div class="icon"><span class="ion-ios-arrow-down"></span></div>
-                        <input
-                          type="number"
-                          class="form-control"
-                          [formControlName]="'bathrooms'"
-                          style="margin-top: 5px"
-                          placeholder="Price"
-                        />
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md align-items-end">
-                  <div class="form-group">
-                    <label >Sleeping rooms</label>
-                    <div class="form-field">
-                      <div class="icon"><span class="ion-ios-arrow-down"></span></div>
-                        <input
-                          type="number"
-                          class="form-control"
-                          [formControlName]="'sleepingRooms'"
-                          style="margin-top: 5px"
-                          placeholder="Price"
-                        />
-                    </div>
-                  </div>
-                </div><div class="col-md align-items-end">
-                  <div class="form-group">
-                    <label for="#">Price</label>
-                    <div class="form-field">
-                      <div class="icon"><span class="ion-ios-arrow-down"></span></div>
-                        <input
-                          type="number"
-                          class="form-control"
-                          [formControlName]="'price'"
-                          style="margin-top: 5px"
-                          placeholder="Price"
-                        />
-                    </div>
-                  </div>
-                </div>
-
-              </div>
-              <div class="row">
-                <div class="col-md align-items-end">
-                  <div class="form-group">
-                    <label for="#">Check In</label>
-                    <div class="form-field">
-                      <div class="icon"><span class="icon-map-marker"></span></div>
-                      <input type="datetime-local" class="form-control" [formControlName]="'startDate'" required/>
-                    </div>
-                    <span class="alert alert-danger"
-                          *ngIf="
-                    !searchFrom.get('startDate').valid &&
-                    searchFrom.get('startDate').touched
-                  "
-                    >
-                  Please provide a valid startDate
-                </span>
-                  </div>
-                </div>
-                <div class="col-md align-items-end">
-                  <div class="form-group">
-                    <label for="#">Check Out</label>
-                    <div class="form-field">
-                      <div class="icon"><span class="icon-map-marker"></span></div>
-                      <input type="datetime-local" class="form-control" [formControlName]="'endDate'" required/>
-                    </div>
-                    <span class="alert alert-danger"
-                          *ngIf="
-                    !searchFrom.get('endDate').valid &&
-                    searchFrom.get('endDate').touched
-                  "
-                    >
-                  Please provide a valid endDate
-                </span>
-                  </div>
-                </div>
-                <div class="col-md align-self-end">
-                  <div class="form-group">
-                    <div class="form-field">
-                      <input [disabled]="searchFrom.invalid" type="submit" value="Search" class="form-control btn btn-primary">
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </form>
+              </form>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
+</div>
+</div>
+

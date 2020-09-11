@@ -9,11 +9,12 @@ import { AngularFireStorage } from '@angular/fire/storage';
 import { CommentPayload } from 'src/app/containers/model/comment/comment.payload';
 import { CommentService } from 'src/app/containers/services/comment/comment.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import {faBath, faBed} from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-view-house',
   templateUrl: './view-house.component.html',
-  styleUrls: ['./view-house.component.css'],
+  styleUrls: ['./view-house.component.css']
 })
 export class ViewHouseComponent implements OnInit {
   commentForm: FormGroup;
@@ -24,6 +25,8 @@ export class ViewHouseComponent implements OnInit {
   username: string;
   house: HouseResponse;
   imagesRef: Observable<string | null>[];
+  faBed = faBed;
+  faBath = faBath;
   arrayVote(n: number): any[] {
     return Array(n);
   }
@@ -98,6 +101,9 @@ export class ViewHouseComponent implements OnInit {
     );
   }
 
+  goToProfile(userName: string): void {
+    this.router.navigateByUrl('/houses-owned-user/' + userName);
+  }
   postComment(): void {
     this.commentPayload.text = this.commentForm.get('text').value;
     this.commentPayload.votes = this.votes;
