@@ -32,10 +32,7 @@ export class ListHouseComponent implements OnInit {
       endDate: null
     };
     this.activatedRoute.queryParamMap.subscribe((params) => {
-      console.log('params');
-      console.log(this.searchPayLoad);
       this.searchPayLoad.name = params.get('name') === null ? '' : params.get('name');
-      console.log(params.get('name'));
       this.searchPayLoad.address = params.get('address') === null ? '' : params.get('address');
       this.searchPayLoad.houseCategoryId = parseInt(params.get('category'), 10);
       this.searchPayLoad.cityId = parseInt(params.get('city'), 10);
@@ -44,7 +41,6 @@ export class ListHouseComponent implements OnInit {
       this.searchPayLoad.sleepingRooms = parseInt(params.get('bathrooms'),10);
       this.searchPayLoad.startDate = params.get('start');
       this.searchPayLoad.endDate = params.get('end');
-      console.log('payload');
       console.log(this.searchPayLoad);
       this.housesService.searchHouse(this.searchPayLoad).subscribe((data) => {
         this.houses = data;

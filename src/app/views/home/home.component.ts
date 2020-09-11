@@ -32,18 +32,19 @@ export class HomeComponent implements OnInit {
   searchPayLoad: SearchPayload;
   houseCategories: Array<HouseCategory>;
   cities: Array<City>;
+  request: object = new Object();
   constructor(
     private router: Router,
     private houseService: HouseService
   ) {
+    console.log('constructor rq');
+    console.log(this.request);
   }
 
   ngOnInit(): void {
-
     this.searchFrom = new FormGroup({
       cityId: new FormControl(''),
       houseCategoryId: new FormControl(''),
-
       address: new FormControl(''),
       name: new FormControl(''),
       bathrooms: new FormControl(''),
@@ -71,24 +72,39 @@ export class HomeComponent implements OnInit {
       }
     );
   }
-
   searchHouse(): void {
-    console.log('search');
+    if (this.searchFrom.get('name').value !== '') {
+      this.request['name'] = this.searchFrom.get('name').value;
+    }
+    if (this.searchFrom.get('address').value !== '') {
+      this.request['address'] = this.searchFrom.get('address').value;
+    }
+    if (this.searchFrom.get('houseCategoryId').value !== '') {
+      this.request['category'] = this.searchFrom.get('houseCategoryId').value;
+    }
+    if (this.searchFrom.get('cityId').value !== '') {
+      this.request['city'] = this.searchFrom.get('cityId').value;
+    }
+    if (this.searchFrom.get('price').value !== '') {
+      this.request['price'] = this.searchFrom.get('price').value;
+    }
+    if (this.searchFrom.get('bathrooms').value !== '') {
+      this.request['bathrooms'] = this.searchFrom.get('bathrooms').value;
+    }
+    if (this.searchFrom.get('sleepingRooms').value !== '') {
+      this.request['sleepingrooms'] = this.searchFrom.get('sleepingRooms').value;
+    }
+    if (this.searchFrom.get('startDate').value !== '') {
+      this.request['start'] = this.searchFrom.get('startDate').value;
+    }
+    if (this.searchFrom.get('endDate').value !== '') {
+      this.request['end'] = this.searchFrom.get('endDate').value;
+    }
+    console.log('request');
+    console.log(this.request);
     this.router.navigate(
       ['/houses'],
-        {queryParams:
-            {
-            name: this.searchFrom.get('name').value,
-            address: this.searchFrom.get('address').value,
-            category: this.searchFrom.get('houseCategoryId').value,
-            city: this.searchFrom.get('cityId').value,
-            price: this.searchFrom.get('price').value,
-            bathrooms: this.searchFrom.get('bathrooms').value,
-            sleepingrooms: this.searchFrom.get('sleepingRooms').value,
-            start: this.searchFrom.get('startDate').value,
-            end: this.searchFrom.get('endDate').value
-          }
-        }
+        {queryParams: this.request}
       );
   }
 }
