@@ -37,8 +37,8 @@ export class ListHouseComponent implements OnInit {
       this.searchPayLoad.houseCategoryId = parseInt(params.get('category'), 10);
       this.searchPayLoad.cityId = parseInt(params.get('city'), 10);
       this.searchPayLoad.price = parseInt(params.get('price'), 10);
-      this.searchPayLoad.bathrooms = parseInt(params.get('bathrooms'),10);
-      this.searchPayLoad.sleepingRooms = parseInt(params.get('bathrooms'),10);
+      this.searchPayLoad.bathrooms = parseInt(params.get('bathrooms'), 10);
+      this.searchPayLoad.sleepingRooms = parseInt(params.get('bathrooms'), 10);
       this.searchPayLoad.startDate = params.get('start');
       this.searchPayLoad.endDate = params.get('end');
       console.log(this.searchPayLoad);
