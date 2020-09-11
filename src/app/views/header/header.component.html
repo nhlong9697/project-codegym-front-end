@@ -17,7 +17,7 @@
         </svg> -->
         <img src="https://scontent.fhan4-1.fna.fbcdn.net/v/t1.15752-9/118692880_772589956835472_3516996066359919721_n.png?_nc_cat=105&_nc_sid=b96e70&_nc_ohc=_5EyhmE7X6gAX_DvF37&_nc_ht=scontent.fhan4-1.fna&oh=af247c60913fb81e04b74a05f995b897&oe=5F73D04A" alt="Logo" class="reddit-icon-svg">
         <span class="reddit-text">
-         Mon
+         VoGiaCu
         </span>
       </a>
     </div>
@@ -34,7 +34,7 @@
           <img *ngIf="!imageRef" class="account-icon"
             src="https://www.redditstatic.com/avatars/avatar_default_08_D4E815.png"
           />
-          <img *ngIf="imageRef" class="account-icon" [src]="imageRef | async" loading="lazy" alt="First slide">
+          <img class="account-icon" [src]="imageRef | async" loading="lazy">
           {{ username }}
         </button>
         </div>
