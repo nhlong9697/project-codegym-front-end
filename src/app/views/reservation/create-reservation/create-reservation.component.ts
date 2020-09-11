@@ -74,7 +74,8 @@ export class CreateReservationComponent implements OnInit {
         // window.alert(res.message);
       },
       (rej) => {
-        this.toastr.error('Reservation failed');
+        console.log(rej);
+        this.toastr.error(rej.error);
         // window.alert(throwError(rej.message))
         // window.alert(rej.message);
       }
