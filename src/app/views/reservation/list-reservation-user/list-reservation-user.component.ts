@@ -31,7 +31,7 @@ export class ListReservationUserComponent implements OnInit {
   getAllReservationByUsername(){
     this.reservationService.getAllReservationByUsername(this.username).subscribe((res)=>{
       this.reservationByUser = res;
-      // console.log(res);
+      console.log(res);
     },
     (rej) => {
 
